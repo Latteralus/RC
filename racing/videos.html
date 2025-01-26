@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RC Racing Videos - Aubrey's RC Cars</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <header class="main-header">
+        <nav class="nav-container">
+            <div class="logo">
+                <h1><a href="../index.html">Aubrey's RC Cars</a></h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="../products/index.html">Shop</a></li>
+                <li><a href="../custom/index.html">Custom Builds</a></li>
+                <li><a href="index.html" class="active">Racing</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+            <div class="cart-icon">
+                <span class="cart-count">0</span>
+                <img src="../assets/images/cart.svg" alt="Shopping Cart">
+            </div>
+        </nav>
+    </header>
+
+    <main class="videos-page">
+        <section class="videos-hero">
+            <div class="hero-content">
+                <h2>RC Racing Videos</h2>
+                <p>Watch exciting races, tutorials, and highlights from our events</p>
+            </div>
+        </section>
+
+        <section class="video-categories">
+            <div class="category-tabs">
+                <button class="tab-button active" data-category="all">All Videos</button>
+                <button class="tab-button" data-category="races">Race Highlights</button>
+                <button class="tab-button" data-category="tutorials">Tutorials</button>
+                <button class="tab-button" data-category="reviews">Vehicle Reviews</button>
+            </div>
+        </section>
+
+        <section class="video-grid">
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <iframe 
+                        src="https://www.youtube.com/embed/VIDEO_ID_1" 
+                        title="Weekend Race Series Highlights"
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <h3>Weekend Race Series Highlights</h3>
+                <p>Exciting moments from our latest weekend racing event</p>
+                <span class="video-category">Race Highlights</span>
+            </div>
+
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <iframe 
+                        src="https://www.youtube.com/embed/VIDEO_ID_2" 
+                        title="RC Car Setup Tutorial"
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <h3>RC Car Setup Tutorial</h3>
+                <p>Learn how to properly set up your RC car for racing</p>
+                <span class="video-category">Tutorials</span>
+            </div>
+
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <iframe 
+                        src="https://www.youtube.com/embed/VIDEO_ID_3" 
+                        title="Championship Race Finals"
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <h3>Championship Race Finals</h3>
+                <p>Full coverage of our monthly championship event</p>
+                <span class="video-category">Race Highlights</span>
+            </div>
+
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <iframe 
+                        src="https://www.youtube.com/embed/VIDEO_ID_4" 
+                        title="Traxxas Rustler Review"
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <h3>Traxxas Rustler Review</h3>
+                <p>Detailed review and performance testing</p>
+                <span class="video-category">Vehicle Reviews</span>
+            </div>
+
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <iframe 
+                        src="https://www.youtube.com/embed/VIDEO_ID_5" 
+                        title="RC Racing Tips for Beginners"
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <h3>RC Racing Tips for Beginners</h3>
+                <p>Essential tips and tricks for new racers</p>
+                <span class="video-category">Tutorials</span>
+            </div>
+
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <iframe 
+                        src="https://www.youtube.com/embed/VIDEO_ID_6" 
+                        title="Track Day Highlights"
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <h3>Track Day Highlights</h3>
+                <p>Best moments from our weekly track day</p>
+                <span class="video-category">Race Highlights</span>
+            </div>
+        </section>
+
+        <section class="load-more">
+            <button id="load-more-videos" class="cta-button">Load More Videos</button>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: info@aubreysrc.com</p>
+                <p>Phone: (555) 123-4567</p>
+            </div>
+            <div class="footer-section">
+                <h3>Hours</h3>
+                <p>Mon-Fri: 10AM - 7PM</p>
+                <p>Sat-Sun: 9AM - 5PM</p>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="#" class="social-link">Facebook</a>
+                    <a href="#" class="social-link">Instagram</a>
+                    <a href="#" class="social-link">YouTube</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Aubrey's RC Cars. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/videos.js"></script>
+</body>
+</html>

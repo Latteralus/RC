@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop RC Cars - Aubrey's RC Cars</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/base.css">
+    <link rel="stylesheet" href="../assets/css/products.css">
+</head>
+<body>
+    <header class="main-header">
+        <nav class="nav-container">
+            <div class="logo">
+                <h1><a href="../index.html">Aubrey's RC Cars</a></h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Shop</a></li>
+                <li><a href="../custom/index.html">Custom Builds</a></li>
+                <li><a href="../racing/index.html">Racing</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+            <div class="cart-icon">
+                <span class="cart-count">0</span>
+                <img src="../assets/images/cart.svg" alt="Shopping Cart">
+            </div>
+        </nav>
+    </header>
+
+    <main class="products-page">
+        <section class="product-filters">
+            <h2>Shop RC Cars</h2>
+            <div class="filter-controls">
+                <div class="filter-group">
+                    <label for="category-filter">Category:</label>
+                    <select id="category-filter" aria-label="Filter by category">
+                        <option value="all">All Categories</option>
+                        <option value="cars">Cars</option>
+                        <option value="trucks">Trucks</option>
+                        <option value="buggies">Buggies</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="price-filter">Price Range:</label>
+                    <select id="price-filter" aria-label="Filter by price">
+                        <option value="all">All Prices</option>
+                        <option value="0-200">Under $200</option>
+                        <option value="200-500">$200 - $500</option>
+                        <option value="500+">$500+</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="brand-filter">Brand:</label>
+                    <select id="brand-filter" aria-label="Filter by brand">
+                        <option value="all">All Brands</option>
+                        <option value="traxxas">Traxxas</option>
+                        <option value="arrma">Arrma</option>
+                        <option value="losi">Losi</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <section class="products-grid">
+            <div class="product-card">
+                <img src="../assets/images/products/car1.jpg" alt="Traxxas Rustler">
+                <h3>Traxxas Rustler</h3>
+                <p>High-performance electric stadium truck</p>
+                <ul class="specs">
+                    <li>Scale: 1/10</li>
+                    <li>Top Speed: 35+ mph</li>
+                    <li>Power: Electric</li>
+                </ul>
+                <span class="price">$299.99</span>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+
+            <div class="product-card">
+                <img src="../assets/images/products/car2.jpg" alt="Arrma Kraton">
+                <h3>Arrma Kraton</h3>
+                <p>1/8 Scale Monster Truck</p>
+                <ul class="specs">
+                    <li>Scale: 1/8</li>
+                    <li>Top Speed: 50+ mph</li>
+                    <li>Power: Electric</li>
+                </ul>
+                <span class="price">$549.99</span>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+
+            <div class="product-card">
+                <img src="../assets/images/products/car3.jpg" alt="Losi Mini-T">
+                <h3>Losi Mini-T</h3>
+                <p>Compact racing truck</p>
+                <ul class="specs">
+                    <li>Scale: 1/18</li>
+                    <li>Top Speed: 25+ mph</li>
+                    <li>Power: Electric</li>
+                </ul>
+                <span class="price">$199.99</span>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+
+            <div class="product-card">
+                <img src="../assets/images/products/car4.jpg" alt="Traxxas X-Maxx">
+                <h3>Traxxas X-Maxx</h3>
+                <p>Extreme monster truck</p>
+                <ul class="specs">
+                    <li>Scale: 1/5</li>
+                    <li>Top Speed: 50+ mph</li>
+                    <li>Power: Electric</li>
+                </ul>
+                <span class="price">$899.99</span>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+
+            <div class="product-card">
+                <img src="../assets/images/products/car5.jpg" alt="Arrma Typhon">
+                <h3>Arrma Typhon</h3>
+                <p>High-speed racing buggy</p>
+                <ul class="specs">
+                    <li>Scale: 1/8</li>
+                    <li>Top Speed: 65+ mph</li>
+                    <li>Power: Electric</li>
+                </ul>
+                <span class="price">$449.99</span>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+
+            <div class="product-card">
+                <img src="../assets/images/products/car6.jpg" alt="Losi 22S">
+                <h3>Losi 22S</h3>
+                <p>Short course racing truck</p>
+                <ul class="specs">
+                    <li>Scale: 1/10</li>
+                    <li>Top Speed: 40+ mph</li>
+                    <li>Power: Electric</li>
+                </ul>
+                <span class="price">$349.99</span>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: info@aubreysrc.com</p>
+                <p>Phone: (555) 123-4567</p>
+            </div>
+            <div class="footer-section">
+                <h3>Hours</h3>
+                <p>Mon-Fri: 10AM - 7PM</p>
+                <p>Sat-Sun: 9AM - 5PM</p>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="#" class="social-link">Facebook</a>
+                    <a href="#" class="social-link">Instagram</a>
+                    <a href="#" class="social-link">YouTube</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Aubrey's RC Cars. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/products.js"></script>
+</body>
+</html>
