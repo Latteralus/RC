@@ -1,8 +1,12 @@
-// Enhanced TopBar Component with improved UI/UX
+/**
+ * Enhanced TopBar Component for Aubrey's RC Cars
+ * Provides navigation, cart functionality, and responsive behavior
+ */
 class TopBar {
     constructor() {
         this.cartCount = 0;
         this.cartItems = [];
+        this.isCartOpen = false;
         
         // Use absolute paths for consistent navigation from any page depth
         this.template = `
@@ -21,35 +25,68 @@ class TopBar {
                         <li role="none"><a href="/racing/index.html" role="menuitem">Racing</a></li>
                         <li role="none"><a href="/contact.html" role="menuitem">Contact</a></li>
                     </ul>
-                    <div class="cart-icon" role="button" tabindex="0" aria-label="Shopping Cart">
-                        <span class="cart-count" aria-live="polite" aria-atomic="true">0</span>
-                        <img src="/assets/images/cart.svg" alt="Shopping Cart">
-                        <div class="cart-preview">
-                            <div class="cart-preview-header">
-                                <h3>Your Cart</h3>
-                                <button class="close-preview" aria-label="Close cart preview">&times;</button>
-                            </div>
-                            <div class="cart-preview-items">
-                                <!-- Cart items will be inserted here -->
-                            </div>
-                            <div class="cart-preview-footer">
-                                <div class="cart-total">Total: $<span class="cart-total-amount">0.00</span></div>
-                                <a href="/checkout.html" class="checkout-button">Checkout</a>
+                    <div class="user-actions">
+                        <button class="search-toggle" aria-label="Search">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                        </button>
+                        <div class="cart-icon" role="button" tabindex="0" aria-label="Shopping Cart" aria-expanded="false" aria-controls="cart-preview">
+                            <span class="cart-count" aria-live="polite" aria-atomic="true">0</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="9" cy="21" r="1"></circle>
+                                <circle cx="20" cy="21" r="1"></circle>
+                                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                            </svg>
+                            <div id="cart-preview" class="cart-preview" aria-hidden="true">
+                                <div class="cart-preview-header">
+                                    <h3>Your Cart</h3>
+                                    <button class="close-preview" aria-label="Close cart preview">&times;</button>
+                                </div>
+                                <div class="cart-preview-items">
+                                    <!-- Cart items will be inserted here -->
+                                </div>
+                                <div class="cart-preview-footer">
+                                    <div class="cart-total">Total: $<span class="cart-total-amount">0.00</span></div>
+                                    <div class="cart-actions">
+                                        <a href="/checkout.html" class="checkout-button">Checkout</a>
+                                        <button class="view-cart-button">View Cart</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </nav>
+                <div class="search-container" aria-hidden="true">
+                    <form class="search-form" role="search">
+                        <input type="search" placeholder="Search products..." aria-label="Search products">
+                        <button type="submit" aria-label="Submit search">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                        </button>
+                        <button type="button" class="close-search" aria-label="Close search">&times;</button>
+                    </form>
+                </div>
             </header>
         `;
         this.isMobile = window.innerWidth < 768;
+        
+        // Bind methods to this instance
         this.handleResize = this.handleResize.bind(this);
         this.toggleCartPreview = this.toggleCartPreview.bind(this);
         this.closeCartPreview = this.closeCartPreview.bind(this);
         this.handleEscapeKey = this.handleEscapeKey.bind(this);
         this.handleClickOutside = this.handleClickOutside.bind(this);
+        this.toggleSearch = this.toggleSearch.bind(this);
+        this.closeSearch = this.closeSearch.bind(this);
     }
 
-    // Load cart from localStorage
+    /**
+     * Load cart from localStorage
+     */
     loadCart() {
         try {
             const savedCart = localStorage.getItem('aubreyCart');
@@ -66,7 +103,9 @@ class TopBar {
         }
     }
 
-    // Save cart to localStorage
+    /**
+     * Save cart to localStorage
+     */
     saveCart() {
         try {
             localStorage.setItem('aubreyCart', JSON.stringify(this.cartItems));
@@ -75,8 +114,18 @@ class TopBar {
         }
     }
 
-    // Add item to cart
+    /**
+     * Add item to cart
+     * @param {Object} product - Product to add to cart
+     * @returns {number} - New cart count
+     */
     addToCart(product) {
+        // Validate product object
+        if (!product || !product.id || !product.name || !product.price) {
+            console.error('Invalid product object:', product);
+            return this.cartCount;
+        }
+
         const existingItem = this.cartItems.find(item => item.id === product.id);
         
         if (existingItem) {
@@ -98,7 +147,11 @@ class TopBar {
         return this.cartCount;
     }
 
-    // Remove item from cart
+    /**
+     * Remove item from cart
+     * @param {string} productId - Product ID to remove
+     * @returns {number} - New cart count
+     */
     removeFromCart(productId) {
         const itemIndex = this.cartItems.findIndex(item => item.id === productId);
         
@@ -113,8 +166,24 @@ class TopBar {
         return this.cartCount;
     }
 
-    // Update quantity of an item
+    /**
+     * Update quantity of an item
+     * @param {string} productId - Product ID to update
+     * @param {number} quantity - New quantity
+     * @returns {number} - New cart count
+     */
     updateQuantity(productId, quantity) {
+        // Validate input
+        if (quantity < 0) {
+            console.error('Invalid quantity:', quantity);
+            return this.cartCount;
+        }
+
+        // If quantity is 0, remove item
+        if (quantity === 0) {
+            return this.removeFromCart(productId);
+        }
+
         const item = this.cartItems.find(item => item.id === productId);
         
         if (item) {
@@ -128,7 +197,9 @@ class TopBar {
         return this.cartCount;
     }
 
-    // Update all cart-related displays
+    /**
+     * Update all cart-related displays
+     */
     updateCartDisplay() {
         // Update counter
         const cartCountElement = document.querySelector('.cart-count');
@@ -144,7 +215,10 @@ class TopBar {
         this.updateCartPreview();
     }
 
-    // Show notification when item is added to cart
+    /**
+     * Show notification when item is added to cart
+     * @param {string} productName - Name of product added to cart
+     */
     showAddedToCartNotification(productName) {
         // Remove any existing notification
         const existingNotification = document.querySelector('.add-to-cart-confirmation');
@@ -154,7 +228,10 @@ class TopBar {
         
         // Create new notification
         const notification = document.createElement('div');
-        notification.classList.add('add-to-cart-confirmation');
+        notification.className = 'add-to-cart-confirmation';
+        notification.setAttribute('role', 'alert');
+        notification.setAttribute('aria-live', 'polite');
+        
         notification.innerHTML = `
             <div class="notification-content">
                 <div class="notification-icon">✓</div>
@@ -198,48 +275,151 @@ class TopBar {
         }, 5000);
     }
 
-    // Toggle cart preview visibility
+    /**
+     * Toggle cart preview visibility
+     */
     toggleCartPreview() {
         const cartPreview = document.querySelector('.cart-preview');
-        if (cartPreview.classList.contains('active')) {
-            this.closeCartPreview();
-        } else {
+        const cartIcon = document.querySelector('.cart-icon');
+        
+        if (!cartPreview || !cartIcon) return;
+        
+        this.isCartOpen = !this.isCartOpen;
+        
+        if (this.isCartOpen) {
+            // First, close search if open
+            this.closeSearch();
+            
+            // Open cart preview
             cartPreview.classList.add('active');
+            cartIcon.setAttribute('aria-expanded', 'true');
+            cartPreview.setAttribute('aria-hidden', 'false');
+            
             // Add global event listeners
             document.addEventListener('keydown', this.handleEscapeKey);
             document.addEventListener('click', this.handleClickOutside);
-        }
-    }
-
-    // Close cart preview
-    closeCartPreview() {
-        const cartPreview = document.querySelector('.cart-preview');
-        cartPreview.classList.remove('active');
-        // Remove global event listeners
-        document.removeEventListener('keydown', this.handleEscapeKey);
-        document.removeEventListener('click', this.handleClickOutside);
-    }
-
-    // Handle escape key press
-    handleEscapeKey(event) {
-        if (event.key === 'Escape') {
+            
+            // Focus on close button for accessibility
+            const closeButton = cartPreview.querySelector('.close-preview');
+            if (closeButton) {
+                setTimeout(() => closeButton.focus(), 100);
+            }
+        } else {
             this.closeCartPreview();
         }
     }
 
-    // Handle clicks outside the cart preview
+    /**
+     * Close cart preview
+     */
+    closeCartPreview() {
+        const cartPreview = document.querySelector('.cart-preview');
+        const cartIcon = document.querySelector('.cart-icon');
+        
+        if (!cartPreview || !cartIcon) return;
+        
+        cartPreview.classList.remove('active');
+        cartIcon.setAttribute('aria-expanded', 'false');
+        cartPreview.setAttribute('aria-hidden', 'true');
+        
+        // Remove global event listeners
+        document.removeEventListener('keydown', this.handleEscapeKey);
+        document.removeEventListener('click', this.handleClickOutside);
+        
+        // Return focus to cart icon
+        cartIcon.focus();
+        
+        this.isCartOpen = false;
+    }
+
+    /**
+     * Toggle search bar visibility
+     */
+    toggleSearch() {
+        const searchContainer = document.querySelector('.search-container');
+        const searchToggle = document.querySelector('.search-toggle');
+        
+        if (!searchContainer || !searchToggle) return;
+        
+        // Close cart preview if open
+        if (this.isCartOpen) {
+            this.closeCartPreview();
+        }
+        
+        // Toggle search visibility
+        const isSearchVisible = searchContainer.classList.toggle('active');
+        searchContainer.setAttribute('aria-hidden', !isSearchVisible);
+        
+        if (isSearchVisible) {
+            // Focus search input
+            const searchInput = searchContainer.querySelector('input[type="search"]');
+            if (searchInput) {
+                setTimeout(() => searchInput.focus(), 100);
+            }
+            
+            // Add escape key listener
+            document.addEventListener('keydown', this.handleEscapeKey);
+        } else {
+            // Remove escape key listener if cart is also closed
+            if (!this.isCartOpen) {
+                document.removeEventListener('keydown', this.handleEscapeKey);
+            }
+            
+            // Return focus to search toggle
+            searchToggle.focus();
+        }
+    }
+
+    /**
+     * Close search bar
+     */
+    closeSearch() {
+        const searchContainer = document.querySelector('.search-container');
+        if (!searchContainer) return;
+        
+        searchContainer.classList.remove('active');
+        searchContainer.setAttribute('aria-hidden', 'true');
+        
+        // Remove escape key listener if cart is also closed
+        if (!this.isCartOpen) {
+            document.removeEventListener('keydown', this.handleEscapeKey);
+        }
+    }
+
+    /**
+     * Handle escape key press
+     * @param {KeyboardEvent} event - Keyboard event
+     */
+    handleEscapeKey(event) {
+        if (event.key === 'Escape') {
+            // Close cart preview if open
+            if (this.isCartOpen) {
+                this.closeCartPreview();
+            }
+            
+            // Close search if open
+            this.closeSearch();
+        }
+    }
+
+    /**
+     * Handle clicks outside the cart preview
+     * @param {MouseEvent} event - Mouse event
+     */
     handleClickOutside(event) {
         const cartPreview = document.querySelector('.cart-preview');
         const cartIcon = document.querySelector('.cart-icon');
         
-        if (cartPreview.classList.contains('active') &&
-            !cartPreview.contains(event.target) &&
+        if (cartPreview && cartIcon && this.isCartOpen && 
+            !cartPreview.contains(event.target) && 
             !cartIcon.contains(event.target)) {
             this.closeCartPreview();
         }
     }
 
-    // Update cart preview contents
+    /**
+     * Update cart preview contents
+     */
     updateCartPreview() {
         const cartItemsContainer = document.querySelector('.cart-preview-items');
         const cartTotalElement = document.querySelector('.cart-total-amount');
@@ -263,10 +443,10 @@ class TopBar {
             total += itemTotal;
             
             const itemElement = document.createElement('div');
-            itemElement.classList.add('cart-item');
+            itemElement.className = 'cart-item';
             itemElement.innerHTML = `
                 <div class="cart-item-image">
-                    <img src="${item.image}" alt="${item.name}" loading="lazy">
+                    <img src="${item.image || '/assets/images/placeholder.jpg'}" alt="${item.name}" loading="lazy">
                 </div>
                 <div class="cart-item-details">
                     <h4>${item.name}</h4>
@@ -315,7 +495,9 @@ class TopBar {
         });
     }
 
-    // Highlight the current page in navigation
+    /**
+     * Highlight the current page in navigation
+     */
     highlightCurrentPage() {
         const currentPath = window.location.pathname;
         const links = document.querySelectorAll('.nav-links a');
@@ -332,7 +514,9 @@ class TopBar {
         });
     }
 
-    // Create mobile navigation
+    /**
+     * Create mobile navigation
+     */
     createMobileNav() {
         if (this.isMobile && !document.querySelector('.mobile-nav-toggle')) {
             const nav = document.querySelector('.nav-links');
@@ -340,7 +524,13 @@ class TopBar {
             mobileNavButton.classList.add('mobile-nav-toggle');
             mobileNavButton.setAttribute('aria-label', 'Toggle navigation menu');
             mobileNavButton.setAttribute('aria-expanded', 'false');
+            mobileNavButton.setAttribute('aria-controls', 'mobile-nav');
             mobileNavButton.innerHTML = '<span class="hamburger"></span>';
+            
+            // Add ID to nav for aria-controls
+            if (nav) {
+                nav.id = 'mobile-nav';
+            }
             
             document.querySelector('.nav-container').prepend(mobileNavButton);
 
@@ -349,11 +539,21 @@ class TopBar {
                 nav.classList.toggle('nav-open');
                 mobileNavButton.classList.toggle('nav-open');
                 mobileNavButton.setAttribute('aria-expanded', !isExpanded);
+                
+                // Close cart and search if open when toggling menu
+                if (!isExpanded) {
+                    if (this.isCartOpen) {
+                        this.closeCartPreview();
+                    }
+                    this.closeSearch();
+                }
             });
         }
     }
 
-    // Handle window resize
+    /**
+     * Handle window resize
+     */
     handleResize() {
         const wasNotMobile = !this.isMobile;
         this.isMobile = window.innerWidth < 768;
@@ -362,21 +562,28 @@ class TopBar {
             this.createMobileNav();
         } else if (!this.isMobile) {
             const mobileNavButton = document.querySelector('.mobile-nav-toggle');
+            const nav = document.querySelector('.nav-links');
+            
             if (mobileNavButton) {
                 mobileNavButton.remove();
-                document.querySelector('.nav-links').classList.remove('nav-open');
+            }
+            
+            if (nav) {
+                nav.classList.remove('nav-open');
             }
         }
     }
 
-    // Render the TopBar
+    /**
+     * Render the TopBar
+     */
     render() {
         // Insert template into page
         document.body.insertAdjacentHTML('afterbegin', this.template);
         
         // Add ID to main content for skip link
         const main = document.querySelector('main');
-        if (main) {
+        if (main && !main.id) {
             main.id = 'main-content';
         }
         
@@ -400,10 +607,44 @@ class TopBar {
             if (closeButton) {
                 closeButton.addEventListener('click', this.closeCartPreview);
             }
+            
+            // Setup view cart button
+            const viewCartButton = document.querySelector('.view-cart-button');
+            if (viewCartButton) {
+                viewCartButton.addEventListener('click', () => {
+                    window.location.href = '/cart.html';
+                });
+            }
+        }
+        
+        // Setup search functionality
+        const searchToggle = document.querySelector('.search-toggle');
+        if (searchToggle) {
+            searchToggle.addEventListener('click', this.toggleSearch);
+            
+            // Setup search close button
+            const closeSearchButton = document.querySelector('.close-search');
+            if (closeSearchButton) {
+                closeSearchButton.addEventListener('click', this.closeSearch);
+            }
+            
+            // Setup search form
+            const searchForm = document.querySelector('.search-form');
+            if (searchForm) {
+                searchForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const searchInput = searchForm.querySelector('input[type="search"]');
+                    if (searchInput && searchInput.value.trim()) {
+                        window.location.href = `/search.html?q=${encodeURIComponent(searchInput.value.trim())}`;
+                    }
+                });
+            }
         }
     }
 
-    // Clean up event listeners
+    /**
+     * Clean up event listeners
+     */
     cleanup() {
         window.removeEventListener('resize', this.handleResize);
         document.removeEventListener('keydown', this.handleEscapeKey);
@@ -417,6 +658,16 @@ class TopBar {
         const closeButton = document.querySelector('.close-preview');
         if (closeButton) {
             closeButton.removeEventListener('click', this.closeCartPreview);
+        }
+        
+        const searchToggle = document.querySelector('.search-toggle');
+        if (searchToggle) {
+            searchToggle.removeEventListener('click', this.toggleSearch);
+        }
+        
+        const closeSearchButton = document.querySelector('.close-search');
+        if (closeSearchButton) {
+            closeSearchButton.removeEventListener('click', this.closeSearch);
         }
     }
 }
