@@ -3,123 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Watch RC racing videos, tutorials, and highlights from Aubrey's RC Cars events and competitions">
     <title>RC Racing Videos - Aubrey's RC Cars</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/base.css">
-    <link rel="stylesheet" href="assets/css/racing.css">
-    <script src="assets/js/topbar.js"></script>
+    <link rel="stylesheet" href="/assets/css/base.css">
+    <link rel="stylesheet" href="/assets/css/racing.css">
+    <link rel="stylesheet" href="/assets/css/videos.css">
 </head>
 <body>
-    <main class="videos-page">
+    <!-- Loading indicator -->
+    <div class="loading-indicator">
+        <div class="loader"></div>
+    </div>
+
+    <main id="main-content" class="videos-page">
         <section class="videos-hero">
             <div class="hero-content">
-                <h2>RC Racing Videos</h2>
+                <h1>RC Racing Videos</h1>
                 <p>Watch exciting races, tutorials, and highlights from our events</p>
             </div>
         </section>
 
         <section class="video-categories">
-            <div class="category-tabs">
-                <button class="tab-button active" data-category="all">All Videos</button>
-                <button class="tab-button" data-category="races">Race Highlights</button>
-                <button class="tab-button" data-category="tutorials">Tutorials</button>
-                <button class="tab-button" data-category="reviews">Vehicle Reviews</button>
+            <div class="category-search-container">
+                <div class="category-tabs" role="tablist" aria-label="Video categories">
+                    <button class="tab-button active" data-category="all" role="tab" aria-selected="true" aria-controls="all-videos">All Videos</button>
+                    <button class="tab-button" data-category="races" role="tab" aria-selected="false" aria-controls="race-videos">Race Highlights</button>
+                    <button class="tab-button" data-category="tutorials" role="tab" aria-selected="false" aria-controls="tutorial-videos">Tutorials</button>
+                    <button class="tab-button" data-category="reviews" role="tab" aria-selected="false" aria-controls="review-videos">Vehicle Reviews</button>
+                </div>
+                
+                <form class="video-search-form" role="search">
+                    <input type="search" placeholder="Search videos..." aria-label="Search videos">
+                    <button type="submit" aria-label="Search">Search</button>
+                </form>
             </div>
         </section>
+        
+        <div class="video-count-info">
+            <span>Showing <span class="video-count">6</span> <span class="videos-text">videos</span></span>
+        </div>
 
-        <section class="video-grid">
-            <div class="video-card">
+        <div id="all-videos" role="tabpanel" aria-labelledby="all-videos-tab" class="video-grid">
+            <div class="video-card" data-category="race-highlights">
                 <div class="video-wrapper">
+                    <img src="/assets/images/videos/thumb1.jpg" alt="Weekend Race Series Highlights thumbnail" class="video-thumbnail">
                     <iframe 
-                        src="https://www.youtube.com/embed/VIDEO_ID_1" 
+                        data-src="https://www.youtube.com/embed/VIDEO_ID_1" 
                         title="Weekend Race Series Highlights"
                         frameborder="0" 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                         allowfullscreen>
                     </iframe>
+                    <button class="play-button" aria-label="Play Weekend Race Series Highlights video"></button>
                 </div>
                 <h3>Weekend Race Series Highlights</h3>
                 <p>Exciting moments from our latest weekend racing event</p>
                 <span class="video-category">Race Highlights</span>
+                <div class="video-info">
+                    <div class="video-date">Feb 15, 2025</div>
+                    <div class="video-views">1.2K views</div>
+                </div>
             </div>
 
-            <div class="video-card">
+            <div class="video-card" data-category="tutorials">
                 <div class="video-wrapper">
+                    <img src="/assets/images/videos/thumb2.jpg" alt="RC Car Setup Tutorial thumbnail" class="video-thumbnail">
                     <iframe 
-                        src="https://www.youtube.com/embed/VIDEO_ID_2" 
+                        data-src="https://www.youtube.com/embed/VIDEO_ID_2" 
                         title="RC Car Setup Tutorial"
                         frameborder="0" 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                         allowfullscreen>
                     </iframe>
+                    <button class="play-button" aria-label="Play RC Car Setup Tutorial video"></button>
                 </div>
                 <h3>RC Car Setup Tutorial</h3>
                 <p>Learn how to properly set up your RC car for racing</p>
                 <span class="video-category">Tutorials</span>
+                <div class="video-info">
+                    <div class="video-date">Feb 10, 2025</div>
+                    <div class="video-views">3.5K views</div>
+                </div>
             </div>
 
-            <div class="video-card">
+            <div class="video-card" data-category="race-highlights">
                 <div class="video-wrapper">
+                    <img src="/assets/images/videos/thumb3.jpg" alt="Championship Race Finals thumbnail" class="video-thumbnail">
                     <iframe 
-                        src="https://www.youtube.com/embed/VIDEO_ID_3" 
+                        data-src="https://www.youtube.com/embed/VIDEO_ID_3" 
                         title="Championship Race Finals"
                         frameborder="0" 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                         allowfullscreen>
                     </iframe>
+                    <button class="play-button" aria-label="Play Championship Race Finals video"></button>
                 </div>
                 <h3>Championship Race Finals</h3>
                 <p>Full coverage of our monthly championship event</p>
                 <span class="video-category">Race Highlights</span>
+                <div class="video-info">
+                    <div class="video-date">Jan 28, 2025</div>
+                    <div class="video-views">2.8K views</div>
+                </div>
             </div>
 
-            <div class="video-card">
+            <div class="video-card" data-category="vehicle-reviews">
                 <div class="video-wrapper">
+                    <img src="/assets/images/videos/thumb4.jpg" alt="Traxxas Rustler Review thumbnail" class="video-thumbnail">
                     <iframe 
-                        src="https://www.youtube.com/embed/VIDEO_ID_4" 
+                        data-src="https://www.youtube.com/embed/VIDEO_ID_4" 
                         title="Traxxas Rustler Review"
                         frameborder="0" 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                         allowfullscreen>
                     </iframe>
+                    <button class="play-button" aria-label="Play Traxxas Rustler Review video"></button>
                 </div>
                 <h3>Traxxas Rustler Review</h3>
                 <p>Detailed review and performance testing</p>
                 <span class="video-category">Vehicle Reviews</span>
+                <div class="video-info">
+                    <div class="video-date">Jan 20, 2025</div>
+                    <div class="video-views">5.2K views</div>
+                </div>
             </div>
 
-            <div class="video-card">
+            <div class="video-card" data-category="tutorials">
                 <div class="video-wrapper">
+                    <img src="/assets/images/videos/thumb5.jpg" alt="RC Racing Tips for Beginners thumbnail" class="video-thumbnail">
                     <iframe 
-                        src="https://www.youtube.com/embed/VIDEO_ID_5" 
+                        data-src="https://www.youtube.com/embed/VIDEO_ID_5" 
                         title="RC Racing Tips for Beginners"
                         frameborder="0" 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                         allowfullscreen>
                     </iframe>
+                    <button class="play-button" aria-label="Play RC Racing Tips for Beginners video"></button>
                 </div>
                 <h3>RC Racing Tips for Beginners</h3>
                 <p>Essential tips and tricks for new racers</p>
                 <span class="video-category">Tutorials</span>
+                <div class="video-info">
+                    <div class="video-date">Jan 15, 2025</div>
+                    <div class="video-views">7.1K views</div>
+                </div>
             </div>
 
-            <div class="video-card">
+            <div class="video-card" data-category="race-highlights">
                 <div class="video-wrapper">
+                    <img src="/assets/images/videos/thumb6.jpg" alt="Track Day Highlights thumbnail" class="video-thumbnail">
                     <iframe 
-                        src="https://www.youtube.com/embed/VIDEO_ID_6" 
+                        data-src="https://www.youtube.com/embed/VIDEO_ID_6" 
                         title="Track Day Highlights"
                         frameborder="0" 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                         allowfullscreen>
                     </iframe>
+                    <button class="play-button" aria-label="Play Track Day Highlights video"></button>
                 </div>
                 <h3>Track Day Highlights</h3>
                 <p>Best moments from our weekly track day</p>
                 <span class="video-category">Race Highlights</span>
+                <div class="video-info">
+                    <div class="video-date">Jan 08, 2025</div>
+                    <div class="video-views">1.9K views</div>
+                </div>
             </div>
-        </section>
+        </div>
 
         <section class="load-more">
             <button id="load-more-videos" class="cta-button">Load More Videos</button>
@@ -141,9 +194,9 @@
             <div class="footer-section">
                 <h3>Follow Us</h3>
                 <div class="social-links">
-                    <a href="#" class="social-link">Facebook</a>
-                    <a href="#" class="social-link">Instagram</a>
-                    <a href="#" class="social-link">YouTube</a>
+                    <a href="#" class="social-link facebook">Facebook</a>
+                    <a href="#" class="social-link instagram">Instagram</a>
+                    <a href="#" class="social-link youtube">YouTube</a>
                 </div>
             </div>
         </div>
@@ -152,13 +205,14 @@
         </div>
     </footer>
 
+    <script src="/assets/js/topbar.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const topBar = new TopBar();
             topBar.render();
         });
     </script>
-    <script src="assets/js/main.js"></script>
-    <script src="assets/js/videos.js"></script>
+    <script src="/assets/js/main.js"></script>
+    <script src="/assets/js/videos.js"></script>
 </body>
 </html>
