@@ -1,6 +1,7 @@
 /**
- * Enhanced TopBar Component for Aubrey's RC Cars
+ * Enhanced TopBar Component for Aubrey's RC Cars SPA
  * Provides navigation, cart functionality, and responsive behavior
+ * Optimized for SPA architecture with proper routing integration
  */
 class TopBar {
     constructor() {
@@ -8,7 +9,7 @@ class TopBar {
         this.cartItems = [];
         this.isCartOpen = false;
         
-        // Use absolute paths for consistent navigation from any page depth
+        // Use SPA paths without .html extension for routing compatibility
         this.template = `
             <header class="main-header">
                 <div class="skip-link">
@@ -16,14 +17,14 @@ class TopBar {
                 </div>
                 <nav class="nav-container" aria-label="Main Navigation">
                     <div class="logo">
-                        <h1><a href="/index.html" aria-label="Aubrey's RC Cars Home">Aubrey's RC Cars</a></h1>
+                        <h1><a href="/" aria-label="Aubrey's RC Cars Home">Aubrey's RC Cars</a></h1>
                     </div>
                     <ul class="nav-links" role="menubar">
-                        <li role="none"><a href="/products/index.html" role="menuitem">Shop</a></li>
-                        <li role="none"><a href="/custom/index.html" role="menuitem">Custom Builds</a></li>
-                        <li role="none"><a href="/videos.html" role="menuitem">Media</a></li>
-                        <li role="none"><a href="/racing/index.html" role="menuitem">Racing</a></li>
-                        <li role="none"><a href="/contact.html" role="menuitem">Contact</a></li>
+                        <li role="none"><a href="/products" role="menuitem">Shop</a></li>
+                        <li role="none"><a href="/custom" role="menuitem">Custom Builds</a></li>
+                        <li role="none"><a href="/videos" role="menuitem">Media</a></li>
+                        <li role="none"><a href="/racing" role="menuitem">Racing</a></li>
+                        <li role="none"><a href="/contact" role="menuitem">Contact</a></li>
                     </ul>
                     <div class="user-actions">
                         <button class="search-toggle" aria-label="Search">
@@ -50,7 +51,7 @@ class TopBar {
                                 <div class="cart-preview-footer">
                                     <div class="cart-total">Total: $<span class="cart-total-amount">0.00</span></div>
                                     <div class="cart-actions">
-                                        <a href="/checkout.html" class="checkout-button">Checkout</a>
+                                        <a href="/checkout" class="checkout-button">Checkout</a>
                                         <button class="view-cart-button">View Cart</button>
                                     </div>
                                 </div>
@@ -82,6 +83,10 @@ class TopBar {
         this.handleClickOutside = this.handleClickOutside.bind(this);
         this.toggleSearch = this.toggleSearch.bind(this);
         this.closeSearch = this.closeSearch.bind(this);
+        this.handleNavigation = this.handleNavigation.bind(this);
+        
+        // Make instance available globally
+        window.topBar = this;
     }
 
     /**
@@ -496,18 +501,73 @@ class TopBar {
     }
 
     /**
+     * Handle navigation link clicks for SPA
+     * @param {Event} event - Click event
+     */
+    handleNavigation(event) {
+        // Find all navigation links
+        const navLinks = document.querySelectorAll('.nav-links a, .logo a');
+        
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                const href = link.getAttribute('href');
+                
+                // Only handle internal links
+                if (href && href.startsWith('/')) {
+                    e.preventDefault();
+                    
+                    // Use the router if available
+                    if (window.router && typeof window.router.navigate === 'function') {
+                        window.router.navigate(href);
+                    } else {
+                        // Fallback to hash-based navigation
+                        window.location.hash = `#${href}`;
+                    }
+                    
+                    // Close mobile navigation if open
+                    const navElement = document.querySelector('.nav-links');
+                    const mobileNavButton = document.querySelector('.mobile-nav-toggle');
+                    if (navElement && navElement.classList.contains('nav-open')) {
+                        navElement.classList.remove('nav-open');
+                        if (mobileNavButton) {
+                            mobileNavButton.classList.remove('nav-open');
+                            mobileNavButton.setAttribute('aria-expanded', 'false');
+                        }
+                    }
+                }
+            });
+        });
+    }
+
+    /**
      * Highlight the current page in navigation
      */
     highlightCurrentPage() {
-        const currentPath = window.location.pathname;
-        const links = document.querySelectorAll('.nav-links a');
+        // Get current path (either from router or from URL)
+        let currentPath;
         
+        if (window.router && window.router.currentRoute) {
+            currentPath = window.router.currentRoute.path;
+        } else {
+            // Get from hash in SPA mode
+            currentPath = window.location.hash.replace('#', '') || '/';
+        }
+        
+        // Remove active class from all links
+        const links = document.querySelectorAll('.nav-links a');
         links.forEach(link => {
-            // Compare pathnames, accounting for index.html
-            const linkPath = link.pathname;
+            link.classList.remove('active');
+            link.removeAttribute('aria-current');
+        });
+        
+        // Find matching link and highlight it
+        links.forEach(link => {
+            const linkPath = link.getAttribute('href');
+            
+            // Check for exact match, or for home page
             if (linkPath === currentPath || 
-                (currentPath.endsWith('/') && linkPath === currentPath + 'index.html') ||
-                (linkPath.endsWith('/index.html') && linkPath.replace('/index.html', '/') === currentPath)) {
+                (currentPath === '/' && linkPath === '/') ||
+                (currentPath !== '/' && linkPath !== '/' && currentPath.startsWith(linkPath))) {
                 link.classList.add('active');
                 link.setAttribute('aria-current', 'page');
             }
@@ -532,22 +592,25 @@ class TopBar {
                 nav.id = 'mobile-nav';
             }
             
-            document.querySelector('.nav-container').prepend(mobileNavButton);
-
-            mobileNavButton.addEventListener('click', () => {
-                const isExpanded = nav.classList.contains('nav-open');
-                nav.classList.toggle('nav-open');
-                mobileNavButton.classList.toggle('nav-open');
-                mobileNavButton.setAttribute('aria-expanded', !isExpanded);
+            const navContainer = document.querySelector('.nav-container');
+            if (navContainer) {
+                navContainer.prepend(mobileNavButton);
                 
-                // Close cart and search if open when toggling menu
-                if (!isExpanded) {
-                    if (this.isCartOpen) {
-                        this.closeCartPreview();
+                mobileNavButton.addEventListener('click', () => {
+                    const isExpanded = nav.classList.contains('nav-open');
+                    nav.classList.toggle('nav-open');
+                    mobileNavButton.classList.toggle('nav-open');
+                    mobileNavButton.setAttribute('aria-expanded', !isExpanded);
+                    
+                    // Close cart and search if open when toggling menu
+                    if (!isExpanded) {
+                        if (this.isCartOpen) {
+                            this.closeCartPreview();
+                        }
+                        this.closeSearch();
                     }
-                    this.closeSearch();
-                }
-            });
+                });
+            }
         }
     }
 
@@ -594,6 +657,9 @@ class TopBar {
         // Initialize current page highlight
         this.highlightCurrentPage();
         
+        // Setup navigation for SPA
+        this.handleNavigation();
+        
         // Load cart from localStorage
         this.loadCart();
         
@@ -612,7 +678,16 @@ class TopBar {
             const viewCartButton = document.querySelector('.view-cart-button');
             if (viewCartButton) {
                 viewCartButton.addEventListener('click', () => {
-                    window.location.href = '/cart.html';
+                    // Close the cart preview
+                    this.closeCartPreview();
+                    
+                    // Navigate to cart page using router if available
+                    if (window.router && typeof window.router.navigate === 'function') {
+                        window.router.navigate('/cart');
+                    } else {
+                        // Fallback to hash-based navigation
+                        window.location.hash = '#/cart';
+                    }
                 });
             }
         }
@@ -635,10 +710,39 @@ class TopBar {
                     e.preventDefault();
                     const searchInput = searchForm.querySelector('input[type="search"]');
                     if (searchInput && searchInput.value.trim()) {
-                        window.location.href = `/search.html?q=${encodeURIComponent(searchInput.value.trim())}`;
+                        // Use router for navigation if available
+                        if (window.router && typeof window.router.navigate === 'function') {
+                            window.router.navigate(`/search?q=${encodeURIComponent(searchInput.value.trim())}`);
+                        } else {
+                            // Fallback to hash-based navigation
+                            window.location.hash = `#/search?q=${encodeURIComponent(searchInput.value.trim())}`;
+                        }
+                        
+                        // Close search after submitting
+                        this.closeSearch();
                     }
                 });
             }
+        }
+
+        // Setup route change listener for SPA
+        this.setupRouteChangeListener();
+    }
+
+    /**
+     * Setup listener for route changes to update the active navigation
+     */
+    setupRouteChangeListener() {
+        // Listen for hash changes in hash-based routing
+        window.addEventListener('hashchange', () => {
+            this.highlightCurrentPage();
+        });
+        
+        // If using a more sophisticated router, listen for its events too
+        if (window.router && window.router.onNavigate) {
+            window.router.onNavigate(() => {
+                this.highlightCurrentPage();
+            });
         }
     }
 
@@ -669,5 +773,8 @@ class TopBar {
         if (closeSearchButton) {
             closeSearchButton.removeEventListener('click', this.closeSearch);
         }
+        
+        // Remove hash change listener
+        window.removeEventListener('hashchange', this.highlightCurrentPage);
     }
 }
