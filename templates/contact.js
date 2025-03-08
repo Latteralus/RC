@@ -1,13 +1,13 @@
 /**
  * Contact Page Template
- * SPA template for Aubrey's RC Cars contact page
+ * Templates/contact.js
  */
 
 /**
- * Generate the contact page HTML
+ * Generate the contact page content
  * @returns {string} HTML content for the contact page
  */
-export default function contactTemplate() {
+export default function render() {
     return `
       <main id="main-content" class="contact-page">
         <section class="contact-hero fade-in-section">
@@ -46,7 +46,7 @@ export default function contactTemplate() {
               </div>
             </div>
   
-            <div class="contact-form">
+            <div class="contact-form fade-in-section">
               <h2>Send Us a Message</h2>
               <form id="contactForm" action="#" method="POST" novalidate>
                 <div class="form-group floating-label">
@@ -67,7 +67,6 @@ export default function contactTemplate() {
                     <option value="products">Product Inquiry</option>
                     <option value="custom">Custom Build</option>
                     <option value="racing">Racing Events</option>
-                    <option value="repair">Repair Service</option>
                     <option value="other">Other</option>
                   </select>
                   <label for="subject">Subject <span class="required">*</span></label>
@@ -84,8 +83,8 @@ export default function contactTemplate() {
   
         <section class="map-section fade-in-section">
           <h2>Find Us</h2>
-          <div class="map-container" id="map">
-            <!-- Map will be inserted here by the init function -->
+          <div class="map-container">
+            <!-- Replace with actual map embed code in production -->
             <div class="map-placeholder">
               <p>Interactive map will be displayed here</p>
             </div>
@@ -118,26 +117,178 @@ export default function contactTemplate() {
   }
   
   /**
-   * Initialize the contact page functionality
-   * This is called after the template is rendered
+   * Initialize the contact page
+   * Called after the page is rendered
    */
   export function init() {
-    // Initialize floating labels
+    // Initialize floating labels for form fields
     initializeFloatingLabels();
     
     // Initialize form validation
-    initializeValidation();
+    initializeFormValidation();
     
     // Initialize form submission
     initializeFormSubmission();
     
-    // Initialize map (placeholder for actual map implementation)
-    initializeMap();
+    // Initialize map placeholder interaction
+    initializeMapPlaceholder();
     
-    // Initialize animations
+    // Initialize FAQ item interactions
+    initializeFAQItems();
+    
+    // Initialize animations if available
     if (window.AnimationController) {
       window.AnimationController.initScrollAnimations();
     }
+  }
+  
+  /**
+   * Show error message after form submission failure
+   * @param {HTMLElement} form - Contact form element
+   * @param {string} errorMessage - Error message to display
+   */
+  function showErrorMessage(form, errorMessage) {
+    // Remove any existing error message
+    const existingError = form.querySelector('.form-error');
+    if (existingError) {
+      existingError.remove();
+    }
+    
+    // Create error message
+    const errorElement = document.createElement('div');
+    errorElement.className = 'form-error';
+    errorElement.setAttribute('role', 'alert');
+    errorElement.innerHTML = `
+      <div class="error-icon">!</div>
+      <p>${errorMessage}</p>
+    `;
+    
+    // Insert error at top of form
+    form.insertBefore(errorElement, form.firstChild);
+    
+    // Scroll to error message
+    errorElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  
+  /**
+   * Initialize map placeholder functionality
+   */
+  function initializeMapPlaceholder() {
+    const mapContainer = document.querySelector('.map-container');
+    if (!mapContainer) return;
+    
+    mapContainer.addEventListener('click', () => {
+      // In a production version, this would open a modal with an interactive map
+      // For this example, we'll just show a notification
+      if (window.Utilities && window.Utilities.showNotification) {
+        window.Utilities.showNotification('Interactive map will be available in the next update.', 'info');
+      } else {
+        alert('Interactive map will be available in the next update.');
+      }
+    });
+  }
+  
+  /**
+   * Initialize FAQ item interactions
+   */
+  function initializeFAQItems() {
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach((item, index) => {
+      const heading = item.querySelector('h3');
+      const content = item.querySelector('p');
+      
+      // Make headings interactive
+      heading.setAttribute('tabindex', '0');
+      heading.setAttribute('role', 'button');
+      heading.setAttribute('aria-expanded', 'false');
+      heading.setAttribute('aria-controls', `faq-content-${index}`);
+      
+      // Set up content for accessibility
+      content.id = `faq-content-${index}`;
+      content.setAttribute('aria-hidden', 'true');
+      content.style.maxHeight = '0';
+      content.style.overflow = 'hidden';
+      content.style.transition = 'max-height 0.3s ease, padding 0.3s ease, opacity 0.3s ease';
+      content.style.opacity = '0';
+      content.style.padding = '0';
+      
+      // Add indicator for visual cue
+      const indicator = document.createElement('span');
+      indicator.className = 'faq-indicator';
+      indicator.setAttribute('aria-hidden', 'true');
+      indicator.innerHTML = '+';
+      heading.appendChild(indicator);
+      
+      // Add event listeners
+      heading.addEventListener('click', () => toggleFAQ(heading, content, indicator));
+      heading.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggleFAQ(heading, content, indicator);
+        }
+      });
+    });
+  }
+  
+  /**
+   * Toggle FAQ item open/closed
+   * @param {HTMLElement} heading - FAQ item heading
+   * @param {HTMLElement} content - FAQ item content
+   * @param {HTMLElement} indicator - FAQ item indicator
+   */
+  function toggleFAQ(heading, content, indicator) {
+    const isExpanded = heading.getAttribute('aria-expanded') === 'true';
+    
+    // Toggle aria states
+    heading.setAttribute('aria-expanded', !isExpanded);
+    content.setAttribute('aria-hidden', isExpanded);
+    
+    // Toggle visual state
+    if (isExpanded) {
+      content.style.maxHeight = '0';
+      content.style.padding = '0';
+      content.style.opacity = '0';
+      indicator.innerHTML = '+';
+    } else {
+      content.style.maxHeight = content.scrollHeight + 'px';
+      content.style.padding = '0.5rem 0 1rem';
+      content.style.opacity = '1';
+      indicator.innerHTML = '−';
+    }
+  }
+  
+  /**
+   * Pre-fill subject if coming from event registration
+   */
+  function preFillFromEventRegistration() {
+    // Check if we have event registration data in sessionStorage
+    const eventName = sessionStorage.getItem('registerEvent');
+    const eventDate = sessionStorage.getItem('registerEventDate');
+    
+    if (eventName) {
+      // Set subject to "Racing Events"
+      const subjectField = document.getElementById('subject');
+      if (subjectField) {
+        subjectField.value = 'racing';
+        subjectField.closest('.form-group').classList.add('active');
+      }
+      
+      // Pre-fill message with event information
+      const messageField = document.getElementById('message');
+      if (messageField) {
+        messageField.value = `I'd like to register for the "${eventName}" event ${eventDate ? 'on ' + eventDate : ''}.`;
+        messageField.closest('.form-group').classList.add('active');
+      }
+      
+      // Clear sessionStorage
+      sessionStorage.removeItem('registerEvent');
+      sessionStorage.removeItem('registerEventDate');
+    }
+  }
+    
+    // Pre-fill subject if coming from an event registration
+    preFillFromEventRegistration();
   }
   
   /**
@@ -173,19 +324,19 @@ export default function contactTemplate() {
   /**
    * Initialize form validation
    */
-  function initializeValidation() {
+  function initializeFormValidation() {
     const form = document.getElementById('contactForm');
     if (!form) return;
     
     const inputs = form.querySelectorAll('input, textarea, select');
     
+    // Validate field when focus leaves the input
     inputs.forEach(input => {
-      // Add validation on blur
       input.addEventListener('blur', () => {
         validateField(input);
       });
       
-      // Remove error state when input changes
+      // Real-time validation when typing in a field with an error
       input.addEventListener('input', () => {
         if (input.closest('.form-group').classList.contains('error')) {
           validateField(input);
@@ -195,7 +346,7 @@ export default function contactTemplate() {
   }
   
   /**
-   * Validate a form field
+   * Validate form field
    * @param {HTMLElement} field - Form field to validate
    * @returns {boolean} - Whether the field is valid
    */
@@ -254,7 +405,7 @@ export default function contactTemplate() {
   }
   
   /**
-   * Update field validation state (visual feedback)
+   * Update field validation state
    * @param {HTMLElement} field - Form field
    * @param {boolean} isValid - Whether the field is valid
    * @param {string} errorMessage - Error message to display
@@ -299,7 +450,7 @@ export default function contactTemplate() {
   }
   
   /**
-   * Initialize form submission handling
+   * Initialize form submission handler
    */
   function initializeFormSubmission() {
     const form = document.getElementById('contactForm');
@@ -309,8 +460,8 @@ export default function contactTemplate() {
       e.preventDefault();
       
       // Validate all fields
-      const inputs = form.querySelectorAll('input, textarea, select');
       let isFormValid = true;
+      const inputs = form.querySelectorAll('input, textarea, select');
       
       inputs.forEach(input => {
         if (!validateField(input)) {
@@ -325,114 +476,94 @@ export default function contactTemplate() {
           firstInvalid.focus();
         }
         
-        // Show notification
-        if (window.Utilities) {
+        // Show notification if available
+        if (window.Utilities && window.Utilities.showNotification) {
           window.Utilities.showNotification('Please correct the errors in the form.', 'error');
         }
         
         return;
       }
       
-      // Show loading state
+      // Get form data
+      const formData = new FormData(form);
       const submitButton = form.querySelector('button[type="submit"]');
       const originalButtonText = submitButton.textContent;
-      submitButton.disabled = true;
-      submitButton.innerHTML = '<span class="loading-spinner"></span> Sending...';
-      
-      // Show loading indicator
-      if (window.Utilities) {
-        window.Utilities.showLoading();
-      }
       
       try {
-        // Simulate form submission delay
-        await new Promise(resolve => setTimeout(resolve, 1500));
+        // Show loading state
+        submitButton.disabled = true;
+        submitButton.innerHTML = '<span class="loading-spinner"></span> Sending...';
         
-        // Show success message by replacing form with success message
-        form.innerHTML = `
-          <div class="success-message" role="alert">
-            <div class="success-icon">✓</div>
-            <h3>Thank you for your message!</h3>
-            <p>We've received your inquiry and will get back to you soon.</p>
-            <button class="button send-another">Send Another Message</button>
-          </div>
-        `;
-        
-        form.classList.add('form-success');
-        
-        // Add event listener to "Send Another Message" button
-        const sendAnotherButton = form.querySelector('.send-another');
-        if (sendAnotherButton) {
-          sendAnotherButton.addEventListener('click', () => {
-            // Reload the page or reinitialize the form
-            if (window.location.hash === '#/contact') {
-              window.location.reload();
-            } else {
-              window.location.hash = '#/contact';
-            }
-          });
+        // Show loading indicator if available
+        if (window.Utilities && window.Utilities.showLoading) {
+          window.Utilities.showLoading();
         }
         
-        // Show success notification
-        if (window.Utilities) {
+        // Simulate form submission (replace with actual API call)
+        await new Promise(resolve => setTimeout(resolve, 1500));
+        
+        // Hide loading indicator if available
+        if (window.Utilities && window.Utilities.hideLoading) {
+          window.Utilities.hideLoading();
+        }
+        
+        // Show success message
+        showSuccessMessage(form);
+        
+        // Show notification if available
+        if (window.Utilities && window.Utilities.showNotification) {
           window.Utilities.showNotification('Your message has been sent successfully!', 'success');
         }
         
       } catch (error) {
         console.error('Error submitting form:', error);
         
-        // Show error message
-        const errorElement = document.createElement('div');
-        errorElement.className = 'form-error';
-        errorElement.setAttribute('role', 'alert');
-        errorElement.innerHTML = `
-          <div class="error-icon">!</div>
-          <p>There was an error sending your message. Please try again.</p>
-        `;
-        
-        // Insert error at top of form
-        form.insertBefore(errorElement, form.firstChild);
-        
-        // Show error notification
-        if (window.Utilities) {
-          window.Utilities.showNotification('Failed to send message. Please try again.', 'error');
+        // Hide loading indicator if available
+        if (window.Utilities && window.Utilities.hideLoading) {
+          window.Utilities.hideLoading();
         }
+        
+        // Show error message
+        showErrorMessage(form, 'There was an error sending your message. Please try again.');
         
         // Reset button
         submitButton.disabled = false;
         submitButton.textContent = originalButtonText;
         
-        // Scroll to error message
-        errorElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      } finally {
-        // Hide loading indicator
-        if (window.Utilities) {
-          window.Utilities.hideLoading();
+        // Show notification if available
+        if (window.Utilities && window.Utilities.showNotification) {
+          window.Utilities.showNotification('There was an error sending your message. Please try again.', 'error');
         }
       }
     });
   }
   
   /**
-   * Initialize map
-   * This is a placeholder for actual map integration
+   * Show success message after form submission
+   * @param {HTMLElement} form - Contact form element
    */
-  function initializeMap() {
-    const mapContainer = document.getElementById('map');
-    if (!mapContainer) return;
+  function showSuccessMessage(form) {
+    // Replace form with success message
+    form.innerHTML = `
+      <div class="success-message" role="alert">
+        <div class="success-icon">✓</div>
+        <h3>Thank you for your message!</h3>
+        <p>We've received your inquiry and will get back to you soon.</p>
+        <button class="button send-another">Send Another Message</button>
+      </div>
+    `;
     
-    // For a real implementation, you would use a mapping API like Google Maps or Leaflet
-    // This is just a placeholder that shows a styled div instead of a real map
+    form.classList.add('form-success');
     
-    // Add a click event to the placeholder to simulate a map interaction
-    const mapPlaceholder = mapContainer.querySelector('.map-placeholder');
-    if (mapPlaceholder) {
-      mapPlaceholder.addEventListener('click', () => {
-        if (window.Utilities) {
-          window.Utilities.showNotification('Map functionality will be implemented in the next phase', 'info');
+    // Add event listener to "Send Another Message" button
+    const sendAnotherButton = form.querySelector('.send-another');
+    if (sendAnotherButton) {
+      sendAnotherButton.addEventListener('click', () => {
+        // Reload the contact page - use router if available
+        if (window.router) {
+          window.router.navigate('/contact');
         } else {
-          alert('Map functionality will be implemented in the next phase');
+          window.location.reload();
         }
       });
     }
-  }
