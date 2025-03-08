@@ -9,26 +9,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/base.css">
     <link rel="stylesheet" href="../assets/css/products.css">
+    <script src="../assets/js/topbar.js"></script>
 </head>
 <body>
-    <header class="main-header">
-        <nav class="nav-container">
-            <div class="logo">
-                <h1><a href="../index.html">Aubrey's RC Cars</a></h1>
-            </div>
-            <ul class="nav-links">
-                <li><a href="index.html" class="active">Shop</a></li>
-                <li><a href="../custom/index.html">Custom Builds</a></li>
-                <li><a href="../racing/index.html">Racing</a></li>
-                <li><a href="../contact.html">Contact</a></li>
-            </ul>
-            <div class="cart-icon">
-                <span class="cart-count">0</span>
-                <img src="../assets/images/cart.svg" alt="Shopping Cart">
-            </div>
-        </nav>
-    </header>
-
     <main class="products-page">
         <section class="product-filters">
             <h2>Shop RC Cars</h2>
@@ -170,6 +153,12 @@
         </div>
     </footer>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const topBar = new TopBar();
+            topBar.render();
+        });
+    </script>
     <script src="../assets/js/main.js"></script>
     <script src="../assets/js/products.js"></script>
 </body>

@@ -1,192 +1,208 @@
-# Aubrey's RC Cars - Website Architecture Plan
+# Top Bar Modularization Architecture Plan
 
-## Overview
-This document outlines the architecture and design decisions for Aubrey's RC Cars website, an e-commerce and showcase platform for RC car sales, customization services, and racing content.
+## Current State
+The website currently implements the top navigation bar by duplicating HTML markup across all pages. This includes:
+- Logo/brand
+- Navigation links
+- Shopping cart icon with counter
 
-## Core Features
+## Proposed Architecture
 
-### 1. Product Catalog
-- Display of RC cars and trucks available for purchase
-- Filtering and sorting capabilities
-- Detailed product pages with specifications
-- Image galleries for each product
-- Inventory management system
+### 1. Component Structure
+Create a new `topbar.js` that will:
+- Define the top bar HTML structure as a template
+- Handle dynamic insertion into the page
+- Manage cart state
+- Handle path-aware navigation highlighting
 
-### 2. Customization Services
-- Showcase of available customization options
-- Before/after gallery of customized vehicles
-- Custom order request form
-- Pricing calculator for modifications
+### 2. Implementation Steps
 
-### 3. Racing Content
-- Photo gallery of racing events
-- Video integration for race footage
-- Blog/news section for race updates
-- Race calendar for upcoming events
+#### Create TopBar Component (`assets/js/topbar.js`)
+```javascript
+class TopBar {
+    constructor() {
+        this.cartCount = 0;
+        this.template = `
+            <header class="main-header">
+                <nav class="nav-container">
+                    <div class="logo">
+                        <h1><a href="/index.html">Aubrey's RC Cars</a></h1>
+                    </div>
+                    <ul class="nav-links">
+                        <li><a href="/products/index.html">Shop</a></li>
+                        <li><a href="/custom/index.html">Custom Builds</a></li>
+                        <li><a href="/videos.html">Media</a></li>
+                        <li><a href="/racing/index.html">Racing</a></li>
+                        <li><a href="/contact.html">Contact</a></li>
+                    </ul>
+                    <div class="cart-icon">
+                        <span class="cart-count">0</span>
+                        <img src="/assets/images/cart.svg" alt="Shopping Cart">
+                    </div>
+                </nav>
+            </header>
+        `;
+        this.isMobile = window.innerWidth < 768;
+        this.handleResize = this.handleResize.bind(this);
+    }
 
-### 4. E-commerce Functionality
-- Shopping cart system
-- Secure checkout process
-- Order tracking
-- Customer accounts
-- Wishlist feature
+    highlightCurrentPage() {
+        const currentPath = window.location.pathname;
+        const links = document.querySelectorAll('.nav-links a');
+        links.forEach(link => {
+            if (link.getAttribute('href') === currentPath) {
+                link.classList.add('active');
+            }
+        });
+    }
 
-## Technical Architecture
+    updateCartCount(count) {
+        this.cartCount = count;
+        const cartCountElement = document.querySelector('.cart-count');
+        if (cartCountElement) {
+            cartCountElement.textContent = this.cartCount;
+            cartCountElement.classList.add('cart-update');
+            setTimeout(() => {
+                cartCountElement.classList.remove('cart-update');
+            }, 300);
+        }
+    }
 
-### Frontend Architecture
-1. **Core Technologies**
-   - HTML5
-   - CSS3 with responsive design
-   - JavaScript (Vanilla JS for initial implementation)
-   - CSS Grid/Flexbox for layouts
+    createMobileNav() {
+        if (this.isMobile && !document.querySelector('.mobile-nav-toggle')) {
+            const nav = document.querySelector('.nav-links');
+            const mobileNavButton = document.createElement('button');
+            mobileNavButton.classList.add('mobile-nav-toggle');
+            mobileNavButton.innerHTML = '<span class="hamburger"></span>';
+            
+            document.querySelector('.nav-container').prepend(mobileNavButton);
 
-2. **Page Structure**
-   ```
-   /
-   ├── index.html (Home page)
-   ├── products/
-   │   ├── index.html (Product catalog)
-   │   └── [product].html (Individual product pages)
-   ├── custom/
-   │   ├── index.html (Customization services)
-   │   └── gallery.html (Custom work showcase)
-   ├── racing/
-   │   ├── index.html (Racing hub)
-   │   ├── gallery.html (Photo gallery)
-   │   └── videos.html (Video content)
-   └── contact.html (Contact form)
-   ```
+            mobileNavButton.addEventListener('click', () => {
+                nav.classList.toggle('nav-open');
+                mobileNavButton.classList.toggle('nav-open');
+            });
+        }
+    }
 
-3. **Asset Organization**
-   ```
-   /assets
-   ├── css/
-   │   ├── style.css (Main styles)
-   │   └── responsive.css (Media queries)
-   ├── js/
-   │   ├── main.js (Core functionality)
-   │   └── cart.js (Shopping cart logic)
-   ├── images/
-   │   ├── products/
-   │   ├── gallery/
-   │   └── racing/
-   └── videos/
-   ```
+    handleResize() {
+        const wasNotMobile = !this.isMobile;
+        this.isMobile = window.innerWidth < 768;
+        
+        if (this.isMobile && wasNotMobile) {
+            this.createMobileNav();
+        } else if (!this.isMobile) {
+            const mobileNavButton = document.querySelector('.mobile-nav-toggle');
+            if (mobileNavButton) {
+                mobileNavButton.remove();
+                document.querySelector('.nav-links').classList.remove('nav-open');
+            }
+        }
+    }
 
-### Design System
+    render() {
+        // Insert template into page
+        document.body.insertAdjacentHTML('afterbegin', this.template);
+        
+        // Setup event listeners
+        window.addEventListener('resize', this.handleResize);
+        this.createMobileNav();
+        
+        // Initialize current page highlight
+        this.highlightCurrentPage();
+        
+        // Setup cart functionality
+        const cartIcon = document.querySelector('.cart-icon');
+        if (cartIcon) {
+            cartIcon.addEventListener('click', () => {
+                // TODO: Implement cart preview/checkout
+                console.log('Cart clicked');
+            });
+        }
+    }
 
-1. **Color Palette**
-   - Primary: #FF4D00 (Racing Orange)
-   - Secondary: #1A1A1A (Dark Gray)
-   - Accent: #00B8FF (Electric Blue)
-   - Background: #FFFFFF
-   - Text: #333333
+    cleanup() {
+        // Remove event listeners on cleanup
+        window.removeEventListener('resize', this.handleResize);
+    }
+}
+```
 
-2. **Typography**
-   - Headings: 'Rajdhani' (Technical, modern feel)
-   - Body: 'Open Sans' (Clean, readable)
+#### Modify HTML Files
+Remove the header markup from all HTML files and add:
+```html
+<script src="/assets/js/topbar.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const topBar = new TopBar();
+        topBar.render();
+    });
+</script>
+```
 
-3. **Components**
-   - Navigation bar
-   - Product cards
-   - Image galleries
-   - Custom order forms
-   - Shopping cart
-   - Footer
+### 3. Existing Functionality Integration
 
-## Performance Considerations
+#### Cart System
+The current implementation includes:
+- Cart count state management
+- Visual feedback animations
+- Add to cart confirmation messages
+- Event handling for cart updates
 
-1. **Image Optimization**
-   - Implement lazy loading
-   - Use responsive images
-   - Optimize image formats (WebP with fallbacks)
+This functionality will be preserved and enhanced in the TopBar component by:
+- Maintaining cart state in the TopBar class
+- Providing public methods for cart updates
+- Keeping existing animation classes
+- Supporting cart interaction events
 
-2. **Code Optimization**
-   - Minification of CSS/JS
-   - Efficient asset loading
-   - Browser caching
+#### Mobile Navigation
+Current mobile navigation features include:
+- Responsive breakpoint at 768px
+- Dynamic mobile menu toggle creation
+- Smooth open/close animations
+- Window resize handling
 
-## Security Measures
+These features are integrated into the TopBar component through:
+- Responsive state management
+- Automatic mobile navigation creation/cleanup
+- Preserved CSS classes for animations
+- Efficient resize event handling with cleanup
 
-1. **Data Protection**
-   - Form validation
-   - HTTPS implementation
-   - Secure payment processing
-   - Data encryption
+### 4. Benefits
+- Reduced code duplication
+- Centralized management of navigation
+- Consistent user experience
+- Easier maintenance and updates
+- Single source of truth for top bar structure
+- Improved state management
+- Better code organization
+- Enhanced maintainability
+- Proper cleanup of event listeners
 
-2. **User Security**
-   - Secure authentication
-   - Protected customer data
-   - Safe checkout process
+### 5. Implementation Order
+1. Create `topbar.js` with basic structure
+2. Test on index.html
+3. Add dynamic page highlighting
+4. Implement cart functionality
+5. Update remaining pages
+6. Test across all pages
+7. Add error handling and loading states
 
-## Future Expansion Considerations
+### 6. Technical Considerations
+- Use absolute paths in navigation links
+- Maintain CSS class names for styling consistency
+- Consider adding loading state
+- Handle JavaScript disabled gracefully
+- Ensure proper event cleanup
+- Preserve existing CSS animations and transitions
+- Implement proper mobile navigation state management
+- Handle edge cases (e.g., deep linking, browser back/forward)
 
-1. **Scalability**
-   - Modular code structure
-   - Component-based architecture
-   - Easy integration points for future features
-
-2. **Potential Features**
-   - Live chat support
-   - Customer reviews
-   - Loyalty program
-   - Mobile app integration
-   - Social media integration
-
-## Development Phases
-
-### Phase 1: Core Website
-- Basic structure and design
-- Product catalog
-- Contact form
-- About page
-- Responsive design implementation
-
-### Phase 2: E-commerce
-- Shopping cart functionality
-- Checkout process
-- User accounts
-- Order management
-
-### Phase 3: Custom Services
-- Customization showcase
-- Request forms
-- Pricing calculator
-- Gallery integration
-
-### Phase 4: Racing Content
-- Photo gallery
-- Video integration
-- Race calendar
-- Blog/news section
-
-## Testing Strategy
-
-1. **Frontend Testing**
-   - Cross-browser compatibility
-   - Responsive design testing
-   - Performance testing
-   - User acceptance testing
-
-2. **E-commerce Testing**
-   - Cart functionality
-   - Checkout process
-   - Payment integration
-   - Order management
-
-## Maintenance Plan
-
-1. **Regular Updates**
-   - Security patches
-   - Content updates
-   - Performance optimization
-   - Feature enhancements
-
-2. **Monitoring**
-   - Performance metrics
-   - User behavior analytics
-   - Error tracking
-   - Server monitoring
-
-## Conclusion
-This architecture plan provides a solid foundation for building Aubrey's RC Cars website. The modular approach allows for easy maintenance and future expansion while ensuring a robust and user-friendly experience from the start.
+### 7. Future Enhancements
+- Add mobile menu functionality
+- Implement cart preview dropdown
+- Add animation transitions
+- Consider using Web Components for better encapsulation
+- Add cart persistence across page loads
+- Implement cart item preview
+- Add accessibility improvements
+- Consider adding search functionality to navigation
