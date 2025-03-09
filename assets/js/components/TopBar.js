@@ -1,305 +1,12 @@
 /**
-   * Toggle mobile menu
-   * @param {Event} event - Click event
-   * @param {boolean} [force] - Force open or closed
-   */
-toggleMobileMenu(event, force = null) {
-    const isOpen = force !== null ? force : !this.state.mobileMenuOpen;
-    
-    // Update state
-    this.state.mobileMenuOpen = isOpen;
-    
-    // Toggle classes
-    this.elements.topBar.classList.toggle('menu-open', isOpen);
-    this.elements.mobileToggle.classList.toggle('active', isOpen);
-    
-    // Close other menus
-    if (isOpen) {
-      this.closeOtherMenus('mobile');
-    }
-    
-    // Prevent page scrolling when menu is open
-    document.body.style.overflow = isOpen ? 'hidden' : '';
-  }
-  
-  /**
-   * Close menus other than the specified one
-   * @param {string} exceptMenu - Menu to exclude from closing
-   */
-  closeOtherMenus(exceptMenu) {
-    if (exceptMenu !== 'mobile' && this.state.mobileMenuOpen) {
-      this.toggleMobileMenu(null, false);
-    }
-    
-    if (exceptMenu !== 'cart') {
-      this.elements.topBar.classList.remove('cart-open');
-    }
-    
-    if (exceptMenu !== 'search' && this.components.searchComponent) {
-      this.components.searchComponent.close();
-    }
-  }
-  
-  /**
-   * Close all menus
-   */
-  closeAllMenus() {
-    this.toggleMobileMenu(null, false);
-    this.elements.topBar.classList.remove('cart-open');
-    
-    if (this.components.searchComponent) {
-      this.components.searchComponent.close();
-    }
-  }
-  
-  /**
-   * Handle clicks on the document to close menus when clicking outside
-   * @param {Event} event - Click event
-   */
-  handleDocumentClick(event) {
-    // Mobile menu
-    if (this.state.mobileMenuOpen && 
-        !this.elements.mobileToggle.contains(event.target) && 
-        !this.elements.navLinks.contains(event.target)) {
-      this.toggleMobileMenu(null, false);
-    }
-  }
-  
-  /**
-   * Handle escape key presses to close menus
-   * @param {KeyboardEvent} event - Keyboard event
-   */
-  handleEscapeKey(event) {
-    if (event.key === 'Escape') {
-      this.closeAllMenus();
-    }
-  }
-  
-  /**
-   * Add an item to the cart
-   * @param {Object} product - Product to add to cart
-   * @param {string} product.id - Product ID
-   * @param {string} product.name - Product name
-   * @param {number} product.price - Product price
-   * @param {string} product.image - Product image URL
-   * @param {number} [quantity=1] - Quantity to add
-   */
-  addToCart(product, quantity = 1) {
-    // Get current cart
-    const cart = state.get('cart');
-    
-    // Check if product already exists in cart
-    const existingItemIndex = cart.items.findIndex(item => item.id === product.id);
-    
-    if (existingItemIndex !== -1) {
-      // Update existing item
-      cart.items[existingItemIndex].quantity += quantity;
-    } else {
-      // Add new item
-      cart.items.push({
-        ...product,
-        quantity
-      });
-    }
-    
-    // Update cart totals
-    this._updateCartTotals(cart);
-    
-    // Update state
-    state.set('cart', cart);
-    
-    // Open cart preview
-    this.elements.topBar.classList.add('cart-open');
-  }
-  
-  /**
-   * Remove an item from the cart
-   * @param {string} productId - ID of the product to remove
-   */
-  removeFromCart(productId) {
-    // Get current cart
-    const cart = state.get('cart');
-    
-    // Remove the item
-    cart.items = cart.items.filter(item => item.id !== productId);
-    
-    // Update cart totals
-    this._updateCartTotals(cart);
-    
-    // Update state
-    state.set('cart', cart);
-  }
-  
-  /**
-   * Update cart totals
-   * @param {Object} cart - Cart object
-   * @private
-   */
-  _updateCartTotals(cart) {
-    // Calculate total items
-    cart.totalItems = cart.items.reduce((total, item) => total + item.quantity, 0);
-    
-    // Calculate total price
-    cart.totalPrice = cart.items.reduce((total, item) => total + (item.price * item.quantity), 0);
-  }
-  
-  /**
-   * Update the cart count display
-   * @param {number} count - Number of items in cart
-   */
-  updateCartCount(count) {
-    if (this.elements.cartCount) {
-      this.elements.cartCount.textContent = count;
-      this.elements.cartCount.classList.toggle('hidden', count === 0);
-    }
-  }
-  
-  /**
-   * Handle route change events
-   * @param {CustomEvent} event - Route change event
-   */
-  handleRouteChange(event) {
-    // Get the new path from the event
-    const path = event.detail.path;
-    
-    // Update active navigation link
-    this.updateActiveNavLink(path);
-    
-    // Close any open menus
-    this.closeAllMenus();
-  }
-  
-  /**
-   * Update the active navigation link
-   * @param {string} path - Current path
-   */
-  updateActiveNavLink(path) {
-    // Remove active class from all links
-    const navLinks = document.querySelectorAll('.nav-links a');
-    navLinks.forEach(link => {
-      link.classList.remove('active');
-    });
-    
-    // Add active class to matching link
-    // Exact match for home page
-    if (path === '/') {
-      const homeLink = document.querySelector('.nav-links a[href="/"]');
-      if (homeLink) {
-        homeLink.classList.add('active');
-      }
-      return;
-    }
-    
-    // For other pages, find the link that has the path as its href or has a href that starts with the path
-    let activeLink = document.querySelector(`.nav-links a[href="${path}"]`);
-    
-    // If no exact match, look for a partial match (for nested routes)
-    if (!activeLink) {
-      navLinks.forEach(link => {
-        const href = link.getAttribute('href');
-        if (href !== '/' && path.startsWith(href)) {
-          activeLink = link;
-        }
-      });
-    }
-    
-    // Add active class to the matched link
-    if (activeLink) {
-      activeLink.classList.add('active');
-    }
-  }
-  
-  /**
-   * Remove event listeners
-   * @private
-   */
-  _removeEventListeners() {
-    // Remove global event listeners
-    document.removeEventListener('click', this.handleDocumentClick);
-    document.removeEventListener('keydown', this.handleEscapeKey);
-    document.removeEventListener('routeChanged', this.handleRouteChange);
-    
-    // Unsubscribe from state changes
-    this.stateSubscriptions.forEach(subscription => {
-      state.unsubscribe(subscription);
-    });
-  }
-  
-  /**
-   * Cleanup when component is destroyed
-   */
-  destroy() {
-    // Clean up components
-    if (this.components.searchComponent) {
-      this.components.searchComponent.dispose();
-    }
-    
-    if (this.components.cartPreview) {
-      this.components.cartPreview.dispose();
-    }
-    
-    // Remove event listeners
-    this._removeEventListeners();
-  }
-}  /**
-   * Initialize components
-   * @private
-   */
-  _initializeComponents() {
-    // Initialize search component
-    const searchContainer = document.getElementById('search-container');
-    if (searchContainer) {
-      this.components.searchComponent = new SearchComponent({
-        container: searchContainer,
-        onSearch: (searchTerm) => {
-          console.log(`Search performed: ${searchTerm}`);
-        },
-        onClose: () => {
-          this.elements.topBar.classList.remove('search-open');
-        }
-      });
-      this.components.searchComponent.render();
-    }
-    
-    // Initialize cart preview component
-    const cartContainer = document.getElementById('cart-container');
-    if (cartContainer) {
-      this.components.cartPreview = new CartPreview({
-        container: cartContainer,
-        onClose: () => {
-          this.elements.topBar.classList.remove('cart-open');
-        }
-      });
-      this.components.cartPreview.render();
-      
-      // Add event listener to cart toggle button
-      const cartToggle = cartContainer.querySelector('.cart-toggle');
-      if (cartToggle) {
-        cartToggle.addEventListener('click', () => {
-          this.toggleCartPreview();
-        });
-      }
-    }
-  }
-  
-  /**
-   * Toggle cart preview
-   */
-  toggleCartPreview() {
-    // Close other menus
-    this.closeOtherMenus('cart');
-    
-    // Toggle cart preview visibility
-    this.elements.topBar.classList.toggle('cart-open');
-  }/**
  * TopBar.js
  * Navigation, search, and cart management for Aubrey's RC Cars website
  */
 
-  import state from '../core/state.js';
-  import router from '../core/router.js';
-  import CartPreview from './CartPreview.js';
-  import SearchComponent from './SearchComponent.js';
+import state from '../core/state.js';
+import router from '../core/router.js';
+import CartPreview from './CartPreview.js';
+import SearchComponent from './SearchComponent.js';
 
 class TopBar {
   /**
@@ -311,7 +18,12 @@ class TopBar {
       topBar: null,
       mobileToggle: null,
       navLinks: null,
-      navActionsContainer: null
+      navActionsContainer: null,
+      cartCount: null,
+      searchToggle: null,
+      cartToggle: null,
+      cartPreview: null,
+      searchForm: null
     };
 
     // Component instances
@@ -322,18 +34,25 @@ class TopBar {
 
     // State
     this.state = {
-      mobileMenuOpen: false
+      mobileMenuOpen: false,
+      searchOpen: false,
+      cartPreviewOpen: false
     };
 
     // Bind methods to this
+    this.render = this.render.bind(this);
     this.toggleMobileMenu = this.toggleMobileMenu.bind(this);
+    this.toggleSearch = this.toggleSearch.bind(this);
+    this.toggleCartPreview = this.toggleCartPreview.bind(this);
     this.closeAllMenus = this.closeAllMenus.bind(this);
+    this.closeOtherMenus = this.closeOtherMenus.bind(this);
     this.handleDocumentClick = this.handleDocumentClick.bind(this);
     this.handleEscapeKey = this.handleEscapeKey.bind(this);
     this.handleRouteChange = this.handleRouteChange.bind(this);
     this.addToCart = this.addToCart.bind(this);
     this.removeFromCart = this.removeFromCart.bind(this);
     this.updateCartCount = this.updateCartCount.bind(this);
+    this._renderCartItems = this._renderCartItems.bind(this);
     
     // Subscribe to state changes
     this.stateSubscriptions = [
@@ -433,8 +152,44 @@ class TopBar {
     this.elements.navLinks = document.querySelector('.nav-links');
     this.elements.navActionsContainer = document.querySelector('.nav-actions');
     this.elements.cartCount = document.querySelector('.cart-count');
+    this.elements.searchToggle = document.querySelector('.search-toggle');
+    this.elements.cartToggle = document.querySelector('.cart-toggle');
+    this.elements.cartPreview = document.querySelector('.cart-preview');
   }
 
+  /**
+   * Initialize components
+   * @private
+   */
+  _initializeComponents() {
+    // Initialize search component
+    const searchContainer = document.getElementById('search-container');
+    if (searchContainer) {
+      this.components.searchComponent = new SearchComponent({
+        container: searchContainer,
+        onSearch: (searchTerm) => {
+          console.log(`Search performed: ${searchTerm}`);
+        },
+        onClose: () => {
+          this.elements.topBar.classList.remove('search-open');
+        }
+      });
+      this.components.searchComponent.render();
+    }
+    
+    // Initialize cart preview component
+    const cartContainer = document.getElementById('cart-container');
+    if (cartContainer) {
+      this.components.cartPreview = new CartPreview({
+        container: cartContainer,
+        onClose: () => {
+          this.elements.topBar.classList.remove('cart-open');
+        }
+      });
+      this.components.cartPreview.render();
+    }
+  }
+  
   /**
    * Set up event listeners
    * @private
@@ -443,43 +198,13 @@ class TopBar {
     // Mobile menu toggle
     this.elements.mobileToggle.addEventListener('click', this.toggleMobileMenu);
 
-    // Search toggle
-    this.elements.searchToggle.addEventListener('click', this.toggleSearch);
-
     // Cart toggle
-    this.elements.cartToggle.addEventListener('click', this.toggleCartPreview);
-
-    // Cart close button
-    document.querySelector('.cart-close').addEventListener('click', () => {
-      this.toggleCartPreview(null, false);
-    });
-    
-    // Cart navigation buttons
-    document.querySelectorAll('[data-nav]').forEach(button => {
-      button.addEventListener('click', (event) => {
-        const path = button.getAttribute('data-nav');
-        router.navigate(path);
-        this.toggleCartPreview(null, false);
+    const cartToggle = document.querySelector('.cart-toggle');
+    if (cartToggle) {
+      cartToggle.addEventListener('click', () => {
+        this.toggleCartPreview();
       });
-    });
-    
-    // Search form submission
-    document.getElementById('search-form').addEventListener('submit', (event) => {
-      event.preventDefault();
-      const searchInput = event.target.querySelector('input[name="q"]');
-      const searchTerm = searchInput.value.trim();
-      
-      if (searchTerm) {
-        // Navigate to search results page with query parameter
-        router.navigate(`/products?search=${encodeURIComponent(searchTerm)}`);
-        
-        // Close search form and reset input
-        this.toggleSearch(null, false);
-        
-        // Blur the input to hide mobile keyboard
-        searchInput.blur();
-      }
-    });
+    }
 
     // Handle document clicks (for closing menus)
     document.addEventListener('click', this.handleDocumentClick);
@@ -507,24 +232,9 @@ class TopBar {
     });
     
     // Listen for route changes to update active navigation
-    document.addEventListener('routeChanged', this.handleRouteChange.bind(this));
+    document.addEventListener('routeChanged', this.handleRouteChange);
   }
-
-  /**
-   * Remove event listeners
-   * @private
-   */
-  _removeEventListeners() {
-    // Remove global event listeners
-    document.removeEventListener('click', this.handleDocumentClick);
-    document.removeEventListener('keydown', this.handleEscapeKey);
-    
-    // Unsubscribe from state changes
-    this.stateSubscriptions.forEach(subscription => {
-      state.unsubscribe(subscription);
-    });
-  }
-
+  
   /**
    * Toggle mobile menu
    * @param {Event} event - Click event
@@ -542,14 +252,13 @@ class TopBar {
     
     // Close other menus
     if (isOpen) {
-      this.toggleSearch(null, false);
-      this.toggleCartPreview(null, false);
+      this.closeOtherMenus('mobile');
     }
     
     // Prevent page scrolling when menu is open
     document.body.style.overflow = isOpen ? 'hidden' : '';
   }
-
+  
   /**
    * Toggle search form
    * @param {Event} event - Click event
@@ -567,15 +276,17 @@ class TopBar {
     // Focus the search input when opened
     if (isOpen) {
       setTimeout(() => {
-        this.elements.searchForm.querySelector('input').focus();
+        const searchInput = document.querySelector('.search-form input');
+        if (searchInput) {
+          searchInput.focus();
+        }
       }, 100);
       
       // Close other menus
-      this.toggleMobileMenu(null, false);
-      this.toggleCartPreview(null, false);
+      this.closeOtherMenus('search');
     }
   }
-
+  
   /**
    * Toggle cart preview
    * @param {Event} event - Click event
@@ -592,20 +303,39 @@ class TopBar {
     
     // Close other menus
     if (isOpen) {
-      this.toggleMobileMenu(null, false);
-      this.toggleSearch(null, false);
+      this.closeOtherMenus('cart');
     }
   }
-
+  
+  /**
+   * Close menus other than the specified one
+   * @param {string} exceptMenu - Menu to exclude from closing
+   */
+  closeOtherMenus(exceptMenu) {
+    if (exceptMenu !== 'mobile' && this.state.mobileMenuOpen) {
+      this.toggleMobileMenu(null, false);
+    }
+    
+    if (exceptMenu !== 'search' && this.state.searchOpen && this.components.searchComponent) {
+      this.toggleSearch(null, false);
+    }
+    
+    if (exceptMenu !== 'cart' && this.state.cartPreviewOpen) {
+      this.toggleCartPreview(null, false);
+    }
+  }
+  
   /**
    * Close all menus
    */
   closeAllMenus() {
     this.toggleMobileMenu(null, false);
-    this.toggleSearch(null, false);
+    if (this.components.searchComponent) {
+      this.toggleSearch(null, false);
+    }
     this.toggleCartPreview(null, false);
   }
-
+  
   /**
    * Handle clicks on the document to close menus when clicking outside
    * @param {Event} event - Click event
@@ -618,21 +348,16 @@ class TopBar {
       this.toggleMobileMenu(null, false);
     }
     
-    // Search form
-    if (this.state.searchOpen && 
-        !this.elements.searchToggle.contains(event.target) && 
-        !this.elements.searchForm.contains(event.target)) {
-      this.toggleSearch(null, false);
-    }
-    
     // Cart preview
     if (this.state.cartPreviewOpen && 
+        this.elements.cartToggle &&
         !this.elements.cartToggle.contains(event.target) && 
+        this.elements.cartPreview &&
         !this.elements.cartPreview.contains(event.target)) {
       this.toggleCartPreview(null, false);
     }
   }
-
+  
   /**
    * Handle escape key presses to close menus
    * @param {KeyboardEvent} event - Keyboard event
@@ -642,7 +367,7 @@ class TopBar {
       this.closeAllMenus();
     }
   }
-
+  
   /**
    * Add an item to the cart
    * @param {Object} product - Product to add to cart
@@ -676,13 +401,10 @@ class TopBar {
     // Update state
     state.set('cart', cart);
     
-    // Show cart preview
+    // Open cart preview
     this.toggleCartPreview(null, true);
-    
-    // Update the cart preview content
-    this._renderCartItems();
   }
-
+  
   /**
    * Remove an item from the cart
    * @param {string} productId - ID of the product to remove
@@ -699,11 +421,8 @@ class TopBar {
     
     // Update state
     state.set('cart', cart);
-    
-    // Update the cart preview content
-    this._renderCartItems();
   }
-
+  
   /**
    * Update cart totals
    * @param {Object} cart - Cart object
@@ -716,7 +435,7 @@ class TopBar {
     // Calculate total price
     cart.totalPrice = cart.items.reduce((total, item) => total + (item.price * item.quantity), 0);
   }
-
+  
   /**
    * Update the cart count display
    * @param {number} count - Number of items in cart
@@ -727,15 +446,19 @@ class TopBar {
       this.elements.cartCount.classList.toggle('hidden', count === 0);
     }
   }
-
+  
   /**
    * Render cart items in the cart preview
    * @private
    */
   _renderCartItems() {
+    if (!this.components.cartPreview) return;
+    
     // Get cart items
     const cart = state.get('cart');
     const cartItemsContainer = document.querySelector('.cart-preview-items');
+    
+    if (!cartItemsContainer) return;
     
     // If cart is empty, show empty message
     if (cart.items.length === 0) {
@@ -773,7 +496,10 @@ class TopBar {
     cartItemsContainer.innerHTML = itemsHTML;
     
     // Update total price
-    document.querySelector('.cart-total-price').textContent = `$${cart.totalPrice.toFixed(2)}`;
+    const totalPriceEl = document.querySelector('.cart-total-price');
+    if (totalPriceEl) {
+      totalPriceEl.textContent = `$${cart.totalPrice.toFixed(2)}`;
+    }
     
     // Add event listeners to remove buttons
     const removeButtons = cartItemsContainer.querySelectorAll('.cart-item-remove');
@@ -844,11 +570,25 @@ class TopBar {
    * Cleanup when component is destroyed
    */
   destroy() {
+    // Clean up components
+    if (this.components.searchComponent) {
+      this.components.searchComponent.dispose();
+    }
+    
+    if (this.components.cartPreview) {
+      this.components.cartPreview.dispose();
+    }
+    
     // Remove document event listeners
+    document.removeEventListener('click', this.handleDocumentClick);
+    document.removeEventListener('keydown', this.handleEscapeKey);
     document.removeEventListener('routeChanged', this.handleRouteChange);
-    this._removeEventListeners();
+    
+    // Unsubscribe from state changes
+    this.stateSubscriptions.forEach(subscription => {
+      state.unsubscribe(subscription);
+    });
   }
 }
 
-// Export the TopBar constructor
 export default TopBar;
