@@ -16,7 +16,7 @@ class Header {
             <header class="main-header">
                 <nav class="nav-container">
                     <div class="logo">
-                        <h1><a href="/">Aubrey's RC</a></h1>
+                        <h1>Aubrey's RC</h1>
                     </div>
                     
                     <button class="mobile-nav-toggle" aria-label="Toggle navigation">
@@ -24,6 +24,7 @@ class Header {
                     </button>
                     
                     <ul class="nav-links">
+                        <li><a href="/index.html">Home</a></li>
                         <li><a href="/products.html">Shop</a></li>
                         <li><a href="/custom.html">Custom Builds</a></li>
                         <li><a href="/videos.html">Media</a></li>

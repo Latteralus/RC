@@ -73,7 +73,7 @@
 
 /* Featured products section */
 .featured-products {
-    padding: 4rem 2rem;
+    padding: 4rem 2rem 2rem;
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -171,23 +171,22 @@
     color: white;
 }
 
-/* About section */
-.about-section {
-    background-color: #ECF0F1; /* Light gray with a hint of blue */
-    padding: 4rem 2rem;
-}
-
-.about-content {
-    max-width: 1000px;
-    margin: 0 auto;
-    text-align: center;
-}
-
-/* Services section */
+/* Services section with subtle separator */
 .services-section {
-    padding: 4rem 2rem;
+    padding: 2rem 2rem 4rem;
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 2rem auto 0;
+    position: relative;
+}
+
+.services-section:before {
+    content: '';
+    display: block;
+    width: 60%;
+    max-width: 700px;
+    height: 1px;
+    background-color: rgba(0, 0, 0, 0.08);
+    margin: 0 auto 3rem;
 }
 
 .services-grid {
@@ -237,8 +236,15 @@
         font-size: 2rem;
     }
     
-    .featured-products,
+    .featured-products {
+        padding: 3rem 1rem 1.5rem;
+    }
+    
     .services-section {
-        padding: 3rem 1rem;
+        padding: 1.5rem 1rem 3rem;
+    }
+    
+    .services-section:before {
+        margin: 0 auto 2rem;
     }
 }

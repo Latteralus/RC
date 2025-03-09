@@ -1,6 +1,7 @@
 /**
  * footer.js - Footer functionality for Aubrey's RC website
  * Part of the simplified file structure approach for www.aubreysrc.com
+ * UPDATED: More compact footer layout
  */
 
 class Footer {
@@ -15,7 +16,7 @@ class Footer {
             return;
         }
         
-        // Create footer HTML
+        // Create footer HTML with more compact layout
         const footerHTML = `
             <footer>
                 <div class="footer-content">
@@ -35,7 +36,7 @@ class Footer {
                     </div>
                 </div>
                 <div class="footer-bottom">
-                    <p>&copy; ${this.currentYear} Aubrey's RC. Owned and operated by Aubrey "Lee" Barnett since 2020. All rights reserved.</p>
+                    <p>&copy; ${this.currentYear} Aubrey's RC. All rights reserved.</p>
                 </div>
             </footer>
         `;
