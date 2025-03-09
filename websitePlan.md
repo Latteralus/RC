@@ -37,32 +37,32 @@ The site's design and functionality will be inspired by the current implementati
 │   ├── index.html           # SPA entry point ✅
 │   ├── example.html         # Reference design ✅
 │   ├── websitePlan.md       # Project planning document ✅
-│   ├── assets/
-│   ├── css/                 # CSS styles
-│   │   ├── components/      # Component-specific styles
-│   │   │   ├── cart.css     # Cart component styles ✅
-│   │   │   ├── footer.css   # Footer component styles ✅
-│   │   │   ├── search.css   # Search component styles ✅
-│   │   │   └── topbar.css   # TopBar component styles ✅
-│   │   └── pages/           # Page-specific styles
-│   │       └── base.css     # Core styles, variables, typography ✅
-│   ├── images/              # Image assets
-│   │   └── cart.svg         # Cart icon
-│   └── js/                  # JavaScript code
-│       ├── components/      # UI components
-│       │   ├── CartPreview.js     # Cart preview component ✅
-│       │   ├── Footer.js          # Footer component ✅
-│       │   ├── SearchComponent.js # Search component ✅
-│       │   └── TopBar.js          # Navigation component ✅
-│       ├── core/            # Core application code
-│       │   ├── app.js       # Main application entry point ✅
-│       │   ├── main.js      # Application initialization ✅
-│       │   ├── PageRenderer.js # Component rendering system ✅
-│       │   ├── router.js    # SPA routing ✅
-│       │   └── state.js     # State management ✅
-│       ├── pages/           # Page templates
-│       ├── utils/           # Utility functions
-│       └── templates/       # HTML templates
+│   ├── assets/              # Static assets folder
+│   │   ├── css/             # CSS styles
+│   │   │   ├── components/  # Component-specific styles
+│   │   │   │   ├── cart.css     # Cart component styles ✅
+│   │   │   │   ├── footer.css   # Footer component styles ✅
+│   │   │   │   ├── search.css   # Search component styles ✅
+│   │   │   │   └── topbar.css   # TopBar component styles ✅
+│   │   │   └── pages/       # Page-specific styles
+│   │   │       └── base.css     # Core styles, variables, typography ✅
+│   │   ├── images/          # Image assets
+│   │   │   └── cart.svg     # Cart icon
+│   │   └── js/              # JavaScript code
+│   │       ├── components/  # UI components
+│   │       │   ├── CartPreview.js     # Cart preview component ✅
+│   │       │   ├── Footer.js          # Footer component ✅
+│   │       │   ├── SearchComponent.js # Search component ✅
+│   │       │   └── TopBar.js          # Navigation component ✅
+│   │       ├── core/        # Core application code
+│   │       │   ├── app.js       # Main application entry point ✅
+│   │       │   ├── main.js      # Application initialization ✅
+│   │       │   ├── PageRenderer.js # Component rendering system ✅
+│   │       │   ├── router.js    # SPA routing ✅
+│   │       │   └── state.js     # State management ✅
+│   │       ├── pages/       # Page templates
+│   │       ├── utils/       # Utility functions
+│   │       └── templates/   # HTML templates
 ```
 
 ## Responsive Design Strategy
@@ -153,6 +153,7 @@ The site's design and functionality will be inspired by the current implementati
 - Update import paths in CartPreview.js to use "../core/" instead of "./core/"
 - Update import paths in SearchComponent.js to use "../core/" instead of "./core/"
 - Update import paths in Footer.js to use "../core/" instead of "./core/"
+- Update import paths in app.js to correctly reference components from "../components/" folder
 
 #### Step 3.2: Fix Missing Imports
 - Add `import Footer from './Footer.js';` to app.js
@@ -160,7 +161,7 @@ The site's design and functionality will be inspired by the current implementati
 
 #### Step 3.3: Update Script Tags
 - Update script tags in index.html to match the actual file structure
-- Remove "/assets/" from paths to match the correct directory structure
+- Ensure paths include "/assets/" to match the correct directory structure
 
 #### Step 3.4: Address Circular Dependencies
 - Identify and fix any circular dependencies
