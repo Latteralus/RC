@@ -1,7 +1,7 @@
 /**
  * footer.js - Footer functionality for Aubrey's RC website
  * Part of the simplified file structure approach for www.aubreysrc.com
- * UPDATED: More compact footer layout
+ * UPDATED: Ultra-compact footer layout
  */
 
 class Footer {
@@ -16,27 +16,27 @@ class Footer {
             return;
         }
         
-        // Create footer HTML with more compact layout
+        // Create footer HTML with ultra-compact layout
         const footerHTML = `
             <footer>
                 <div class="footer-content">
                     <div class="footer-section">
-                        <h3>Contact Us</h3>
-                        <p>Email: info@aubreysrc.com</p>
-                        <p>Phone: 319-595-8656</p>
+                        <h3>Contact</h3>
+                        <p>info@aubreysrc.com</p>
+                        <p>319-595-8656</p>
                     </div>
                     <div class="footer-section">
-                        <h3>Business Info</h3>
-                        <p>Based in Wellsburg, Iowa</p>
-                        <p>Open 24/7 for online orders</p>
+                        <h3>Business</h3>
+                        <p>Wellsburg, Iowa</p>
+                        <p>Open 24/7 online</p>
                     </div>
                     <div class="footer-section">
-                        <h3>About Us</h3>
-                        <p>Aubrey "Lee" Barnett has been racing RC cars and trucks since the late 1980s.</p>
+                        <h3>About</h3>
+                        <p>Racing RC since the 1980s</p>
                     </div>
                 </div>
                 <div class="footer-bottom">
-                    <p>&copy; ${this.currentYear} Aubrey's RC. All rights reserved.</p>
+                    <p>&copy; ${this.currentYear} Aubrey's RC</p>
                 </div>
             </footer>
         `;
