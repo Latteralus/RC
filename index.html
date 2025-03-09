@@ -95,38 +95,20 @@
                 </div>
             </section>
             
-            <section class="featured-products">
-                <h2 class="section-title">Featured RC Cars</h2>
-                <div class="product-grid">
-                    <div class="product-card">
-                        <img src="https://www.bigsquidrc.com/traxxas-drops-the-all-new-rustler-4x4-vxl/" alt="Traxxas Rustler" class="product-image">
-                        <div class="product-details">
-                            <h3 class="product-title">Traxxas Rustler</h3>
-                            <p class="product-description">High-performance electric stadium truck</p>
-                            <span class="product-price">$299.99</span>
-                            <button class="add-to-cart-btn" data-id="traxxas-rustler" data-name="Traxxas Rustler" data-price="299.99" data-image="/assets/images/products/car1.jpg">Add to Cart</button>
-                        </div>
-                    </div>
-                    <div class="product-card">
-                        <img src="https://www.amainhobbies.com/arrma-kraton-6s-blx-brushless-rtr-1-8-4wd-monster-truck-blue-2019-v4-ara106040t2/p967237" alt="Arrma Kraton" class="product-image">
-                        <div class="product-details">
-                            <h3 class="product-title">Arrma Kraton</h3>
-                            <p class="product-description">1/8 Scale Monster Truck</p>
-                            <span class="product-price">$549.99</span>
-                            <button class="add-to-cart-btn" data-id="arrma-kraton" data-name="Arrma Kraton" data-price="549.99" data-image="/assets/images/products/car2.jpg">Add to Cart</button>
-                        </div>
-                    </div>
-                    <div class="product-card">
-                        <img src="https://www.rcdriver.com/losi-mini-t-2-0-rtr-off-road-truck-review/losi-mini-t-2-0-rtr-off-road-truck-review/" alt="Losi Mini-T" class="product-image">
-                        <div class="product-details">
-                            <h3 class="product-title">Losi Mini-T</h3>
-                            <p class="product-description">Compact racing truck</p>
-                            <span class="product-price">$199.99</span>
-                            <button class="add-to-cart-btn" data-id="losi-mini-t" data-name="Losi Mini-T" data-price="199.99" data-image="/assets/images/products/car3.jpg">Add to Cart</button>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <!-- This is just the modified section for the featured products -->
+<section class="featured-products">
+    <h2 class="section-title">Featured RC Cars</h2>
+    
+    <!-- Replace the static product-grid with the dynamic carousel -->
+    <div id="product-carousel" class="product-carousel">
+        <!-- ProductCards.js will populate this container -->
+    </div>
+    
+    <!-- View All Products link -->
+    <div class="text-center mt-4">
+        <a href="/products.html" class="cta-button">View All Products</a>
+    </div>
+</section>
             
             <section class="about-section">
                 <div class="about-content">
@@ -140,17 +122,14 @@
                 <h2 class="section-title">Our Services</h2>
                 <div class="services-grid">
                     <div class="service-card">
-                        <img src="/assets/images/services/custom-builds.jpg" alt="Custom Builds" class="service-image">
                         <h3 class="service-title">Custom Builds</h3>
                         <p>Personalized RC builds tailored to your specifications and performance requirements.</p>
                     </div>
                     <div class="service-card">
-                        <img src="/assets/images/services/repairs.jpg" alt="Repairs & Upgrades" class="service-image">
                         <h3 class="service-title">Repairs & Upgrades</h3>
                         <p>Professional repair services and performance upgrades for all RC models.</p>
                     </div>
                     <div class="service-card">
-                        <img src="/assets/images/services/racing-advice.jpg" alt="Racing Advice" class="service-image">
                         <h3 class="service-title">Racing Advice</h3>
                         <p>Expert guidance on setup, tuning, and racing techniques from experienced racers.</p>
                     </div>
