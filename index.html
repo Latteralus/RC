@@ -4,20 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aubrey's RC - Premium RC Cars, Trucks, Maintenance & Custom Modifications</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <style>
         :root {
             --primary: #e63946;
-            --primary-dark: #c1272d;
             --secondary: #1d3557;
-            --secondary-light: #457b9d;
             --light: #f1faee;
             --dark: #2b2d42;
             --accent: #ffd166;
-            --accent2: #58b368;
             --gray: #8d99ae;
-            --black: #111827;
         }
         
         * {
@@ -31,7 +25,6 @@
             background-color: #f5f5f7;
             color: var(--dark);
             line-height: 1.6;
-            overflow-x: hidden;
         }
         
         a {
@@ -42,17 +35,6 @@
         ul {
             list-style: none;
         }
-
-        .highlight {
-            color: var(--primary);
-            font-weight: 700;
-        }
-        
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
         
         /* Header Styles */
         header {
@@ -62,6 +44,12 @@
             top: 0;
             z-index: 100;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
         }
         
         .header-container {
@@ -84,11 +72,6 @@
         .logo-text span {
             color: var(--primary);
         }
-
-        .logo-icon {
-            margin-right: 10px;
-            color: var(--primary);
-        }
         
         nav ul {
             display: flex;
@@ -104,12 +87,6 @@
             transition: color 0.3s;
             position: relative;
             padding-bottom: 5px;
-            display: flex;
-            align-items: center;
-        }
-        
-        nav ul li a i {
-            margin-right: 5px;
         }
         
         nav ul li a:hover {
@@ -139,78 +116,32 @@
             font-size: 1.5rem;
             cursor: pointer;
         }
-
-        .top-bar {
-            background-color: var(--primary);
-            color: white;
-            padding: 8px 0;
-            font-size: 0.9rem;
-        }
-        
-        .top-bar-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .contact-info {
-            display: flex;
-            gap: 20px;
-        }
-        
-        .contact-info-item {
-            display: flex;
-            align-items: center;
-        }
-        
-        .contact-info-item i {
-            margin-right: 5px;
-        }
-        
-        .social-links-top {
-            display: flex;
-            gap: 15px;
-        }
-        
-        .social-links-top a {
-            color: white;
-            transition: color 0.3s;
-        }
-        
-        .social-links-top a:hover {
-            color: var(--accent);
-        }
         
         /* Hero Section */
         .hero {
-            height: 85vh;
+            height: 80vh;
             background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/api/placeholder/1200/800') center/cover no-repeat;
             display: flex;
             align-items: center;
             color: var(--light);
             text-align: center;
-            position: relative;
         }
         
         .hero-content {
             max-width: 800px;
             margin: 0 auto;
             padding: 0 1rem;
-            z-index: 2;
-            animation: fadeInUp 1s ease-out;
         }
         
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 3rem;
             margin-bottom: 1rem;
             line-height: 1.2;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
         }
         
         .hero p {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             margin-bottom: 2rem;
-            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
         }
         
         .btn {
@@ -221,7 +152,6 @@
             transition: all 0.3s;
             text-transform: uppercase;
             letter-spacing: 1px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         
         .btn-primary {
@@ -230,9 +160,9 @@
         }
         
         .btn-primary:hover {
-            background-color: var(--primary-dark);
+            background-color: #c42b37;
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
         
         .btn-secondary {
@@ -246,134 +176,17 @@
             background-color: var(--light);
             color: var(--dark);
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .btn-accent {
-            background-color: var(--accent);
-            color: var(--dark);
-        }
-
-        .btn-accent:hover {
-            background-color: #e5bc5c;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Speed Lines */
-        .speed-lines {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            overflow: hidden;
-            z-index: 1;
-        }
-
-        .speed-line {
-            position: absolute;
-            width: 100%;
-            height: 3px;
-            background-color: rgba(255, 255, 255, 0.15);
-            transform: rotate(-45deg) translateX(-50%);
-            transform-origin: 0 0;
-            animation: speedLineAnim 4s linear infinite;
-        }
-
-        .speed-line:nth-child(1) {
-            top: 10%;
-            animation-delay: 0s;
-        }
-
-        .speed-line:nth-child(2) {
-            top: 25%;
-            animation-delay: 0.5s;
-        }
-
-        .speed-line:nth-child(3) {
-            top: 40%;
-            animation-delay: 1s;
-        }
-
-        .speed-line:nth-child(4) {
-            top: 55%;
-            animation-delay: 1.5s;
-        }
-
-        .speed-line:nth-child(5) {
-            top: 70%;
-            animation-delay: 2s;
-        }
-
-        .speed-line:nth-child(6) {
-            top: 85%;
-            animation-delay: 2.5s;
-        }
-
-        @keyframes speedLineAnim {
-            0% {
-                transform: rotate(-45deg) translateX(-50%);
-                opacity: 0.2;
-            }
-            20% {
-                opacity: 0.5;
-            }
-            50% {
-                opacity: 0.3;
-            }
-            100% {
-                transform: rotate(-45deg) translateX(100vw);
-                opacity: 0;
-            }
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
         
-        /* Brands Section */
-        .brands {
-            padding: 3rem 0;
-            background-color: white;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .brands-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 2rem;
-        }
-        
-        .brand-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            opacity: 0.7;
-            transition: opacity 0.3s;
-        }
-        
-        .brand-item:hover {
-            opacity: 1;
-        }
-        
-        .brand-icon {
-            font-size: 2rem;
-            color: var(--secondary);
-            margin-bottom: 0.5rem;
-        }
-        
-        .brand-name {
-            font-weight: 600;
-            color: var(--gray);
-        }
-        
-        /* Section Styles */
+        /* Features Section */
         .section {
             padding: 5rem 0;
         }
         
         .section-title {
             text-align: center;
-            margin-bottom: 1rem;
+            margin-bottom: 3rem;
             font-size: 2.5rem;
             color: var(--dark);
         }
@@ -381,17 +194,7 @@
         .section-title span {
             color: var(--primary);
         }
-
-        .section-subtitle {
-            text-align: center;
-            margin-bottom: 3rem;
-            color: var(--gray);
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
         
-        /* Features Section */
         .features {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -404,7 +207,6 @@
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             transition: transform 0.3s, box-shadow 0.3s;
-            height: 100%;
         }
         
         .feature-card:hover {
@@ -426,13 +228,6 @@
             font-size: 1.5rem;
             margin-bottom: 1rem;
             color: var(--secondary);
-            display: flex;
-            align-items: center;
-        }
-
-        .feature-title i {
-            margin-right: 10px;
-            color: var(--primary);
         }
         
         .feature-desc {
@@ -446,100 +241,11 @@
             display: flex;
             align-items: center;
         }
-
-        .read-more i {
-            margin-left: 5px;
-            transition: transform 0.3s;
-        }
         
         .read-more:hover {
             text-decoration: underline;
         }
-
-        .read-more:hover i {
-            transform: translateX(5px);
-        }
         
-        /* Featured Build Section */
-        .featured-build {
-            background-color: var(--dark);
-            color: var(--light);
-            padding: 5rem 0;
-        }
-
-        .featured-build .section-title,
-        .featured-build .section-subtitle {
-            color: var(--light);
-        }
-
-        .featured-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .featured-image-container {
-            position: relative;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .featured-image {
-            width: 100%;
-            display: block;
-        }
-
-        .featured-label {
-            position: absolute;
-            top: 20px;
-            right: 0;
-            background-color: var(--primary);
-            color: white;
-            padding: 0.5rem 1rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            letter-spacing: 1px;
-        }
-
-        .featured-details h3 {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            color: var(--accent);
-        }
-
-        .featured-details p {
-            margin-bottom: 1.5rem;
-            color: #a8b2d1;
-            font-size: 1.1rem;
-        }
-
-        .specs-list {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .spec-item {
-            display: flex;
-            align-items: center;
-        }
-
-        .spec-icon {
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-right: 10px;
-            color: var(--accent);
-        }
-
         /* Products Section */
         .products {
             background-color: var(--light);
@@ -547,7 +253,7 @@
         
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             gap: 2rem;
         }
         
@@ -556,91 +262,21 @@
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
-            position: relative;
+            transition: transform 0.3s;
         }
         
         .product-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .product-badge {
-            position: absolute;
-            top: 15px;
-            left: 0;
-            background-color: var(--accent);
-            color: var(--dark);
-            padding: 0.3rem 1rem;
-            font-weight: 600;
-            font-size: 0.8rem;
-            z-index: 1;
-        }
-
-        .product-badge.new {
-            background-color: var(--accent2);
-            color: white;
-        }
-
-        .product-badge.sale {
-            background-color: var(--primary);
-            color: white;
-        }
-        
-        .product-img-container {
-            height: 220px;
-            width: 100%;
-            overflow: hidden;
-            position: relative;
         }
         
         .product-img {
-            height: 100%;
+            height: 180px;
             width: 100%;
             object-fit: cover;
-            transition: transform 0.5s;
-        }
-
-        .product-card:hover .product-img {
-            transform: scale(1.05);
-        }
-
-        .product-action {
-            position: absolute;
-            bottom: -50px;
-            left: 0;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            transition: bottom 0.3s;
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 10px 0;
-        }
-
-        .product-card:hover .product-action {
-            bottom: 0;
-        }
-
-        .action-btn {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: white;
-            color: var(--dark);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: all 0.3s;
-        }
-
-        .action-btn:hover {
-            background-color: var(--primary);
-            color: white;
         }
         
         .product-details {
-            padding: 1.5rem;
+            padding: 1rem;
         }
         
         .product-category {
@@ -649,22 +285,11 @@
             font-weight: 600;
             text-transform: uppercase;
             margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-        }
-
-        .product-category i {
-            margin-right: 5px;
         }
         
         .product-name {
             font-size: 1.2rem;
             margin-bottom: 0.5rem;
-            transition: color 0.3s;
-        }
-
-        .product-card:hover .product-name {
-            color: var(--primary);
         }
         
         .product-price {
@@ -672,16 +297,6 @@
             font-size: 1.3rem;
             color: var(--secondary);
             margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .old-price {
-            text-decoration: line-through;
-            color: var(--gray);
-            font-size: 1rem;
-            font-weight: normal;
         }
         
         .product-btn {
@@ -694,22 +309,10 @@
             font-weight: 600;
             cursor: pointer;
             transition: background-color 0.3s;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .product-btn i {
-            margin-right: 8px;
         }
         
         .product-btn:hover {
             background-color: var(--primary);
-        }
-
-        .view-all {
-            text-align: center;
-            margin-top: 3rem;
         }
         
         /* Services Section */
@@ -721,165 +324,31 @@
         
         .service-card {
             background-color: #fff;
-            padding: 2.5rem;
+            padding: 2rem;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
-            position: relative;
-            z-index: 1;
-            overflow: hidden;
-        }
-        
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 0;
-            background-color: var(--secondary);
-            transition: height 0.5s;
-            z-index: -1;
+            transition: transform 0.3s;
         }
         
         .service-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-            color: white;
-        }
-        
-        .service-card:hover::before {
-            height: 100%;
         }
         
         .service-icon {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background-color: rgba(230, 57, 70, 0.1);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 0 auto 1.5rem;
+            font-size: 3rem;
             color: var(--primary);
-            font-size: 2rem;
-            transition: background-color 0.3s, color 0.3s;
-        }
-        
-        .service-card:hover .service-icon {
-            background-color: white;
+            margin-bottom: 1.5rem;
         }
         
         .service-title {
             font-size: 1.5rem;
             margin-bottom: 1rem;
             color: var(--secondary);
-            transition: color 0.3s;
-        }
-        
-        .service-card:hover .service-title {
-            color: white;
         }
         
         .service-desc {
             color: var(--gray);
-            transition: color 0.3s;
-        }
-        
-        .service-card:hover .service-desc {
-            color: #d1d5db;
-        }
-
-        /* Custom RC Gallery */
-        .gallery {
-            padding: 5rem 0;
-            background-color: #f9fafb;
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            grid-template-rows: repeat(12, 40px);
-            gap: 15px;
-        }
-
-        .gallery-item {
-            overflow: hidden;
-            border-radius: 10px;
-            position: relative;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            cursor: pointer;
-        }
-
-        .gallery-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(29, 53, 87, 0.5);
-            opacity: 0;
-            transition: opacity 0.3s;
-            z-index: 1;
-        }
-
-        .gallery-item:hover::before {
-            opacity: 1;
-        }
-
-        .gallery-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-
-        .gallery-item:hover .gallery-img {
-            transform: scale(1.1);
-        }
-
-        .gallery-caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            padding: 15px;
-            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
-            color: white;
-            transform: translateY(100%);
-            transition: transform 0.3s;
-            z-index: 2;
-        }
-
-        .gallery-item:hover .gallery-caption {
-            transform: translateY(0);
-        }
-
-        .gallery-item:nth-child(1) {
-            grid-column: span 8;
-            grid-row: span 7;
-        }
-
-        .gallery-item:nth-child(2) {
-            grid-column: span 4;
-            grid-row: span 4;
-        }
-
-        .gallery-item:nth-child(3) {
-            grid-column: 9 / span 4;
-            grid-row: 5 / span 3;
-        }
-
-        .gallery-item:nth-child(4) {
-            grid-column: span 4;
-            grid-row: 8 / span 5;
-        }
-
-        .gallery-item:nth-child(5) {
-            grid-column: 5 / span 8;
-            grid-row: 8 / span 5;
         }
         
         /* Testimonials Section */
@@ -898,32 +367,10 @@
             padding: 2rem;
             background-color: rgba(255, 255, 255, 0.1);
             border-radius: 10px;
-            position: relative;
         }
         
         .testimonial-card {
             text-align: center;
-            padding: 2rem 1rem;
-            display: none;
-        }
-
-        .testimonial-card.active {
-            display: block;
-            animation: fadeIn 1s;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        .testimonial-img {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            margin: 0 auto 1.5rem;
-            border: 3px solid var(--primary);
-            object-fit: cover;
         }
         
         .testimonial-text {
@@ -931,7 +378,6 @@
             font-style: italic;
             margin-bottom: 2rem;
             position: relative;
-            line-height: 1.8;
         }
         
         .testimonial-text::before,
@@ -949,61 +395,6 @@
         .testimonial-role {
             font-size: 0.9rem;
             opacity: 0.8;
-            margin-bottom: 1rem;
-        }
-
-        .testimonial-rating {
-            color: var(--accent);
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-        }
-
-        .slider-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .slider-nav:hover {
-            background-color: var(--primary);
-        }
-
-        .prev-btn {
-            left: -20px;
-        }
-
-        .next-btn {
-            right: -20px;
-        }
-
-        .slider-dots {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 2rem;
-        }
-
-        .slider-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.3);
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .slider-dot.active {
-            background-color: var(--accent);
         }
         
         /* About Section */
@@ -1014,16 +405,10 @@
             align-items: center;
         }
         
-        .about-img-container {
-            position: relative;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-        
         .about-img {
             width: 100%;
-            display: block;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
         
         .about-text h3 {
@@ -1036,157 +421,13 @@
             margin-bottom: 1.5rem;
             color: var(--gray);
         }
-
-        .about-stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-            margin: 2rem 0;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 1.5rem;
-            background-color: #f8fafc;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            color: var(--gray);
-            font-size: 0.9rem;
-        }
-
-        /* Events Section */
-        .events {
-            background-color: #f0f4f8;
-            padding: 5rem 0;
-        }
-
-        .events-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .event-card {
-            background-color: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-
-        .event-img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-
-        .event-content {
-            padding: 1.5rem;
-        }
-
-        .event-date {
-            display: inline-block;
-            background-color: var(--primary);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 30px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .event-title {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--secondary);
-        }
-
-        .event-details {
-            display: flex;
-            flex-direction: column;
-            gap: 0.8rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .event-detail {
-            display: flex;
-            align-items: center;
-            color: var(--gray);
-        }
-
-        .event-detail i {
-            margin-right: 10px;
-            color: var(--primary);
-            width: 20px;
-        }
         
-        /* FAQ Section */
-        .faq {
-            background-color: #fff;
-            padding: 5rem 0;
-        }
-
-        .accordion {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .accordion-item {
-            border-bottom: 1px solid #e5e7eb;
-            margin-bottom: 1rem;
-        }
-
-        .accordion-button {
-            background: none;
-            border: none;
-            width: 100%;
-            text-align: left;
-            padding: 1.5rem 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            color: var(--secondary);
-            font-weight: 600;
-            font-size: 1.1rem;
-        }
-
-        .accordion-icon {
-            color: var(--primary);
-            font-size: 1.2rem;
-            transition: transform 0.3s;
-        }
-
-        .accordion-button[aria-expanded="true"] .accordion-icon {
-            transform: rotate(180deg);
-        }
-
-        .accordion-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
-        }
-
-        .accordion-content-inner {
-            padding: 0 0 1.5rem;
-            color: var(--gray);
-        }
-
         /* CTA Section */
         .cta {
             background: linear-gradient(rgba(30, 53, 87, 0.9), rgba(30, 53, 87, 0.9)), url('/api/placeholder/1200/800') center/cover no-repeat;
             text-align: center;
             color: var(--light);
-            padding: 5rem 0;
+            padding: 4rem 0;
         }
         
         .cta h3 {
@@ -1198,41 +439,6 @@
             max-width: 600px;
             margin: 0 auto 2rem auto;
             font-size: 1.1rem;
-        }
-
-        .newsletter-form {
-            max-width: 500px;
-            margin: 3rem auto 0;
-            position: relative;
-        }
-
-        .newsletter-input {
-            width: 100%;
-            padding: 1rem 1.5rem;
-            border-radius: 50px;
-            border: none;
-            font-size: 1rem;
-            outline: none;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .newsletter-btn {
-            position: absolute;
-            right: 5px;
-            top: 5px;
-            bottom: 5px;
-            border: none;
-            background-color: var(--primary);
-            color: white;
-            border-radius: 50px;
-            padding: 0 1.5rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .newsletter-btn:hover {
-            background-color: var(--primary-dark);
         }
         
         /* Footer */
@@ -1253,16 +459,9 @@
             font-size: 1.8rem;
             font-weight: 700;
             margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
         }
         
         .footer-logo span {
-            color: var(--primary);
-        }
-
-        .footer-logo i {
-            margin-right: 10px;
             color: var(--primary);
         }
         
@@ -1284,13 +483,11 @@
             height: 40px;
             background-color: rgba(255, 255, 255, 0.1);
             border-radius: 50%;
-            transition: all 0.3s;
-            color: var(--light);
+            transition: background-color 0.3s;
         }
         
         .social-link:hover {
             background-color: var(--primary);
-            transform: translateY(-3px);
         }
         
         .footer-title {
@@ -1318,13 +515,6 @@
         .footer-links li a {
             color: var(--gray);
             transition: color 0.3s;
-            display: flex;
-            align-items: center;
-        }
-
-        .footer-links li a i {
-            margin-right: 10px;
-            font-size: 0.8rem;
         }
         
         .footer-links li a:hover {
@@ -1349,104 +539,12 @@
             color: var(--gray);
             font-size: 0.9rem;
         }
-
-        .payment-methods {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .payment-method {
-            width: 40px;
-            height: 25px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 4px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 0.8rem;
-            color: white;
-        }
         
-        /* Back to Top Button */
-        .back-to-top {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 50px;
-            height: 50px;
-            background-color: var(--primary);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s;
-            z-index: 99;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        .back-to-top.show {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .back-to-top:hover {
-            background-color: var(--primary-dark);
-            transform: translateY(-5px);
-        }
-
         /* Responsive Styles */
-        @media screen and (max-width: 1024px) {
-            .featured-content, 
-            .about-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .gallery-grid {
-                grid-template-rows: repeat(24, 30px);
-            }
-
-            .gallery-item:nth-child(1) {
-                grid-column: span 12;
-                grid-row: span 6;
-            }
-
-            .gallery-item:nth-child(2) {
-                grid-column: span 6;
-                grid-row: 7 / span 6;
-            }
-
-            .gallery-item:nth-child(3) {
-                grid-column: 7 / span 6;
-                grid-row: 7 / span 6;
-            }
-
-            .gallery-item:nth-child(4) {
-                grid-column: span 6;
-                grid-row: 13 / span 6;
-            }
-
-            .gallery-item:nth-child(5) {
-                grid-column: 7 / span 6;
-                grid-row: 13 / span 6;
-            }
-        }
-
         @media screen and (max-width: 768px) {
-            .top-bar {
-                display: none;
-            }
-
             .header-container {
                 flex-direction: column;
                 align-items: center;
-                padding: 1rem 0;
             }
             
             .logo {
@@ -1465,31 +563,14 @@
             .hero h1 {
                 font-size: 2.5rem;
             }
-
-            .brands-container {
-                justify-content: center;
-            }
-
-            .specs-list {
-                grid-template-columns: 1fr;
-            }
-
-            .about-stats {
+            
+            .about-content {
                 grid-template-columns: 1fr;
             }
             
             .btn-secondary {
                 margin-left: 0;
                 margin-top: 1rem;
-            }
-
-            .gallery-grid {
-                grid-template-rows: repeat(40, 30px);
-            }
-
-            .gallery-item:nth-child(n) {
-                grid-column: span 12;
-                grid-row: span 8;
             }
         }
         
@@ -1501,52 +582,23 @@
             .section-title {
                 font-size: 2rem;
             }
-
-            .slider-nav {
-                display: none;
-            }
         }
     </style>
 </head>
 <body>
-    <!-- Top Bar -->
-    <div class="top-bar">
-        <div class="container top-bar-content">
-            <div class="contact-info">
-                <div class="contact-info-item">
-                    <i class="fas fa-phone"></i>
-                    <span>(555) 123-4567</span>
-                </div>
-                <div class="contact-info-item">
-                    <i class="fas fa-envelope"></i>
-                    <span>info@aubreysrc.com</span>
-                </div>
-            </div>
-            <div class="social-links-top">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-youtube"></i></a>
-                <a href="#"><i class="fab fa-tiktok"></i></a>
-            </div>
-        </div>
-    </div>
-
     <!-- Header -->
     <header>
         <div class="container header-container">
             <div class="logo">
-                <i class="fas fa-truck-monster logo-icon"></i>
                 <div class="logo-text">Aubrey's<span>RC</span></div>
             </div>
             <nav>
                 <ul>
-                    <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
-                    <li><a href="#products"><i class="fas fa-store"></i> Shop</a></li>
-                    <li><a href="#services"><i class="fas fa-tools"></i> Services</a></li>
-                    <li><a href="#gallery"><i class="fas fa-images"></i> Gallery</a></li>
-                    <li><a href="#events"><i class="fas fa-calendar"></i> Events</a></li>
-                    <li><a href="#about"><i class="fas fa-users"></i> About Us</a></li>
-                    <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#products">Shop</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
             <button class="mobile-menu-btn">☰</button>
@@ -1555,50 +607,12 @@
     
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <div class="speed-lines">
-            <div class="speed-line"></div>
-            <div class="speed-line"></div>
-            <div class="speed-line"></div>
-            <div class="speed-line"></div>
-            <div class="speed-line"></div>
-            <div class="speed-line"></div>
-        </div>
         <div class="hero-content">
-            <h1>Unleash the <span class="highlight">Power</span> & <span class="highlight">Precision</span></h1>
-            <p>Experience the thrill of high-performance RC vehicles with Aubrey's expert customization, precision tuning, and professional repairs.</p>
+            <h1>Premium RC Experience</h1>
+            <p>Discover the thrill of high-performance RC cars and trucks with expert customization, tuning, and repairs.</p>
             <div class="hero-buttons">
-                <a href="#products" class="btn btn-primary"><i class="fas fa-shopping-cart"></i> Shop Now</a>
-                <a href="#services" class="btn btn-secondary"><i class="fas fa-tools"></i> Our Services</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Brands Section -->
-    <section class="brands">
-        <div class="container brands-container">
-            <div class="brand-item">
-                <i class="fas fa-car-side brand-icon"></i>
-                <div class="brand-name">Traxxas</div>
-            </div>
-            <div class="brand-item">
-                <i class="fas fa-truck-monster brand-icon"></i>
-                <div class="brand-name">Arrma</div>
-            </div>
-            <div class="brand-item">
-                <i class="fas fa-car brand-icon"></i>
-                <div class="brand-name">Losi</div>
-            </div>
-            <div class="brand-item">
-                <i class="fas fa-car-battery brand-icon"></i>
-                <div class="brand-name">Axial</div>
-            </div>
-            <div class="brand-item">
-                <i class="fas fa-tachometer-alt brand-icon"></i>
-                <div class="brand-name">HPI Racing</div>
-            </div>
-            <div class="brand-item">
-                <i class="fas fa-truck-pickup brand-icon"></i>
-                <div class="brand-name">Redcat</div>
+                <a href="#products" class="btn btn-primary">Shop Now</a>
+                <a href="#services" class="btn btn-secondary">Our Services</a>
             </div>
         </div>
     </section>
@@ -1607,68 +621,30 @@
     <section class="section">
         <div class="container">
             <h2 class="section-title">Why Choose <span>Aubrey's RC</span></h2>
-            <p class="section-subtitle">With over a decade of experience serving the RC community, we provide unmatched expertise and service for enthusiasts of all levels.</p>
             <div class="features">
                 <div class="feature-card">
                     <img src="/api/placeholder/400/300" alt="Premium Brands" class="feature-img">
                     <div class="feature-content">
-                        <h3 class="feature-title"><i class="fas fa-award"></i> Premium Brands</h3>
-                        <p class="feature-desc">We carry only the highest quality RC vehicles and parts from top manufacturers like Traxxas, Arrma, Losi, and more.</p>
-                        <a href="#" class="read-more">Learn More <i class="fas fa-arrow-right"></i></a>
+                        <h3 class="feature-title">Premium Brands</h3>
+                        <p class="feature-desc">We carry only the highest quality RC vehicles and parts from top manufacturers around the world.</p>
+                        <a href="#" class="read-more">Learn More →</a>
                     </div>
                 </div>
                 <div class="feature-card">
                     <img src="/api/placeholder/400/300" alt="Expert Customization" class="feature-img">
                     <div class="feature-content">
-                        <h3 class="feature-title"><i class="fas fa-cogs"></i> Expert Customization</h3>
-                        <p class="feature-desc">Our team of specialists can modify your RC vehicle for enhanced performance, style, and durability to match your specific needs.</p>
-                        <a href="#" class="read-more">Learn More <i class="fas fa-arrow-right"></i></a>
+                        <h3 class="feature-title">Expert Customization</h3>
+                        <p class="feature-desc">Our team of specialists can modify your RC vehicle for enhanced performance, style, and durability.</p>
+                        <a href="#" class="read-more">Learn More →</a>
                     </div>
                 </div>
                 <div class="feature-card">
                     <img src="/api/placeholder/400/300" alt="Professional Maintenance" class="feature-img">
                     <div class="feature-content">
-                        <h3 class="feature-title"><i class="fas fa-tools"></i> Professional Maintenance</h3>
-                        <p class="feature-desc">Keep your RC in top condition with our comprehensive maintenance and repair services performed by certified technicians.</p>
-                        <a href="#" class="read-more">Learn More <i class="fas fa-arrow-right"></i></a>
+                        <h3 class="feature-title">Professional Maintenance</h3>
+                        <p class="feature-desc">Keep your RC in top condition with our comprehensive maintenance and repair services.</p>
+                        <a href="#" class="read-more">Learn More →</a>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Featured Build Section -->
-    <section class="featured-build">
-        <div class="container">
-            <h2 class="section-title">Featured <span>Build</span></h2>
-            <p class="section-subtitle">Check out our latest custom RC project showcasing premium performance and craftsmanship</p>
-            <div class="featured-content">
-                <div class="featured-image-container">
-                    <img src="/api/placeholder/600/400" alt="Featured Build" class="featured-image">
-                    <div class="featured-label">Build of the Month</div>
-                </div>
-                <div class="featured-details">
-                    <h3>Ultra X-Trail Monster Truck</h3>
-                    <p>This beast combines raw power with precision handling. We've taken a standard Traxxas X-Maxx and transformed it with custom suspension, enhanced electronics, and a one-of-a-kind paint job that turns heads at every track.</p>
-                    <div class="specs-list">
-                        <div class="spec-item">
-                            <div class="spec-icon"><i class="fas fa-bolt"></i></div>
-                            <div>8S LiPo Power</div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-icon"><i class="fas fa-tachometer-alt"></i></div>
-                            <div>50+ MPH Top Speed</div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-icon"><i class="fas fa-broadcast-tower"></i></div>
-                            <div>2.4GHz Control System</div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-icon"><i class="fas fa-car-battery"></i></div>
-                            <div>Custom ESC & Motor</div>
-                        </div>
-                    </div>
-                    <a href="#" class="btn btn-accent">View Build Details</a>
                 </div>
             </div>
         </div>
@@ -1678,78 +654,43 @@
     <section class="section products" id="products">
         <div class="container">
             <h2 class="section-title">Featured <span>Products</span></h2>
-            <p class="section-subtitle">Discover our selection of premium RC vehicles, parts, and accessories</p>
             <div class="product-grid">
                 <div class="product-card">
-                    <div class="product-badge">Popular</div>
-                    <div class="product-img-container">
-                        <img src="/api/placeholder/400/300" alt="RC Truck" class="product-img">
-                        <div class="product-action">
-                            <a href="#" class="action-btn"><i class="fas fa-eye"></i></a>
-                            <a href="#" class="action-btn"><i class="fas fa-heart"></i></a>
-                            <a href="#" class="action-btn"><i class="fas fa-shopping-cart"></i></a>
-                        </div>
-                    </div>
+                    <img src="/api/placeholder/400/300" alt="RC Truck" class="product-img">
                     <div class="product-details">
-                        <div class="product-category"><i class="fas fa-truck-monster"></i> Trucks</div>
+                        <div class="product-category">Trucks</div>
                         <h3 class="product-name">Pro Series X-Trail Monster Truck</h3>
                         <div class="product-price">$349.99</div>
-                        <button class="product-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                        <button class="product-btn">Add to Cart</button>
                     </div>
                 </div>
                 <div class="product-card">
-                    <div class="product-badge new">New Arrival</div>
-                    <div class="product-img-container">
-                        <img src="/api/placeholder/400/300" alt="RC Car" class="product-img">
-                        <div class="product-action">
-                            <a href="#" class="action-btn"><i class="fas fa-eye"></i></a>
-                            <a href="#" class="action-btn"><i class="fas fa-heart"></i></a>
-                            <a href="#" class="action-btn"><i class="fas fa-shopping-cart"></i></a>
-                        </div>
-                    </div>
+                    <img src="/api/placeholder/400/300" alt="RC Car" class="product-img">
                     <div class="product-details">
-                        <div class="product-category"><i class="fas fa-car"></i> Cars</div>
+                        <div class="product-category">Cars</div>
                         <h3 class="product-name">Turbo Drift Racing Car</h3>
                         <div class="product-price">$299.99</div>
-                        <button class="product-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                        <button class="product-btn">Add to Cart</button>
                     </div>
                 </div>
                 <div class="product-card">
-                    <div class="product-badge sale">Sale</div>
-                    <div class="product-img-container">
-                        <img src="/api/placeholder/400/300" alt="RC Buggy" class="product-img">
-                        <div class="product-action">
-                            <a href="#" class="action-btn"><i class="fas fa-eye"></i></a>
-                            <a href="#" class="action-btn"><i class="fas fa-heart"></i></a>
-                            <a href="#" class="action-btn"><i class="fas fa-shopping-cart"></i></a>
-                        </div>
-                    </div>
+                    <img src="/api/placeholder/400/300" alt="RC Buggy" class="product-img">
                     <div class="product-details">
-                        <div class="product-category"><i class="fas fa-car-side"></i> Buggies</div>
+                        <div class="product-category">Buggies</div>
                         <h3 class="product-name">Desert Runner 4WD Buggy</h3>
-                        <div class="product-price">$349.99 <span class="old-price">$399.99</span></div>
-                        <button class="product-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                        <div class="product-price">$399.99</div>
+                        <button class="product-btn">Add to Cart</button>
                     </div>
                 </div>
                 <div class="product-card">
-                    <div class="product-img-container">
-                        <img src="/api/placeholder/400/300" alt="RC Parts" class="product-img">
-                        <div class="product-action">
-                            <a href="#" class="action-btn"><i class="fas fa-eye"></i></a>
-                            <a href="#" class="action-btn"><i class="fas fa-heart"></i></a>
-                            <a href="#" class="action-btn"><i class="fas fa-shopping-cart"></i></a>
-                        </div>
-                    </div>
+                    <img src="/api/placeholder/400/300" alt="RC Parts" class="product-img">
                     <div class="product-details">
-                        <div class="product-category"><i class="fas fa-cogs"></i> Parts</div>
+                        <div class="product-category">Parts</div>
                         <h3 class="product-name">Performance Motor Upgrade Kit</h3>
                         <div class="product-price">$129.99</div>
-                        <button class="product-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                        <button class="product-btn">Add to Cart</button>
                     </div>
                 </div>
-            </div>
-            <div class="view-all">
-                <a href="#" class="btn btn-primary">View All Products</a>
             </div>
         </div>
     </section>
@@ -1758,72 +699,26 @@
     <section class="section" id="services">
         <div class="container">
             <h2 class="section-title">Our <span>Services</span></h2>
-            <p class="section-subtitle">Professional RC services to keep your vehicles performing at their best</p>
             <div class="services-grid">
                 <div class="service-card">
-                    <div class="service-icon"><i class="fas fa-wrench"></i></div>
+                    <div class="service-icon">🔧</div>
                     <h3 class="service-title">Maintenance & Repairs</h3>
                     <p class="service-desc">Our expert technicians can diagnose and fix any issues with your RC vehicles, from simple repairs to complex troubleshooting.</p>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    <div class="service-icon">⚡</div>
                     <h3 class="service-title">Performance Tuning</h3>
                     <p class="service-desc">Unleash the full potential of your RC with our professional tuning services, optimizing speed, control, and power.</p>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon"><i class="fas fa-paint-brush"></i></div>
+                    <div class="service-icon">🎨</div>
                     <h3 class="service-title">Custom Modifications</h3>
                     <p class="service-desc">Transform your RC with personalized modifications, from custom body designs to specialized component upgrades.</p>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon"><i class="fas fa-flag-checkered"></i></div>
+                    <div class="service-icon">🏁</div>
                     <h3 class="service-title">Racing Preparation</h3>
                     <p class="service-desc">Get your RC competition-ready with our specialized racing preparation services designed for maximum performance.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Gallery Section -->
-    <section class="gallery" id="gallery">
-        <div class="container">
-            <h2 class="section-title">Custom <span>Builds</span> Gallery</h2>
-            <p class="section-subtitle">Check out some of our most impressive custom RC builds and modifications</p>
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="/api/placeholder/800/500" alt="Custom Monster Truck" class="gallery-img">
-                    <div class="gallery-caption">
-                        <h3>Ultimate Off-Road Beast</h3>
-                        <p>8S Power, Custom Suspension, LED Light Kit</p>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="/api/placeholder/400/300" alt="Racing Buggy" class="gallery-img">
-                    <div class="gallery-caption">
-                        <h3>Track Dominator</h3>
-                        <p>Lightweight Carbon Fiber Build</p>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="/api/placeholder/400/300" alt="Drift Car" class="gallery-img">
-                    <div class="gallery-caption">
-                        <h3>Precision Drifter</h3>
-                        <p>Custom Paint, Pro Drift Setup</p>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="/api/placeholder/500/400" alt="Rock Crawler" class="gallery-img">
-                    <div class="gallery-caption">
-                        <h3>Extreme Crawler</h3>
-                        <p>Custom Chassis, Enhanced Articulation</p>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="/api/placeholder/700/400" alt="Scale Truck" class="gallery-img">
-                    <div class="gallery-caption">
-                        <h3>Scale Trail Truck</h3>
-                        <p>Realistic Details, Functional Accessories</p>
-                    </div>
                 </div>
             </div>
         </div>
@@ -1833,129 +728,11 @@
     <section class="section testimonials">
         <div class="container">
             <h2 class="section-title">Customer <span>Testimonials</span></h2>
-            <p class="section-subtitle">See what our clients say about their experience with Aubrey's RC</p>
             <div class="testimonials-slider">
-                <div class="testimonial-card active">
-                    <img src="/api/placeholder/150/150" alt="Michael Rodriguez" class="testimonial-img">
-                    <div class="testimonial-rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <p class="testimonial-text">Aubrey's RC transformed my standard truck into an absolute beast! The custom work they did was amazing, and their knowledge about RC vehicles is unmatched. I wouldn't trust my RC collection with anyone else.</p>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">Aubrey's RC transformed my standard truck into an absolute beast! The custom work they did was amazing, and their knowledge about RC vehicles is unmatched.</p>
                     <div class="testimonial-author">Michael Rodriguez</div>
                     <div class="testimonial-role">RC Enthusiast</div>
-                </div>
-                <div class="testimonial-card">
-                    <img src="/api/placeholder/150/150" alt="Sarah Johnson" class="testimonial-img">
-                    <div class="testimonial-rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <p class="testimonial-text">As a beginner in the RC world, I was intimidated at first, but the team at Aubrey's RC was incredibly helpful and patient. They helped me choose the perfect starter vehicle and provided excellent guidance on maintenance and upgrades.</p>
-                    <div class="testimonial-author">Sarah Johnson</div>
-                    <div class="testimonial-role">Novice RC Driver</div>
-                </div>
-                <div class="testimonial-card">
-                    <img src="/api/placeholder/150/150" alt="James Wilson" class="testimonial-img">
-                    <div class="testimonial-rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                    <p class="testimonial-text">I've been racing RCs for over 15 years and have worked with shops all over the country. Aubrey's RC stands out for their exceptional service and technical expertise. Their performance tuning work gave me the edge I needed in my last competition.</p>
-                    <div class="testimonial-author">James Wilson</div>
-                    <div class="testimonial-role">Professional RC Racer</div>
-                </div>
-                <a class="slider-nav prev-btn"><i class="fas fa-chevron-left"></i></a>
-                <a class="slider-nav next-btn"><i class="fas fa-chevron-right"></i></a>
-                <div class="slider-dots">
-                    <span class="slider-dot active"></span>
-                    <span class="slider-dot"></span>
-                    <span class="slider-dot"></span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Events Section -->
-    <section class="events" id="events">
-        <div class="container">
-            <h2 class="section-title">Upcoming <span>Events</span></h2>
-            <p class="section-subtitle">Join us for exciting RC racing events, demonstrations, and workshops</p>
-            <div class="events-grid">
-                <div class="event-card">
-                    <img src="/api/placeholder/400/300" alt="Race Day" class="event-img">
-                    <div class="event-content">
-                        <div class="event-date">Apr 15, 2025</div>
-                        <h3 class="event-title">Monthly Race Day</h3>
-                        <div class="event-details">
-                            <div class="event-detail">
-                                <i class="fas fa-clock"></i>
-                                <span>10:00 AM - 4:00 PM</span>
-                            </div>
-                            <div class="event-detail">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <span>Aubrey RC Track</span>
-                            </div>
-                            <div class="event-detail">
-                                <i class="fas fa-tag"></i>
-                                <span>Free Entry</span>
-                            </div>
-                        </div>
-                        <a href="#" class="btn btn-primary">Register Now</a>
-                    </div>
-                </div>
-                <div class="event-card">
-                    <img src="/api/placeholder/400/300" alt="Beginner Workshop" class="event-img">
-                    <div class="event-content">
-                        <div class="event-date">Apr 22, 2025</div>
-                        <h3 class="event-title">Beginner's Workshop</h3>
-                        <div class="event-details">
-                            <div class="event-detail">
-                                <i class="fas fa-clock"></i>
-                                <span>6:00 PM - 8:00 PM</span>
-                            </div>
-                            <div class="event-detail">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <span>Aubrey's RC Shop</span>
-                            </div>
-                            <div class="event-detail">
-                                <i class="fas fa-tag"></i>
-                                <span>$25 per person</span>
-                            </div>
-                        </div>
-                        <a href="#" class="btn btn-primary">Register Now</a>
-                    </div>
-                </div>
-                <div class="event-card">
-                    <img src="/api/placeholder/400/300" alt="Championship" class="event-img">
-                    <div class="event-content">
-                        <div class="event-date">May 5-6, 2025</div>
-                        <h3 class="event-title">Regional Championship</h3>
-                        <div class="event-details">
-                            <div class="event-detail">
-                                <i class="fas fa-clock"></i>
-                                <span>9:00 AM - 6:00 PM</span>
-                            </div>
-                            <div class="event-detail">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <span>Texas Motor Speedway</span>
-                            </div>
-                            <div class="event-detail">
-                                <i class="fas fa-tag"></i>
-                                <span>$50 Entry Fee</span>
-                            </div>
-                        </div>
-                        <a href="#" class="btn btn-primary">Register Now</a>
-                    </div>
                 </div>
             </div>
         </div>
@@ -1965,96 +742,14 @@
     <section class="section" id="about">
         <div class="container">
             <h2 class="section-title">About <span>Aubrey's RC</span></h2>
-            <p class="section-subtitle">Learn more about our passion for RC vehicles and commitment to quality</p>
             <div class="about-content">
-                <div class="about-img-container">
-                    <img src="/api/placeholder/600/400" alt="About Aubrey's RC" class="about-img">
-                </div>
+                <img src="/api/placeholder/600/400" alt="About Aubrey's RC" class="about-img">
                 <div class="about-text">
                     <h3>Your RC Specialists Since 2010</h3>
                     <p>At Aubrey's RC, we're passionate about remote-controlled vehicles. What started as a hobby has grown into a premier destination for RC enthusiasts of all levels.</p>
                     <p>Our team of experts brings years of experience in RC technology, customization, and repairs. We pride ourselves on providing not just products, but complete solutions tailored to your specific needs and preferences.</p>
-                    <div class="about-stats">
-                        <div class="stat-item">
-                            <div class="stat-number">15+</div>
-                            <div class="stat-label">Years Experience</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">1000+</div>
-                            <div class="stat-label">Custom Builds</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">5000+</div>
-                            <div class="stat-label">Happy Customers</div>
-                        </div>
-                    </div>
                     <p>Whether you're a beginner looking to get started or a seasoned pro seeking the ultimate performance upgrades, we're here to help you get the most out of your RC experience.</p>
-                    <a href="#contact" class="btn btn-primary"><i class="fas fa-envelope"></i> Contact Us</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section class="faq">
-        <div class="container">
-            <h2 class="section-title">Frequently Asked <span>Questions</span></h2>
-            <p class="section-subtitle">Find answers to common questions about RC vehicles and our services</p>
-            <div class="accordion">
-                <div class="accordion-item">
-                    <button class="accordion-button" aria-expanded="false">
-                        <span>What's the best RC vehicle for beginners?</span>
-                        <i class="fas fa-chevron-down accordion-icon"></i>
-                    </button>
-                    <div class="accordion-content">
-                        <div class="accordion-content-inner">
-                            For beginners, we recommend starting with a Ready-to-Run (RTR) model that's durable and easy to maintain. The Traxxas Slash 2WD, Arrma Granite, and ECX Torment are excellent options that balance performance, durability, and affordability. These vehicles are user-friendly and have widely available replacement parts.
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <button class="accordion-button" aria-expanded="false">
-                        <span>How often should I maintain my RC vehicle?</span>
-                        <i class="fas fa-chevron-down accordion-icon"></i>
-                    </button>
-                    <div class="accordion-content">
-                        <div class="accordion-content-inner">
-                            Regular maintenance depends on how frequently you use your RC. After each run, clean off dirt and debris, check for loose screws, and inspect for damage. Every 5-10 runs, perform more thorough maintenance including gear mesh inspection, bearing lubrication, and shock inspection. For racers or heavy users, we recommend a complete overhaul every 3-6 months.
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <button class="accordion-button" aria-expanded="false">
-                        <span>What upgrades offer the best performance improvements?</span>
-                        <i class="fas fa-chevron-down accordion-icon"></i>
-                    </button>
-                    <div class="accordion-content">
-                        <div class="accordion-content-inner">
-                            The most effective performance upgrades typically include: 1) Better electronics (motor, ESC, and LiPo batteries), 2) Quality suspension components (shocks, springs), 3) Lightweight drivetrain parts, and 4) Improved tires suited to your driving surface. The best approach is to upgrade strategically based on your specific goals - whether that's speed, handling, durability, or runtime.
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <button class="accordion-button" aria-expanded="false">
-                        <span>Do you offer repair services for all RC brands?</span>
-                        <i class="fas fa-chevron-down accordion-icon"></i>
-                    </button>
-                    <div class="accordion-content">
-                        <div class="accordion-content-inner">
-                            Yes, our skilled technicians can repair and service virtually all RC brands and models, including Traxxas, Arrma, Losi, Axial, HPI, Tamiya, and many more. We have extensive experience with electric and nitro vehicles, from entry-level models to high-end racing machines. Our shop is equipped with specialized tools and diagnostic equipment to handle all types of repairs.
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <button class="accordion-button" aria-expanded="false">
-                        <span>What's the difference between brushed and brushless motors?</span>
-                        <i class="fas fa-chevron-down accordion-icon"></i>
-                    </button>
-                    <div class="accordion-content">
-                        <div class="accordion-content-inner">
-                            Brushed motors use physical brushes to transfer power, making them more affordable but less efficient with shorter lifespans. Brushless motors have electronic commutation, offering higher efficiency, more power, longer runtime, and extended lifespan. While brushless systems cost more initially, they deliver superior performance and better long-term value for enthusiasts looking for more speed and runtime.
-                        </div>
-                    </div>
+                    <a href="#contact" class="btn btn-primary">Contact Us</a>
                 </div>
             </div>
         </div>
@@ -2065,11 +760,7 @@
         <div class="container">
             <h3>Ready to Elevate Your RC Experience?</h3>
             <p>Visit our shop today or schedule a consultation for custom modifications and performance tuning.</p>
-            <a href="#contact" class="btn btn-primary"><i class="fas fa-phone"></i> Contact Us Now</a>
-            <div class="newsletter-form">
-                <input type="email" placeholder="Enter your email for updates and special offers" class="newsletter-input">
-                <button class="newsletter-btn">Subscribe</button>
-            </div>
+            <a href="#contact" class="btn btn-primary">Get Started</a>
         </div>
     </section>
     
@@ -2078,141 +769,49 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-info">
-                    <div class="footer-logo"><i class="fas fa-truck-monster"></i> Aubrey's<span>RC</span></div>
-                    <p class="footer-desc">Premium RC cars, trucks, maintenance, and custom modifications for enthusiasts of all levels. Your one-stop shop for all things RC in North Texas.</p>
+                    <div class="footer-logo">Aubrey's<span>RC</span></div>
+                    <p class="footer-desc">Premium RC cars, trucks, maintenance, and custom modifications for enthusiasts.</p>
                     <div class="social-links">
-                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
+                        <a href="#" class="social-link">FB</a>
+                        <a href="#" class="social-link">IG</a>
+                        <a href="#" class="social-link">YT</a>
+                        <a href="#" class="social-link">TW</a>
                     </div>
                 </div>
                 <div class="footer-links-container">
                     <h4 class="footer-title">Quick Links</h4>
                     <ul class="footer-links">
-                        <li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
-                        <li><a href="#products"><i class="fas fa-chevron-right"></i> Shop</a></li>
-                        <li><a href="#services"><i class="fas fa-chevron-right"></i> Services</a></li>
-                        <li><a href="#gallery"><i class="fas fa-chevron-right"></i> Gallery</a></li>
-                        <li><a href="#events"><i class="fas fa-chevron-right"></i> Events</a></li>
-                        <li><a href="#about"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#products">Shop</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#contact">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-links-container">
-                    <h4 class="footer-title">Products</h4>
+                    <h4 class="footer-title">Categories</h4>
                     <ul class="footer-links">
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> RC Cars</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> RC Trucks</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> RC Buggies</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Parts & Accessories</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Batteries & Chargers</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Tools & Equipment</a></li>
+                        <li><a href="#">RC Cars</a></li>
+                        <li><a href="#">RC Trucks</a></li>
+                        <li><a href="#">RC Buggies</a></li>
+                        <li><a href="#">Parts & Accessories</a></li>
+                        <li><a href="#">Batteries & Chargers</a></li>
                     </ul>
                 </div>
                 <div class="footer-contact">
                     <h4 class="footer-title">Contact Us</h4>
                     <ul class="contact-info">
-                        <li><i class="fas fa-map-marker-alt"></i> 123 RC Drive, Aubrey, TX 76227</li>
-                        <li><i class="fas fa-phone"></i> (555) 123-4567</li>
-                        <li><i class="fas fa-envelope"></i> info@aubreysrc.com</li>
-                        <li><i class="fas fa-clock"></i> Mon-Sat: 9AM-6PM, Sun: Closed</li>
+                        <li><i>📍</i> 123 RC Drive, Aubrey, TX 76227</li>
+                        <li><i>📞</i> (555) 123-4567</li>
+                        <li><i>✉️</i> info@aubreysrc.com</li>
+                        <li><i>🕒</i> Mon-Sat: 9AM-6PM, Sun: Closed</li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2025 Aubrey's RC. All Rights Reserved.</p>
-                <div class="payment-methods">
-                    <div class="payment-method">VISA</div>
-                    <div class="payment-method">MC</div>
-                    <div class="payment-method">AMEX</div>
-                    <div class="payment-method">DISC</div>
-                    <div class="payment-method">PYPL</div>
-                </div>
             </div>
         </div>
     </footer>
-
-    <!-- Back to Top Button -->
-    <a href="#" class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></a>
-
-    <!-- JavaScript for interactive elements -->
-    <script>
-        // Back to Top Button
-        window.addEventListener('scroll', function() {
-            const backToTopBtn = document.getElementById('backToTop');
-            if (window.pageYOffset > 300) {
-                backToTopBtn.classList.add('show');
-            } else {
-                backToTopBtn.classList.remove('show');
-            }
-        });
-
-        document.getElementById('backToTop').addEventListener('click', function(e) {
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        // Testimonial Slider
-        const testimonials = document.querySelectorAll('.testimonial-card');
-        const dots = document.querySelectorAll('.slider-dot');
-        let currentTestimonial = 0;
-
-        document.querySelector('.next-btn').addEventListener('click', function() {
-            testimonials[currentTestimonial].classList.remove('active');
-            dots[currentTestimonial].classList.remove('active');
-            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
-            testimonials[currentTestimonial].classList.add('active');
-            dots[currentTestimonial].classList.add('active');
-        });
-
-        document.querySelector('.prev-btn').addEventListener('click', function() {
-            testimonials[currentTestimonial].classList.remove('active');
-            dots[currentTestimonial].classList.remove('active');
-            currentTestimonial = (currentTestimonial - 1 + testimonials.length) % testimonials.length;
-            testimonials[currentTestimonial].classList.add('active');
-            dots[currentTestimonial].classList.add('active');
-        });
-
-        dots.forEach((dot, index) => {
-            dot.addEventListener('click', function() {
-                testimonials[currentTestimonial].classList.remove('active');
-                dots[currentTestimonial].classList.remove('active');
-                currentTestimonial = index;
-                testimonials[currentTestimonial].classList.add('active');
-                dots[currentTestimonial].classList.add('active');
-            });
-        });
-
-        // Accordion functionality
-        const accordionButtons = document.querySelectorAll('.accordion-button');
-        
-        accordionButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const expanded = this.getAttribute('aria-expanded') === 'true';
-                
-                // Close all accordions
-                accordionButtons.forEach(btn => {
-                    btn.setAttribute('aria-expanded', 'false');
-                    const content = btn.nextElementSibling;
-                    content.style.maxHeight = '0';
-                });
-                
-                // If it was not expanded, expand it
-                if (!expanded) {
-                    this.setAttribute('aria-expanded', 'true');
-                    const content = this.nextElementSibling;
-                    content.style.maxHeight = content.scrollHeight + 'px';
-                }
-            });
-        });
-
-        // Mobile menu toggle
-        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-        const nav = document.querySelector('nav');
-        
-        mobileMenuBtn.addEventListener('click', function() {
-            nav.classList.toggle('active');
-        });
-    </script>
 </body>
 </html>
