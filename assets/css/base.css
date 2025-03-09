@@ -3,13 +3,27 @@
  * Part of the simplified file structure approach for www.aubreysrc.com
  */
 
-/* CSS Variables for theme colors */
+/* CSS Variables for refined color theme */
 :root {
-    --primary-color: #FF4D00;    /* Aubrey's Orange */
-    --secondary-color: #1A1A1A;  /* Near Black */
-    --accent-color: #00B8FF;     /* Blue */
-    --background-color: #FFFFFF; /* White */
-    --text-color: #333333;       /* Dark Gray */
+    /* Primary Colors */
+    --primary-color: #FF6B35;     /* Slightly softer orange */
+    --secondary-color: #2C3E50;   /* Dark blue-gray instead of near-black */
+    --accent-color: #3498DB;      /* Vibrant blue */
+    
+    /* Background Colors */
+    --background-color: #F5F7FA;  /* Light gray with slight blue tint instead of stark white */
+    --card-bg-color: #FFFFFF;     /* White for cards */
+    --dark-bg-color: #34495E;     /* Slightly lighter than secondary for dark sections */
+    
+    /* Text Colors */
+    --text-color: #34495E;        /* Dark blue-gray instead of black text */
+    --text-light-color: #7F8C8D;  /* Medium gray for secondary text */
+    --text-on-dark: #ECF0F1;      /* Off-white for text on dark backgrounds */
+    
+    /* Accent and Functional Colors */
+    --success-color: #2ECC71;     /* Green */
+    --warning-color: #F39C12;     /* Amber */
+    --error-color: #E74C3C;       /* Red */
     
     /* Spacing scale */
     --space-xs: 0.25rem;  /* 4px */
@@ -42,6 +56,7 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 600;
     line-height: 1.2;
     margin-bottom: 1rem;
+    color: var(--secondary-color);
 }
 
 h1 {
@@ -70,6 +85,7 @@ h6 {
 
 p {
     margin-bottom: 1rem;
+    color: var(--text-color);
 }
 
 a {
@@ -91,6 +107,15 @@ a:hover {
     padding: 0 var(--space-md);
 }
 
+/* Card styles */
+.card {
+    background-color: var(--card-bg-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    padding: var(--space-lg);
+    margin-bottom: var(--space-lg);
+}
+
 /* Button styles */
 .btn {
     display: inline-block;
@@ -107,7 +132,7 @@ a:hover {
 }
 
 .btn:hover {
-    background-color: #009ad9;
+    background-color: #2980B9; /* Darker blue on hover */
     transform: translateY(-2px);
     text-decoration: none;
     color: white;
@@ -118,7 +143,7 @@ a:hover {
 }
 
 .btn-primary:hover {
-    background-color: #e64500;
+    background-color: #E74C3C; /* Darker orange on hover */
 }
 
 .btn-secondary {
@@ -126,7 +151,7 @@ a:hover {
 }
 
 .btn-secondary:hover {
-    background-color: #333;
+    background-color: var(--dark-bg-color);
 }
 
 /* Utility classes */
@@ -182,7 +207,7 @@ a:hover {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(245, 247, 250, 0.8); /* Match background-color with opacity */
     z-index: 2000;
     justify-content: center;
     align-items: center;
@@ -195,7 +220,7 @@ a:hover {
 .loader {
     width: 40px;
     height: 40px;
-    border: 4px solid #dee2e6;
+    border: 4px solid #BDC3C7; /* Light gray border */
     border-top: 4px solid var(--primary-color);
     border-radius: 50%;
     animation: spin 1s linear infinite;

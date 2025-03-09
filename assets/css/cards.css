@@ -30,9 +30,9 @@
 
 /* Product card */
 .product-card {
-    background: white;
+    background: var(--card-bg-color);
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     flex: 0 0 calc(33.333% - 1rem);
@@ -42,7 +42,7 @@
 
 .product-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.08);
 }
 
 .product-image {
@@ -59,11 +59,12 @@
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
     font-family: 'Rajdhani', sans-serif;
+    color: var(--secondary-color);
 }
 
 .product-description {
     margin-bottom: 1rem;
-    color: #555;
+    color: var(--text-light-color);
 }
 
 .product-price {
@@ -88,18 +89,18 @@
 }
 
 .add-to-cart-btn:hover {
-    background-color: #009ad9;
+    background-color: #2980B9; /* Darker blue on hover */
 }
 
 /* Navigation buttons */
 .carousel-button {
-    background-color: white;
+    background-color: var(--card-bg-color);
     color: var(--secondary-color);
     border: none;
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     font-size: 1.5rem;
     display: flex;
     align-items: center;
@@ -107,7 +108,7 @@
     cursor: pointer;
     position: absolute;
     z-index: 2;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .carousel-button.prev {
@@ -121,12 +122,14 @@
 .carousel-button:hover {
     background-color: var(--accent-color);
     color: white;
+    transform: scale(1.05);
 }
 
 .carousel-button.disabled {
-    background-color: #f1f1f1;
-    color: #ccc;
+    background-color: #ECF0F1;
+    color: #BDC3C7;
     cursor: not-allowed;
+    transform: scale(1);
 }
 
 /* Indicators */
@@ -145,14 +148,19 @@
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background-color: #ccc;
+    background-color: #BDC3C7;
     border: none;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .carousel-indicator.active {
     background-color: var(--primary-color);
+    transform: scale(1.2);
+}
+
+.carousel-indicator:hover {
+    background-color: var(--accent-color);
 }
 
 /* Responsive adjustments */
