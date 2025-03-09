@@ -879,6 +879,127 @@
     opacity: 1;
    }
    
+   .form-control.is-invalid {
+    border-color: var(--color-danger);
+    padding-right: calc(1.5em + 0.75rem);
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%23dc3545' viewBox='0 0 12 12'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right calc(0.375em + 0.1875rem) center;
+    background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+   }
+   
+   .invalid-feedback {
+    display: none;
+    width: 100%;
+    margin-top: 0.25rem;
+    font-size: var(--font-size-sm);
+    color: var(--color-danger);
+   }
+   
+   .was-validated .form-control:invalid ~ .invalid-feedback,
+   .form-control.is-invalid ~ .invalid-feedback {
+    display: block;
+   }
+   
+   textarea.form-control {
+    height: auto;
+    min-height: 100px;
+    resize: vertical;
+   }
+   
+   /* Contact Form Specific Styles */
+   .contact-form {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: var(--space-5);
+    background-color: #f9f9f9;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-light);
+   }
+   
+   .form-title {
+    margin-bottom: var(--space-5);
+    text-align: center;
+   }
+   
+   .contact-info {
+    margin-bottom: var(--space-6);
+   }
+   
+   .contact-info-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--space-3);
+   }
+   
+   .contact-info-item svg {
+    margin-right: var(--space-3);
+    color: var(--color-primary);
+   }
+   
+   .form-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -10px;
+    margin-left: -10px;
+   }
+   
+   .form-row > .form-group {
+    padding-right: 10px;
+    padding-left: 10px;
+    flex: 0 0 100%;
+   }
+   
+   @media (min-width: 768px) {
+    .form-row > .form-group.col-md-6 {
+      flex: 0 0 50%;
+      max-width: 50%;
+    }
+   }
+   
+   .alert {
+    position: relative;
+    padding: var(--space-3) var(--space-4);
+    margin-bottom: var(--space-4);
+    border: 1px solid transparent;
+    border-radius: var(--border-radius);
+   }
+   
+   .alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+   }
+   
+   .alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+   }
+   
+   .form-check {
+    position: relative;
+    display: block;
+    padding-left: 1.25rem;
+   }
+   
+   .form-check-input {
+    position: absolute;
+    margin-top: 0.3rem;
+    margin-left: -1.25rem;
+   }
+   
+   .form-check-label {
+    margin-bottom: 0;
+   }
+   
+   .contact-map {
+    margin-top: var(--space-6);
+    height: 400px;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+   }
+   
    /* ---------- Hero section with video background ---------- */
    .hero {
        position: relative;

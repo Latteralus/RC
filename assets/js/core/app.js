@@ -9,6 +9,8 @@ import pageRenderer from './PageRenderer.js';
 import TopBar from '../components/TopBar.js';
 import Footer from '../components/Footer.js';
 
+// Routes will be lazy-loaded as needed
+
 class App {
   /**
    * Create a new App instance
@@ -210,7 +212,8 @@ class App {
   }
   
   /**
-   * Render placeholder pages
+   * Render products page
+   * @returns {string} - Page HTML
    * @private
    */
   _renderProductsPage() {
@@ -222,6 +225,11 @@ class App {
     `;
   }
   
+  /**
+   * Render custom builds page
+   * @returns {string} - Page HTML
+   * @private
+   */
   _renderCustomPage() {
     return `
       <div class="container py-5">
@@ -231,6 +239,11 @@ class App {
     `;
   }
   
+  /**
+   * Render videos page
+   * @returns {string} - Page HTML
+   * @private
+   */
   _renderVideosPage() {
     return `
       <div class="container py-5">
@@ -240,6 +253,11 @@ class App {
     `;
   }
   
+  /**
+   * Render racing page
+   * @returns {string} - Page HTML
+   * @private
+   */
   _renderRacingPage() {
     return `
       <div class="container py-5">
@@ -249,15 +267,46 @@ class App {
     `;
   }
   
-  _renderContactPage() {
-    return `
-      <div class="container py-5">
-        <h1 class="mb-5">Contact Us</h1>
-        <p>Contact form coming soon...</p>
-      </div>
-    `;
+  /**
+   * Render contact page
+   * @returns {Promise<string>} - Page HTML
+   * @private
+   */
+  async _renderContactPage() {
+    try {
+      // Dynamically import the ContactPage component
+      const ContactPageModule = await import('../pages/ContactPage.js');
+      const ContactPage = ContactPageModule.default;
+      
+      // Create a new instance of the ContactPage component
+      const contactPage = new ContactPage();
+      
+      // Return the rendered HTML
+      return contactPage.render();
+    } catch (error) {
+      console.error('Error loading ContactPage component:', error);
+      
+      // Fallback content in case of error
+      return `
+        <div class="container py-5">
+          <h1 class="mb-5">Contact Us</h1>
+          <div class="alert alert-danger">
+            <p>We're having trouble loading the contact page. Please try again later or contact us directly:</p>
+            <ul class="mt-3">
+              <li>Email: orders@aubreysrc.com</li>
+              <li>Phone: (319) 595-8656</li>
+            </ul>
+          </div>
+        </div>
+      `;
+    }
   }
   
+  /**
+   * Render cart page
+   * @returns {string} - Page HTML
+   * @private
+   */
   _renderCartPage() {
     return `
       <div class="container py-5">
@@ -267,6 +316,11 @@ class App {
     `;
   }
   
+  /**
+   * Render checkout page
+   * @returns {string} - Page HTML
+   * @private
+   */
   _renderCheckoutPage() {
     return `
       <div class="container py-5">
@@ -276,6 +330,11 @@ class App {
     `;
   }
   
+  /**
+   * Render 404 not found page
+   * @returns {string} - Page HTML
+   * @private
+   */
   _renderNotFoundPage() {
     return `
       <div class="container text-center py-5">
@@ -286,10 +345,5 @@ class App {
     `;
   }
 }
-
-// Create and initialize the app when the DOM is fully loaded
-document.addEventListener('DOMContentLoaded', () => {
-  window.app = new App();
-});
 
 export default App;
