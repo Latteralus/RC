@@ -14,7 +14,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     
     <!-- Core styles (load in correct order) -->
-
+    <link rel="stylesheet" href="/assets/css/base.css">
+    <link rel="stylesheet" href="/assets/css/header.css">
+    <link rel="stylesheet" href="/assets/css/footer.css">
+    <link rel="stylesheet" href="/assets/css/index.css">
     
     <!-- Inline critical CSS to prevent FOUC (Flash of Unstyled Content) -->
     <style>
@@ -26,39 +29,6 @@
             color: #333333;
             padding-top: 70px;
             line-height: 1.6;
-        }
-        
-        .main-header {
-            background-color: #1A1A1A;
-            padding: 0.75rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1020;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo h1 {
-            color: #FFFFFF;
-            font-size: 1.75rem;
-            font-weight: 700;
-            margin: 0;
-            line-height: 1;
-            font-family: 'Rajdhani', sans-serif;
-        }
-        
-        .logo a {
-            color: inherit;
-            text-decoration: none;
         }
         
         .loading-indicator {
@@ -87,151 +57,6 @@
             animation: spin 1s linear infinite;
         }
         
-        .page-loading {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 400px;
-            padding: 2rem;
-        }
-        
-        .page-loading .loader {
-            margin-bottom: 1rem;
-        }
-        
-        footer {
-            background-color: #1A1A1A;
-            color: white;
-            padding: 3rem 1rem 2rem;
-            margin-top: 3rem;
-        }
-        
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-        
-        .footer-section h3 {
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-            color: white;
-            font-family: 'Rajdhani', sans-serif;
-        }
-        
-        .footer-section p {
-            margin-bottom: 0.5rem;
-            color: #dee2e6;
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-        
-        .social-link {
-            color: white;
-            text-decoration: none;
-        }
-        
-        .footer-bottom {
-            max-width: 1200px;
-            margin: 2rem auto 0;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            text-align: center;
-            color: #adb5bd;
-            font-size: 0.9rem;
-        }
-        
-        /* Hero section with video background */
-        .hero {
-            position: relative;
-            width: 100%;
-            height: 60vh;
-            min-height: 400px;
-            overflow: hidden;
-            margin-top: -70px;
-            padding-top: 70px;
-        }
-        
-        .video-background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            overflow: hidden;
-        }
-        
-        .video-background iframe {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-            transform: translate(-50%, -50%);
-            border: 0;
-        }
-        
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 2;
-        }
-        
-        .hero-content {
-            position: relative;
-            z-index: 3;
-            color: white;
-            text-align: center;
-            padding-top: 120px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .hero-content h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            font-family: 'Rajdhani', sans-serif;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-        }
-        
-        .hero-content p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-        }
-        
-        .cta-button {
-            display: inline-block;
-            background-color: #FF4D00;
-            color: white;
-            padding: 1rem 2rem;
-            text-decoration: none;
-            border-radius: 5px;
-            font-family: 'Rajdhani', sans-serif;
-            font-weight: 600;
-            transition: background-color 0.3s ease;
-        }
-        
-        .cta-button:hover {
-            background-color: #e64500;
-            text-decoration: none;
-            color: white;
-        }
-        
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
@@ -249,175 +74,122 @@
 
     <!-- App Root -->
     <div id="app">
-        <!-- TopBar will be rendered here by the topbar.js script -->
+        <!-- Header will be inserted by header.js -->
         
-        <!-- Main content area where page content is loaded -->
+        <!-- Main content area -->
         <main id="content">
-            <!-- Initial loading indicator -->
-            <div class="page-loading">
-                <div class="loader"></div>
-                <p>Loading content...</p>
-            </div>
+            <section class="hero">
+                <div class="video-background">
+                    <iframe
+                        src="https://www.youtube.com/embed/fn02DjC0gok?autoplay=1&mute=1&start=25&loop=1&playlist=fn02DjC0gok&controls=0&showinfo=0&rel=0&modestbranding=1"
+                        allow="autoplay; encrypted-media"
+                        allowfullscreen
+                        title="RC Car video background">
+                    </iframe>
+                </div>
+                <div class="hero-overlay"></div>
+                <div class="hero-content">
+                    <h1>Custom RC Cars & Trucks</h1>
+                    <p>Handcrafted in Iowa, built to ignite your passion for RC adventures.</p>
+                    <a href="/products.html" class="cta-button">Build your Custom RC</a>
+                </div>
+            </section>
+            
+            <section class="featured-products">
+                <h2 class="section-title">Featured RC Cars</h2>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <img src="/assets/images/products/car1.jpg" alt="Traxxas Rustler" class="product-image">
+                        <div class="product-details">
+                            <h3 class="product-title">Traxxas Rustler</h3>
+                            <p class="product-description">High-performance electric stadium truck</p>
+                            <span class="product-price">$299.99</span>
+                            <button class="add-to-cart-btn" data-id="traxxas-rustler" data-name="Traxxas Rustler" data-price="299.99" data-image="/assets/images/products/car1.jpg">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="/assets/images/products/car2.jpg" alt="Arrma Kraton" class="product-image">
+                        <div class="product-details">
+                            <h3 class="product-title">Arrma Kraton</h3>
+                            <p class="product-description">1/8 Scale Monster Truck</p>
+                            <span class="product-price">$549.99</span>
+                            <button class="add-to-cart-btn" data-id="arrma-kraton" data-name="Arrma Kraton" data-price="549.99" data-image="/assets/images/products/car2.jpg">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="/assets/images/products/car3.jpg" alt="Losi Mini-T" class="product-image">
+                        <div class="product-details">
+                            <h3 class="product-title">Losi Mini-T</h3>
+                            <p class="product-description">Compact racing truck</p>
+                            <span class="product-price">$199.99</span>
+                            <button class="add-to-cart-btn" data-id="losi-mini-t" data-name="Losi Mini-T" data-price="199.99" data-image="/assets/images/products/car3.jpg">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="about-section">
+                <div class="about-content">
+                    <h2 class="section-title">About Aubrey's RC</h2>
+                    <p>With over 30 years of experience in RC racing since the late 1980s, Aubrey "Lee" Barnett brings passion and expertise to every custom build. Based in Wellsburg, Iowa, we ship our premium RC cars and trucks worldwide.</p>
+                    <a href="/custom.html" class="cta-button">Explore Custom Builds</a>
+                </div>
+            </section>
+            
+            <section class="services-section">
+                <h2 class="section-title">Our Services</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <img src="/assets/images/services/custom-builds.jpg" alt="Custom Builds" class="service-image">
+                        <h3 class="service-title">Custom Builds</h3>
+                        <p>Personalized RC builds tailored to your specifications and performance requirements.</p>
+                    </div>
+                    <div class="service-card">
+                        <img src="/assets/images/services/repairs.jpg" alt="Repairs & Upgrades" class="service-image">
+                        <h3 class="service-title">Repairs & Upgrades</h3>
+                        <p>Professional repair services and performance upgrades for all RC models.</p>
+                    </div>
+                    <div class="service-card">
+                        <img src="/assets/images/services/racing-advice.jpg" alt="Racing Advice" class="service-image">
+                        <h3 class="service-title">Racing Advice</h3>
+                        <p>Expert guidance on setup, tuning, and racing techniques from experienced racers.</p>
+                    </div>
+                </div>
+            </section>
         </main>
         
-        <!-- Footer will be consistent across all pages -->
+        <!-- Footer will be inserted by footer.js -->
         <footer>
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>Contact Us</h3>
                     <p>Email: info@aubreysrc.com</p>
-                    <p>Phone: (555) 123-4567</p>
+                    <p>Phone: 319-595-8656</p>
                 </div>
                 <div class="footer-section">
-                    <h3>Hours</h3>
-                    <p>Mon-Fri: 10AM - 7PM</p>
-                    <p>Sat-Sun: 9AM - 5PM</p>
+                    <h3>Business Info</h3>
+                    <p>Based in Wellsburg, Iowa</p>
+                    <p>Open 24/7 for online orders</p>
                 </div>
                 <div class="footer-section">
-                    <h3>Follow Us</h3>
-                    <div class="social-links">
-                        <a href="#" class="social-link">Facebook</a>
-                        <a href="#" class="social-link">Instagram</a>
-                        <a href="#" class="social-link">YouTube</a>
-                    </div>
+                    <h3>About Us</h3>
+                    <p>Aubrey "Lee" Barnett has been racing RC cars and trucks since the late 1980s.</p>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Aubrey's RC Cars. All rights reserved.</p>
+                <p>&copy; 2025 Aubrey's RC. Owned and operated by Aubrey "Lee" Barnett since 2020. All rights reserved.</p>
             </div>
         </footer>
     </div>
 
     <!-- Core Scripts -->
+    <script src="/assets/js/header.js"></script>
+    <script src="/assets/js/footer.js"></script>
+    <script src="/assets/js/cart.js"></script>
+    
+    <!-- Add event listeners for Add to Cart buttons -->
     <script>
-        // Load the home page content immediately without waiting for TopBar
         document.addEventListener('DOMContentLoaded', () => {
-            // Load the home page content first
-            loadHomeContent();
-            
-            // Then try to initialize TopBar if the script is available
-            try {
-                // Check if topbar.js has been loaded
-                if (typeof TopBar === 'undefined') {
-                    console.warn("TopBar not available yet, loading fallback navigation");
-                    // Add a simple fallback navigation if needed
-                    document.querySelector('header.main-header')?.remove();
-                    const fallbackNav = `
-                        <header class="main-header">
-                            <nav class="nav-container">
-                                <div class="logo">
-                                    <h1><a href="/">Aubrey's RC Cars</a></h1>
-                                </div>
-                                <ul class="nav-links" style="display: flex; list-style: none; gap: 2rem; margin: 0;">
-                                    <li><a href="/products" style="color: white; text-decoration: none; font-family: 'Rajdhani', sans-serif;">Shop</a></li>
-                                    <li><a href="/custom" style="color: white; text-decoration: none; font-family: 'Rajdhani', sans-serif;">Custom Builds</a></li>
-                                    <li><a href="/videos" style="color: white; text-decoration: none; font-family: 'Rajdhani', sans-serif;">Media</a></li>
-                                    <li><a href="/racing" style="color: white; text-decoration: none; font-family: 'Rajdhani', sans-serif;">Racing</a></li>
-                                    <li><a href="/contact" style="color: white; text-decoration: none; font-family: 'Rajdhani', sans-serif;">Contact</a></li>
-                                </ul>
-                                <div class="cart-icon" style="position: relative; cursor: pointer;">
-                                    <span class="cart-count" style="position: absolute; top: -8px; right: -8px; background-color: #FF4D00; color: white; border-radius: 50%; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; font-size: 0.8rem;">0</span>
-                                    <img src="/assets/images/cart.svg" alt="Shopping Cart" style="width: 24px; height: 24px; filter: invert(1);">
-                                </div>
-                            </nav>
-                        </header>
-                    `;
-                    document.querySelector('#app').insertAdjacentHTML('afterbegin', fallbackNav);
-                } else {
-                    // Create and render the TopBar
-                    const topBar = new TopBar();
-                    topBar.render();
-                    
-                    // Make the topBar instance available globally for other components
-                    window.topBar = topBar;
-                }
-            } catch (error) {
-                console.error("Error initializing TopBar:", error);
-                                    // If TopBar fails to initialize, make sure we still have a navigation bar
-                if (!document.querySelector('header.main-header')) {
-                    const fallbackNav = `
-                        <header class="main-header">
-                            <nav class="nav-container">
-                                <div class="logo">
-                                    <h1>Aubrey's RC</h1>
-                                </div>
-                                <ul class="nav-links" style="display: flex; list-style: none; gap: 2rem; margin: 0;">
-                                    <li><a href="/products" style="color: white; text-decoration: none; font-family: 'Rajdhani', sans-serif;">Shop</a></li>
-                                    <li><a href="/custom" style="color: white; text-decoration: none; font-family: 'Rajdhani', sans-serif;">Custom Builds</a></li>
-                                    <li><a href="/videos" style="color: white; text-decoration: none; font-family: 'Rajdhani', sans-serif;">Media</a></li>
-                                    <li><a href="/racing" style="color: white; text-decoration: none; font-family: 'Rajdhani', sans-serif;">Racing</a></li>
-                                    <li><a href="/contact" style="color: white; text-decoration: none; font-family: 'Rajdhani', sans-serif;">Contact</a></li>
-                                </ul>
-                                <div class="cart-icon" style="position: relative; cursor: pointer;">
-                                    <span class="cart-count" style="position: absolute; top: -8px; right: -8px; background-color: #FF4D00; color: white; border-radius: 50%; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; font-size: 0.8rem;">0</span>
-                                    <img src="/assets/images/cart.svg" alt="Shopping Cart" style="width: 24px; height: 24px; filter: invert(1);">
-                                </div>
-                            </nav>
-                        </header>
-                    `;
-                    document.querySelector('#app').insertAdjacentHTML('afterbegin', fallbackNav);
-                }
-            }
-        });
-        
-        // Function to load the home page content
-        function loadHomeContent() {
-            // Get the content container
-            const content = document.getElementById('content');
-            
-            // Replace loading indicator with home content
-            content.innerHTML = `
-                <section class="hero">
-                    <div class="video-background">
-                        <iframe
-                            src="https://www.youtube.com/embed/fn02DjC0gok?autoplay=1&mute=1&start=25&loop=1&playlist=fn02DjC0gok&controls=0&showinfo=0&rel=0&modestbranding=1"
-                            allow="autoplay; encrypted-media"
-                            allowfullscreen
-                            title="RC Car video background">
-                        </iframe>
-                    </div>
-                    <div class="hero-overlay"></div>
-                    <div class="hero-content">
-                        <h1>Custom RC Cars & Trucks</h1>
-                        <p>Handcrafted in Iowa, built to ignite your passion for RC adventures.</p>
-                        <a href="/products" class="cta-button">Build your Custom RC</a>
-                    </div>
-                </section>
-                
-                <section style="padding: 4rem 2rem; max-width: 1200px; margin: 0 auto;">
-                    <h2 style="text-align: center; margin-bottom: 2rem; font-size: 2.5rem; color: #1A1A1A; font-family: 'Rajdhani', sans-serif;">Featured RC Cars</h2>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
-                        <div style="background: white; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); overflow: hidden;">
-                            <img src="/assets/images/products/car1.jpg" alt="Traxxas Rustler" style="width: 100%; height: 250px; object-fit: cover;">
-                            <div style="padding: 1.5rem;">
-                                <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem; font-family: 'Rajdhani', sans-serif;">Traxxas Rustler</h3>
-                                <p style="margin-bottom: 1rem;">High-performance electric stadium truck</p>
-                                <span style="display: block; font-weight: 600; color: #FF4D00; font-size: 1.4rem; margin-bottom: 1rem;">$299.99</span>
-                                <button style="width: 100%; padding: 0.75rem; background-color: #00B8FF; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600;" class="add-to-cart-btn" data-id="traxxas-rustler" data-name="Traxxas Rustler" data-price="299.99" data-image="/assets/images/products/car1.jpg">Add to Cart</button>
-                            </div>
-                        </div>
-                        <div style="background: white; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); overflow: hidden;">
-                            <img src="/assets/images/products/car2.jpg" alt="Arrma Kraton" style="width: 100%; height: 250px; object-fit: cover;">
-                            <div style="padding: 1.5rem;">
-                                <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem; font-family: 'Rajdhani', sans-serif;">Arrma Kraton</h3>
-                                <p style="margin-bottom: 1rem;">1/8 Scale Monster Truck</p>
-                                <span style="display: block; font-weight: 600; color: #FF4D00; font-size: 1.4rem; margin-bottom: 1rem;">$549.99</span>
-                                <button style="width: 100%; padding: 0.75rem; background-color: #00B8FF; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600;" class="add-to-cart-btn" data-id="arrma-kraton" data-name="Arrma Kraton" data-price="549.99" data-image="/assets/images/products/car2.jpg">Add to Cart</button>
-                            </div>
-                        </div>
-                        <div style="background: white; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); overflow: hidden;">
-                            <img src="/assets/images/products/car3.jpg" alt="Losi Mini-T" style="width: 100%; height: 250px; object-fit: cover;">
-                            <div style="padding: 1.5rem;">
-                                <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem; font-family: 'Rajdhani', sans-serif;">Losi Mini-T</h3>
-                                <p style="margin-bottom: 1rem;">Compact racing truck</p>
-                                <span style="display: block; font-weight: 600; color: #FF4D00; font-size: 1.4rem; margin-bottom: 1rem;">$199.99</span>
-                                <button style="width: 100%; padding: 0.75rem; background-color: #00B8FF; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600;" class="add-to-cart-btn" data-id="losi-mini-t" data-name="Losi Mini-T" data-price="199.99" data-image="/assets/images/products/car3.jpg">Add to Cart</button>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            `;
-            
             // Add event listeners for the Add to Cart buttons
             document.querySelectorAll('.add-to-cart-btn').forEach(button => {
                 button.addEventListener('click', (e) => {
@@ -426,17 +198,24 @@
                     const productPrice = parseFloat(e.target.dataset.price);
                     const productImage = e.target.dataset.image;
                     
-                    // Add to cart using the TopBar's addToCart method
-                    if (window.topBar && typeof window.topBar.addToCart === 'function') {
-                        window.topBar.addToCart({
+                    // Add to cart using the Cart or Header method
+                    if (window.cart && typeof window.cart.addItem === 'function') {
+                        window.cart.addItem({
+                            id: productId,
+                            name: productName,
+                            price: productPrice,
+                            image: productImage
+                        });
+                    } else if (window.header && typeof window.header.addToCart === 'function') {
+                        window.header.addToCart({
                             id: productId,
                             name: productName,
                             price: productPrice,
                             image: productImage
                         });
                     } else {
-                        // Fallback if TopBar is not available
-                        alert(`Added to cart: ${productName} - ${productPrice}`);
+                        // Fallback if neither is available
+                        alert(`Added to cart: ${productName} - $${productPrice}`);
                         // Update cart count display as a visual cue
                         const cartCount = document.querySelector('.cart-count');
                         if (cartCount) {
@@ -446,14 +225,7 @@
                     }
                 });
             });
-        }
+        });
     </script>
-
-    <!-- Include the TopBar script -->
-    <script src="/assets/js/topbar.js"></script>
-    
-    <!-- Defer loading of SPA scripts until we're sure the basic page works -->
-    <script src="/assets/js/main.js" defer></script>
-    <script src="/assets/js/router.js" defer></script>
 </body>
 </html>
