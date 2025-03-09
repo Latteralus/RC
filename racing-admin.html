@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Racing Events Admin - Aubrey's RC</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- Core styles -->
+    <link rel="stylesheet" href="/assets/css/base.css">
+    
+    <style>
+        /* Admin-specific styles */
+        body {
+            background-color: var(--background-color);
+            padding: 2rem;
+        }
+        
+        .admin-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: var(--card-bg-color);
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+        }
+        
+        .admin-header {
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .admin-title {
+            color: var(--secondary-color);
+            margin: 0;
+        }
+        
+        .events-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 2rem;
+        }
+        
+        .events-table th, 
+        .events-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #dee2e6;
+            text-align: left;
+        }
+        
+        .events-table th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+        
+        .events-table tbody tr:hover {
+            background-color: rgba(52, 152, 219, 0.05);
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .btn-sm {
+            padding: 0.35rem 0.75rem;
+            font-size: 0.875rem;
+        }
+        
+        .btn-danger {
+            background-color: #e74c3c;
+        }
+        
+        .btn-danger:hover {
+            background-color: #c0392b;
+        }
+        
+        /* Form styles */
+        .event-form {
+            background-color: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+        
+        .form-title {
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            color: var(--secondary-color);
+        }
+        
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+        
+        .form-group-full {
+            grid-column: span 2;
+        }
+        
+        .form-actions {
+            grid-column: span 2;
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .import-export {
+            margin-top: 3rem;
+            border-top: 1px solid #dee2e6;
+            padding-top: 2rem;
+        }
+        
+        .import-export-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+        
+        .import-export-section {
+            background-color: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+        
+        .import-export-title {
+            margin-top: 0;
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+        }
+        
+        textarea.json-area {
+            width: 100%;
+            min-height: 200px;
+            padding: 1rem;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Message styles */
+        .message {
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            display: none;
+        }
+        
+        .message-success {
+            background-color: rgba(46, 204, 113, 0.1);
+            border: 1px solid rgba(46, 204, 113, 0.3);
+            color: #27ae60;
+        }
+        
+        .message-error {
+            background-color: rgba(231, 76, 60, 0.1);
+            border: 1px solid rgba(231, 76, 60, 0.3);
+            color: #e74c3c;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .form-grid, .import-export-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-group-full {
+                grid-column: span 1;
+            }
+            
+            .form-actions {
+                grid-column: span 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <div class="admin-header">
+            <h1 class="admin-title">Racing Events Admin</h1>
+            <a href="/racing.html" class="btn btn-secondary">Back to Racing Page</a>
+        </div>
+        
+        <!-- Success/Error Messages -->
+        <div id="success-message" class="message message-success"></div>
+        <div id="error-message" class="message message-error"></div>
+        
+        <!-- Event Form -->
+        <div class="event-form">
+            <h2 class="form-title">Add/Edit Event</h2>
+            <form id="event-form">
+                <input type="hidden" id="event-id" value="">
+                
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="event-title-input">Event Title:</label>
+                        <input type="text" id="event-title-input" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="event-date">Date:</label>
+                        <input type="date" id="event-date" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="event-start-time">Start Time:</label>
+                        <input type="text" id="event-start-time" class="form-control" placeholder="e.g., 10:00 AM" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="event-end-time">End Time:</label>
+                        <input type="text" id="event-end-time" class="form-control" placeholder="e.g., 4:00 PM" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="event-location">Location:</label>
+                        <input type="text" id="event-location" class="form-control" placeholder="Venue, City, State" required>
+                    </div>
+                    
+                    <div class="form-group">

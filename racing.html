@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Stay updated with RC racing events that Aubrey's RC will be attending across Iowa and surrounding regions.">
+    <title>Racing Events - Aubrey's RC</title>
+    
+    <!-- Preconnect to external domains for faster loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- Core styles (load in correct order) -->
+    <link rel="stylesheet" href="/assets/css/base.css">
+    <link rel="stylesheet" href="/assets/css/header.css">
+    <link rel="stylesheet" href="/assets/css/footer.css">
+    <link rel="stylesheet" href="/assets/css/racing.css">
+    
+    <!-- Inline critical CSS to prevent FOUC (Flash of Unstyled Content) -->
+    <style>
+        /* Critical base styles to prevent FOUC */
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333333;
+            padding-top: 70px;
+            line-height: 1.6;
+        }
+        
+        .loading-indicator {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .loading-indicator.active {
+            display: flex;
+        }
+        
+        .loader {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #dee2e6;
+            border-top: 4px solid #FF4D00;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="/assets/images/favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <!-- Loading indicator for full page loading -->
+    <div class="loading-indicator">
+        <div class="loader"></div>
+    </div>
+
+    <!-- App Root -->
+    <div id="app">
+        <!-- Header will be inserted by header.js -->
+        
+        <!-- Main content area -->
+        <main id="content">
+            <section class="racing-hero">
+                <div class="racing-hero-overlay"></div>
+                <div class="racing-hero-content">
+                    <h1>Racing Events</h1>
+                    <p>Explore RC racing events across Iowa and surrounding regions</p>
+                </div>
+            </section>
+            
+            <section class="racing-container">
+                <div class="racing-intro">
+                    <h2>Join Us at RC Racing Events</h2>
+                    <p>While Aubrey's RC doesn't host racing events directly, we actively participate in various regional RC races throughout the year. Find us at these upcoming events where we'll be racing, offering technical support, and connecting with the RC community.</p>
+                </div>
+                
+                <!-- Event calendar section -->
+                <div class="event-calendar">
+                    <div class="calendar-controls">
+                        <div class="month-selector">
+                            <button id="prev-month" class="month-btn" aria-label="Previous month">❮</button>
+                            <h3 id="current-month">Loading...</h3>
+                            <button id="next-month" class="month-btn" aria-label="Next month">❯</button>
+                        </div>
+                        <div class="view-toggle">
+                            <button id="calendar-view-btn" class="view-btn active" aria-label="Calendar view">Calendar</button>
+                            <button id="list-view-btn" class="view-btn" aria-label="List view">List</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Calendar display -->
+                    <div id="calendar-view" class="calendar-view">
+                        <!-- Calendar will be populated by racing.js -->
+                        <div class="calendar-loading">
+                            <div class="loader"></div>
+                            <p>Loading events...</p>
+                        </div>
+                    </div>
+                    
+                    <!-- List display (initially hidden) -->
+                    <div id="list-view" class="list-view" style="display: none;">
+                        <!-- List will be populated by racing.js -->
+                        <div class="calendar-loading">
+                            <div class="loader"></div>
+                            <p>Loading events...</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Event details section (initially hidden) -->
+                <div id="event-details" class="event-details" style="display: none;">
+                    <div class="event-details-header">
+                        <h3 id="event-title">Event Title</h3>
+                        <button id="close-details" class="close-btn" aria-label="Close details">×</button>
+                    </div>
+                    <div class="event-details-content">
+                        <div class="event-time-location">
+                            <div class="event-meta">
+                                <span class="event-meta-label">Date:</span>
+                                <span id="event-date">January 1, 2025</span>
+                            </div>
+                            <div class="event-meta">
+                                <span class="event-meta-label">Time:</span>
+                                <span id="event-time">10:00 AM - 4:00 PM</span>
+                            </div>
+                            <div class="event-meta">
+                                <span class="event-meta-label">Location:</span>
+                                <span id="event-location">Event Location</span>
+                            </div>
+                        </div>
+                        <div id="event-description" class="event-description">
+                            Event description will appear here.
+                        </div>
+                        <div class="event-links">
+                            <a id="event-website" href="#" target="_blank" class="event-link">Event Website</a>
+                            <a id="event-directions" href="#" target="_blank" class="event-link">Get Directions</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Event categories section -->
+                <div class="racing-categories">
+                    <h2>Racing Categories</h2>
+                    <p>Aubrey's RC participates in various racing categories. Look for us in these racing classes at events:</p>
+                    
+                    <div class="category-grid">
+                        <div class="category-card">
+                            <h3>1/10 Scale Trucks</h3>
+                            <p>Short course racing trucks competing on dirt and indoor tracks.</p>
+                        </div>
+                        <div class="category-card">
+                            <h3>1/8 Scale Buggies</h3>
+                            <p>High-performance off-road buggy racing for serious competitors.</p>
+                        </div>
+                        <div class="category-card">
+                            <h3>Rock Crawling</h3>
+                            <p>Technical competitions focusing on challenging terrain and precision driving.</p>
+                        </div>
+                        <div class="category-card">
+                            <h3>Drag Racing</h3>
+                            <p>High-speed straight-line racing with custom-built RC vehicles.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Racing tips section -->
+                <div class="racing-tips">
+                    <h2>Racing Tips</h2>
+                    <div class="tips-grid">
+                        <div class="tip-card">
+                            <h3>Preparation</h3>
+                            <p>Always check your vehicle the night before a race. Inspect tires, battery charge, and all moving parts to ensure everything is in top condition.</p>
+                        </div>
+                        <div class="tip-card">
+                            <h3>Practice</h3>
+                            <p>Consistent practice develops muscle memory and improves reaction time. Try to practice on various tracks to build adaptability.</p>
+                        </div>
+                        <div class="tip-card">
+                            <h3>Tires</h3>
+                            <p>Track conditions change throughout the day. Bring multiple tire compounds to adapt to changing surfaces.</p>
+                        </div>
+                        <div class="tip-card">
+                            <h3>Mentality</h3>
+                            <p>Stay focused but relaxed. Racing is about having fun first, competition second. A clear mind makes better driving decisions.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Racing community section -->
+                <div class="racing-community">
+                    <h2>Join the Community</h2>
+                    <p>Connect with other racers, find local events, and join the conversation in these RC racing communities:</p>
+                    
+                    <div class="community-links">
+                        <a href="https://www.facebook.com/groups/iowarcracing" target="_blank" class="community-link">
+                            <div class="community-icon">
+                                <!-- Facebook icon placeholder -->
+                                <span>f</span>
+                            </div>
+                            <div class="community-info">
+                                <h3>Iowa RC Racing</h3>
+                                <p>Facebook group for RC enthusiasts in Iowa</p>
+                            </div>
+                        </a>
+                        
+                        <a href="https://www.rctech.net/forum/midwest-racing-80/" target="_blank" class="community-link">
+                            <div class="community-icon">
+                                <!-- Forum icon placeholder -->
+                                <span>RC</span>
+                            </div>
+                            <div class="community-info">
+                                <h3>RC Tech Forums</h3>
+                                <p>Midwest section of the popular RC racing forum</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <!-- Footer will be inserted by footer.js -->
+    </div>
+
+    <!-- Core Scripts -->
+    <script src="/assets/js/header.js"></script>
+    <script src="/assets/js/footer.js"></script>
+    <script src="/assets/js/cart.js"></script>
+    
+    <!-- Racing page specific script -->
+    <script src="/assets/js/racing.js"></script>
+</body>
+</html>
