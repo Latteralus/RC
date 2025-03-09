@@ -30,48 +30,39 @@ The site's design and functionality will be inspired by the current implementati
 - LocalStorage for persistence of cart and user preferences ✅
 - Clear data flow with minimal global state ✅
 
-### File Structure
+### File Structure (Updated to Match Current Implementation)
 ```
 /
-├── index.html             # SPA entry point ✅
-├── assets/
-│   ├── css/
-│   │   ├── base.css       # Core styles, variables, typography ✅
-│   │   ├── components/    # Component-specific styles
-│   │   │   ├── topbar.css ✅
-│   │   │   ├── cart.css ✅
-│   │   │   ├── search.css ✅
-│   │   │   ├── footer.css ✅
-│   │   │   └── ...
-│   │   └── pages/         # Page-specific styles
-│   │       ├── home.css
-│   │       ├── products.css
-│   │       └── ...
-│   ├── js/
-│   │   ├── core/          # Core application code
-│   │   │   ├── app.js     # Main application entry point ✅
-│   │   │   ├── router.js  # SPA routing ✅
-│   │   │   ├── state.js   # State management ✅
-│   │   │   └── PageRenderer.js # Component rendering system ✅
-│   │   ├── components/    # Reusable UI components
-│   │   │   ├── TopBar.js ✅
-│   │   │   ├── CartPreview.js ✅
-│   │   │   ├── SearchComponent.js ✅
-│   │   │   ├── Footer.js ✅
-│   │   │   └── ...
-│   │   ├── pages/         # Page templates
-│   │   │   ├── HomePage.js
-│   │   │   ├── ProductsPage.js
-│   │   │   └── ...
-│   │   └── utils/         # Utility functions
-│   │       ├── api.js     # API interaction
-│   │       ├── storage.js # LocalStorage management
-│   │       └── ...
-│   └── images/            # Image assets
-│       ├── products/
-│       ├── icons/
-│       └── ...
-└── example.html           # Reference design (not part of production)
+├── RC/                      # Root project folder
+│   ├── index.html           # SPA entry point ✅
+│   ├── example.html         # Reference design ✅
+│   ├── websitePlan.md       # Project planning document ✅
+│   ├── assets/
+│   ├── css/                 # CSS styles
+│   │   ├── components/      # Component-specific styles
+│   │   │   ├── cart.css     # Cart component styles ✅
+│   │   │   ├── footer.css   # Footer component styles ✅
+│   │   │   ├── search.css   # Search component styles ✅
+│   │   │   └── topbar.css   # TopBar component styles ✅
+│   │   └── pages/           # Page-specific styles
+│   │       └── base.css     # Core styles, variables, typography ✅
+│   ├── images/              # Image assets
+│   │   └── cart.svg         # Cart icon
+│   └── js/                  # JavaScript code
+│       ├── components/      # UI components
+│       │   ├── CartPreview.js     # Cart preview component ✅
+│       │   ├── Footer.js          # Footer component ✅
+│       │   ├── SearchComponent.js # Search component ✅
+│       │   └── TopBar.js          # Navigation component ✅
+│       ├── core/            # Core application code
+│       │   ├── app.js       # Main application entry point ✅
+│       │   ├── main.js      # Application initialization ✅
+│       │   ├── PageRenderer.js # Component rendering system ✅
+│       │   ├── router.js    # SPA routing ✅
+│       │   └── state.js     # State management ✅
+│       ├── pages/           # Page templates
+│       ├── utils/           # Utility functions
+│       └── templates/       # HTML templates
 ```
 
 ## Responsive Design Strategy
@@ -101,167 +92,84 @@ The site's design and functionality will be inspired by the current implementati
 4. **Step 2.4**: Implement search functionality ✅
 5. **Step 2.5**: Create footer component ✅
 
-### Phase 3: Home Page Implementation
-1. **Step 3.1**: Create hero section with video background
-2. **Step 3.2**: Implement featured products section
-3. **Step 3.3**: Add custom builds showcase
-4. **Step 3.4**: Create events section
-5. **Step 3.5**: Design and implement footer
+### Phase 3: Fix Import/Export Issues
+1. **Step 3.1**: Update import paths in component files to use correct relative paths
+2. **Step 3.2**: Fix missing imports (such as Footer import in app.js)
+3. **Step 3.3**: Update script tags in index.html to match actual file structure
+4. **Step 3.4**: Address any circular dependencies
+5. **Step 3.5**: Test the application to ensure all components load correctly
 
-### Phase 4: Products Page
-1. **Step 4.1**: Create product card component
-2. **Step 4.2**: Implement product grid layout
-3. **Step 4.3**: Add filtering and sorting functionality
-4. **Step 4.4**: Create product quick view modal
+### Phase 4: Home Page Implementation
+1. **Step 4.1**: Create hero section with video background
+2. **Step 4.2**: Implement featured products section
+3. **Step 4.3**: Add custom builds showcase
+4. **Step 4.4**: Create events section
+5. **Step 4.5**: Design and implement footer
 
-### Phase 5: Other Pages
-1. **Step 5.1**: Custom builds page implementation
-2. **Step 5.2**: Racing page implementation
-3. **Step 5.3**: Videos page with lazy-loaded content
-4. **Step 5.4**: Contact page with form validation
+### Phase 5: Products Page
+1. **Step 5.1**: Create product card component
+2. **Step 5.2**: Implement product grid layout
+3. **Step 5.3**: Add filtering and sorting functionality
+4. **Step 5.4**: Create product quick view modal
 
-### Phase 6: Cart & Checkout Flow
-1. **Step 6.1**: Complete cart functionality with persistent storage
-2. **Step 6.2**: Implement cart page
-3. **Step 6.3**: Create checkout flow UI
-4. **Step 6.4**: Add form validation for checkout
+### Phase 6: Other Pages
+1. **Step 6.1**: Custom builds page implementation
+2. **Step 6.2**: Racing page implementation
+3. **Step 6.3**: Videos page with lazy-loaded content
+4. **Step 6.4**: Contact page with form validation
 
-### Phase 7: Performance & Enhancement
-1. **Step 7.1**: Optimize images and assets
-2. **Step 7.2**: Implement lazy loading for images and content
-3. **Step 7.3**: Add page transitions and animations
-4. **Step 7.4**: Create loading states and error handling
-5. **Step 7.5**: Add service worker for offline capabilities
+### Phase 7: Cart & Checkout Flow
+1. **Step 7.1**: Complete cart functionality with persistent storage
+2. **Step 7.2**: Implement cart page
+3. **Step 7.3**: Create checkout flow UI
+4. **Step 7.4**: Add form validation for checkout
 
-### Phase 8: Testing & Launch
-1. **Step 8.1**: Cross-browser testing
-2. **Step 8.2**: Accessibility audit and improvements
-3. **Step 8.3**: Performance optimization
-4. **Step 8.4**: SEO implementation
-5. **Step 8.5**: Final review and launch
+### Phase 8: Performance & Enhancement
+1. **Step 8.1**: Optimize images and assets
+2. **Step 8.2**: Implement lazy loading for images and content
+3. **Step 8.3**: Add page transitions and animations
+4. **Step 8.4**: Create loading states and error handling
+5. **Step 8.5**: Add service worker for offline capabilities
+
+### Phase 9: Testing & Launch
+1. **Step 9.1**: Cross-browser testing
+2. **Step 9.2**: Accessibility audit and improvements
+3. **Step 9.3**: Performance optimization
+4. **Step 9.4**: SEO implementation
+5. **Step 9.5**: Final review and launch
 
 ## Progress Summary
 - **Phase 1**: Completed ✅ (Core architecture setup including index.html, base.css, router.js, state.js, and PageRenderer.js)
 - **Phase 2**: Completed ✅ (TopBar & Navigation Components, Cart Preview, Search Functionality, and Footer)
-- **Current Phase**: Phase 3 (Home Page Implementation)
-- **Next Step**: Step 3.1 - Create hero section with video background
+- **Current Phase**: Phase 3 (Fix Import/Export Issues)
+- **Next Step**: Step 3.1 - Update import paths in component files to use correct relative paths
 
 ## Detailed Implementation Steps
 
-### Phase 1: Core Architecture Setup ✅
+### Phase 3: Fix Import/Export Issues
 
-#### Step 1.1: Create Basic Index.html ✅
-- Created index.html with proper HTML5 doctype
-- Added meta tags for responsiveness and SEO
-- Linked CSS files (initially just base.css)
-- Added basic app structure (div#app, main content area, etc.)
-- Added script tags for core JavaScript files
+#### Step 3.1: Update Import Paths
+- Update import paths in TopBar.js to use "../core/" instead of "./core/"
+- Update import paths in CartPreview.js to use "../core/" instead of "./core/"
+- Update import paths in SearchComponent.js to use "../core/" instead of "./core/"
+- Update import paths in Footer.js to use "../core/" instead of "./core/"
 
-#### Step 1.2: Implement Base CSS ✅
-- Created CSS variables for colors, fonts, spacing
-- Implemented CSS reset/normalize
-- Added typography styles
-- Created utility classes for common needs
-- Implemented grid system
+#### Step 3.2: Fix Missing Imports
+- Add `import Footer from './Footer.js';` to app.js
+- Ensure all component classes are properly exported
 
-#### Step 1.3: Create Core Router ✅
-- Implemented basic router with path matching
-- Set up history API integration
-- Created route registration mechanism
-- Added methods for programmatic navigation
-- Implemented event system for route changes
+#### Step 3.3: Update Script Tags
+- Update script tags in index.html to match the actual file structure
+- Remove "/assets/" from paths to match the correct directory structure
 
-#### Step 1.4: Set Up State Management ✅
-- Created simple pub/sub system
-- Implemented state container
-- Added localStorage persistence
-- Created initial state structure
-- Added debug helpers for state inspection
+#### Step 3.4: Address Circular Dependencies
+- Identify and fix any circular dependencies
+- Use alternative patterns like callbacks or event systems where needed
 
-#### Step 1.5: Create Basic Page Renderer ✅
-- Implemented component class structure
-- Created page loader mechanism
-- Added template rendering functionality
-- Implemented component lifecycle methods
-- Created content transition system
-
-### Phase 2: TopBar & Navigation Components ✅
-
-#### Step 2.1: Implement TopBar Component ✅
-- Created TopBar class structure
-- Implemented HTML template
-- Styled TopBar for desktop and mobile
-- Added mobile menu toggle
-- Ensured responsive behavior
-
-#### Step 2.2: Add Navigation Functionality ✅
-- Integrated TopBar with router
-- Implemented active page highlighting
-- Added event listeners for navigation
-- Handled mobile menu interactions
-- Ensured keyboard accessibility
-
-#### Step 2.3: Create Cart Preview Component ✅
-- Implemented cart preview UI
-- Created cart item component
-- Added animations for cart interactions
-- Implemented cart counter badge
-- Connected to state management
-
-#### Step 2.4: Implement Search Functionality ✅
-- Created search input and form
-- Styled search UI
-- Added search toggle behavior
-- Implemented search results display
-- Added keyboard shortcuts
-
-#### Step 2.5: Create Footer Component ✅
-- Implemented footer class structure
-- Created responsive footer layout
-- Added navigation links and social media icons
-- Added contact information
-- Ensured proper styling and responsive behavior
-
-### Phase 3: Home Page Implementation
-
-#### Step 3.1: Create Hero Section with Video Background
-- Implement hero component
-- Add video background with fallback
-- Style overlay and content
-- Ensure responsive behavior
-- Add CTA button
-
-#### Step 3.2: Implement Featured Products Section
-- Create product card component
-- Implement product grid
-- Add "Add to Cart" functionality
-- Implement hover effects
-- Ensure mobile optimization
-
-#### Step 3.3: Add Custom Builds Showcase
-- Create showcase component
-- Implement image gallery
-- Add section content and styling
-- Create CTA for custom services
-- Ensure responsive layout
-
-#### Step 3.4: Create Events Section
-- Implement events list component
-- Create event card design
-- Add date formatting
-- Link to event details
-- Style for all device sizes
-
-#### Step 3.5: Design and Implement Footer
-- Create footer component
-- Implement column layout
-- Add contact information
-- Create social media links
-- Add copyright and legal links
-
-### Next Steps
-
-After completing the initial phases, subsequent phases will be detailed with similar granularity. Each step is designed to be achievable in a single AI session, focusing on a specific component or functionality while maintaining clear dependencies between steps.
+#### Step 3.5: Test Application
+- Test loading of the application
+- Ensure all components initialize properly
+- Check browser console for any errors
 
 ## Component Design Principles
 
