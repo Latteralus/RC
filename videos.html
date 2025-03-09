@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Browse videos and images of remote control cars from Aubrey's RC - featuring custom builds, racing events, and awesome RC action.">
+    <title>Media Gallery - Aubrey's RC</title>
+    
+    <!-- Preconnect to external domains for faster loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- Core styles (load in correct order) -->
+    <link rel="stylesheet" href="/assets/css/base.css">
+    <link rel="stylesheet" href="/assets/css/header.css">
+    <link rel="stylesheet" href="/assets/css/footer.css">
+    <link rel="stylesheet" href="/assets/css/videos.css">
+    
+    <!-- Inline critical CSS to prevent FOUC (Flash of Unstyled Content) -->
+    <style>
+        /* Critical base styles to prevent FOUC */
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333333;
+            padding-top: 70px;
+            line-height: 1.6;
+        }
+        
+        .loading-indicator {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .loading-indicator.active {
+            display: flex;
+        }
+        
+        .loader {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #dee2e6;
+            border-top: 4px solid #FF4D00;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="/assets/images/favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <!-- Loading indicator for full page loading -->
+    <div class="loading-indicator">
+        <div class="loader"></div>
+    </div>
+
+    <!-- App Root -->
+    <div id="app">
+        <!-- Header will be inserted by header.js -->
+        
+        <!-- Main content area -->
+        <main id="content">
+            <section class="media-hero">
+                <div class="media-hero-overlay"></div>
+                <div class="media-hero-content">
+                    <h1>Media Gallery</h1>
+                    <p>Videos, photos, and action shots of our amazing RC builds and racing events</p>
+                </div>
+            </section>
+            
+            <section class="media-container">
+                <!-- Media Filter Controls -->
+                <div class="media-filter-controls">
+                    <h2>Browse Our Media</h2>
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" data-filter="all">All Media</button>
+                        <button class="filter-btn" data-filter="videos">Videos</button>
+                        <button class="filter-btn" data-filter="custom-builds">Custom Builds</button>
+                        <button class="filter-btn" data-filter="racing">Racing Events</button>
+                    </div>
+                </div>
+                
+                <!-- Media Gallery Grid -->
+                <div class="media-grid">
+                    <!-- Videos -->
+                    <div class="media-item video-item" data-category="videos racing">
+                        <div class="media-thumbnail">
+                            <img src="/assets/images/media/video-thumb-1.jpg" alt="RC Racing Competition" class="thumbnail-img">
+                            <div class="play-icon">
+                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="12" cy="12" r="10" fill="white" fill-opacity="0.8"/>
+                                    <path d="M16 12L10 16V8L16 12Z" fill="#FF6B35"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="media-info">
+                            <h3>Iowa RC Speedway Championship</h3>
+                            <p>Watch highlights from the recent championship race featuring Aubrey's custom Traxxas Rustler</p>
+                        </div>
+                    </div>
+                    
+                    <div class="media-item video-item" data-category="videos custom-builds">
+                        <div class="media-thumbnail">
+                            <img src="/assets/images/media/video-thumb-2.jpg" alt="Custom RC Build Process" class="thumbnail-img">
+                            <div class="play-icon">
+                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="12" cy="12" r="10" fill="white" fill-opacity="0.8"/>
+                                    <path d="M16 12L10 16V8L16 12Z" fill="#FF6B35"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="media-info">
+                            <h3>Custom Build: Monster Truck Modification</h3>
+                            <p>Step-by-step walkthrough of our custom monster truck build process</p>
+                        </div>
+                    </div>
+                    
+                    <div class="media-item image-item" data-category="custom-builds">
+                        <div class="media-thumbnail">
+                            <img src="/assets/images/media/build-1.jpg" alt="Custom RC Build" class="thumbnail-img">
+                        </div>
+                        <div class="media-info">
+                            <h3>Desert Racer Build</h3>
+                            <p>Custom-painted body with performance suspension upgrades</p>
+                        </div>
+                    </div>
+                    
+                    <div class="media-item image-item" data-category="racing">
+                        <div class="media-thumbnail">
+                            <img src="/assets/images/media/racing-1.jpg" alt="RC Racing Event" class="thumbnail-img">
+                        </div>
+                        <div class="media-info">
+                            <h3>Wellsburg Summer RC Festival</h3>
+                            <p>Action shots from our recent racing event</p>
+                        </div>
+                    </div>
+                    
+                    <div class="media-item video-item" data-category="videos racing">
+                        <div class="media-thumbnail">
+                            <img src="/assets/images/media/video-thumb-3.jpg" alt="RC Dragstrip Racing" class="thumbnail-img">
+                            <div class="play-icon">
+                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="12" cy="12" r="10" fill="white" fill-opacity="0.8"/>
+                                    <path d="M16 12L10 16V8L16 12Z" fill="#FF6B35"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="media-info">
+                            <h3>RC Dragstrip Showdown</h3>
+                            <p>Night racing action at the Waterloo RC Raceway</p>
+                        </div>
+                    </div>
+                    
+                    <div class="media-item image-item" data-category="custom-builds">
+                        <div class="media-thumbnail">
+                            <img src="/assets/images/media/build-2.jpg" alt="Custom RC Build Detail" class="thumbnail-img">
+                        </div>
+                        <div class="media-info">
+                            <h3>Drift Car Custom Paint</h3>
+                            <p>Close-up detail of our custom airbrushed drift car body</p>
+                        </div>
+                    </div>
+                    
+                    <div class="media-item image-item" data-category="racing">
+                        <div class="media-thumbnail">
+                            <img src="/assets/images/media/racing-2.jpg" alt="RC Racing Track" class="thumbnail-img">
+                        </div>
+                        <div class="media-info">
+                            <h3>Cedar Rapids RC Track Opening</h3>
+                            <p>First-day action at the newly opened RC track</p>
+                        </div>
+                    </div>
+                    
+                    <div class="media-item video-item" data-category="videos custom-builds">
+                        <div class="media-thumbnail">
+                            <img src="/assets/images/media/video-thumb-4.jpg" alt="RC Crawler Demo" class="thumbnail-img">
+                            <div class="play-icon">
+                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="12" cy="12" r="10" fill="white" fill-opacity="0.8"/>
+                                    <path d="M16 12L10 16V8L16 12Z" fill="#FF6B35"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="media-info">
+                            <h3>Rock Crawler in Action</h3>
+                            <p>Custom RC crawler tackling challenging terrain at Rock Canyon Park</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Load More Button -->
+                <div class="load-more-container">
+                    <button id="load-more-btn" class="btn btn-primary">Load More</button>
+                </div>
+            </section>
+            
+            <!-- Video Lightbox -->
+            <div id="video-lightbox" class="video-lightbox">
+                <div class="lightbox-content">
+                    <button class="close-lightbox">&times;</button>
+                    <div class="video-container">
+                        <!-- Video will be embedded here -->
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Image Lightbox -->
+            <div id="image-lightbox" class="image-lightbox">
+                <div class="lightbox-content">
+                    <button class="close-lightbox">&times;</button>
+                    <div class="image-container">
+                        <!-- Full-size image will be shown here -->
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <!-- Footer will be inserted by footer.js -->
+    </div>
+
+    <!-- Core Scripts -->
+    <script src="/assets/js/header.js"></script>
+    <script src="/assets/js/footer.js"></script>
+    <script src="/assets/js/cart.js"></script>
+    <script src="/assets/js/videos.js"></script>
+</body>
+</html>
