@@ -3,8 +3,8 @@
  * Cart preview component for Aubrey's RC Cars website
  */
 
-import state from './core/state.js';
-import router from './core/router.js';
+import state from '../core/state.js';
+import router from '../core/router.js';
 
 class CartPreview {
   /**

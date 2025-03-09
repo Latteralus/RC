@@ -296,10 +296,10 @@ toggleMobileMenu(event, force = null) {
  * Navigation, search, and cart management for Aubrey's RC Cars website
  */
 
-import state from '../core/state.js';
-import router from '../core/router.js';
-import CartPreview from './CartPreview.js';
-import SearchComponent from './SearchComponent.js';
+  import state from '../core/state.js';
+  import router from '../core/router.js';
+  import CartPreview from './CartPreview.js';
+  import SearchComponent from './SearchComponent.js';
 
 class TopBar {
   /**

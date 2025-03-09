@@ -6,8 +6,8 @@
 import router from './router.js';
 import state from './state.js';
 import pageRenderer from './PageRenderer.js';
-import TopBar from '../components/TopBar.js';
-import Footer from '../components/Footer.js';
+import TopBar from './components/TopBar.js';
+import Footer from './components/Footer.js';
 
 class App {
   /**

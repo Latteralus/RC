@@ -3,7 +3,7 @@
  * Footer component for Aubrey's RC Cars website
  */
 
-import router from './core/router.js';
+import router from '../core/router.js';
 
 class Footer {
   /**
