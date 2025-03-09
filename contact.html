@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact Aubrey's RC for custom RC builds, repairs, or racing advice. Based in Wellsburg, Iowa.">
+    <title>Contact Us - Aubrey's RC</title>
+    
+    <!-- Preconnect to external domains for faster loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- Core styles (load in correct order) -->
+    <link rel="stylesheet" href="/assets/css/base.css">
+    <link rel="stylesheet" href="/assets/css/header.css">
+    <link rel="stylesheet" href="/assets/css/footer.css">
+    <link rel="stylesheet" href="/assets/css/contact.css">
+    
+    <!-- Inline critical CSS to prevent FOUC (Flash of Unstyled Content) -->
+    <style>
+        /* Critical base styles to prevent FOUC */
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333333;
+            padding-top: 70px;
+            line-height: 1.6;
+        }
+        
+        .loading-indicator {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .loading-indicator.active {
+            display: flex;
+        }
+        
+        .loader {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #dee2e6;
+            border-top: 4px solid #FF4D00;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="/assets/images/favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <!-- Loading indicator for full page loading -->
+    <div class="loading-indicator">
+        <div class="loader"></div>
+    </div>
+
+    <!-- App Root -->
+    <div id="app">
+        <!-- Header will be inserted by header.js -->
+        
+        <!-- Main content area -->
+        <main id="content">
+            <div class="contact-container">
+                <div class="contact-header">
+                    <h1>Contact Us</h1>
+                    <p>Have questions about our RC cars, custom builds, or want to request a quote? Reach out to us using the form below.</p>
+                </div>
+                
+                <div class="contact-content">
+                    <div class="contact-form-container">
+                        <h2>Send us a message</h2>
+                        <form id="contact-form" action="https://formsubmit.co/orders@aubreysrc.com" method="POST">
+                            <!-- Honeypot to prevent spam -->
+                            <input type="text" name="_honey" style="display: none;">
+                            
+                            <!-- Disable captcha -->
+                            <input type="hidden" name="_captcha" value="false">
+                            
+                            <!-- Success page -->
+                            <input type="hidden" name="_next" value="https://www.aubreysrc.com/thanks.html">
+                            
+                            <div class="form-group">
+                                <label for="name">Name <span class="required">*</span></label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Email <span class="required">*</span></label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="subject">Subject <span class="required">*</span></label>
+                                <select id="subject" name="subject" required>
+                                    <option value="" disabled selected>Select a topic</option>
+                                    <option value="Custom Build Inquiry">Custom Build Inquiry</option>
+                                    <option value="Order Question">Order Question</option>
+                                    <option value="Racing Information">Racing Information</option>
+                                    <option value="Repairs">Repairs</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message">Message <span class="required">*</span></label>
+                                <textarea id="message" name="message" rows="6" required></textarea>
+                            </div>
+                            
+                            <div class="form-group form-checkbox">
+                                <input type="checkbox" id="newsletter" name="newsletter" value="Yes">
+                                <label for="newsletter">Subscribe to our newsletter for updates on new products and racing events</label>
+                            </div>
+                            
+                            <button type="submit" class="submit-btn">Send Message</button>
+                        </form>
+                    </div>
+                    
+                    <div class="contact-info">
+                        <h2>Business Information</h2>
+                        <div class="info-card">
+                            <div class="info-item">
+                                <h3>Get in Touch</h3>
+                                <p><strong>Phone:</strong> 319-595-8656</p>
+                                <p><strong>Email:</strong> info@aubreysrc.com</p>
+                                <p><strong>Orders:</strong> orders@aubreysrc.com</p>
+                            </div>
+                            
+                            <div class="info-item">
+                                <h3>Location</h3>
+                                <p>Based in Wellsburg, Iowa</p>
+                                <p>Shipping Worldwide</p>
+                            </div>
+                            
+                            <div class="info-item">
+                                <h3>Business Hours</h3>
+                                <p>Online orders: 24/7</p>
+                                <p>Email response: Within 24-48 hours</p>
+                            </div>
+                            
+                            <div class="info-item">
+                                <h3>About Us</h3>
+                                <p>Owned and operated by Aubrey "Lee" Barnett</p>
+                                <p>Racing RC cars and trucks since the late 1980s</p>
+                                <a href="/custom.html" class="info-link">View our custom builds →</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <!-- Footer will be inserted by footer.js -->
+    </div>
+
+    <!-- Core Scripts -->
+    <script src="/assets/js/header.js"></script>
+    <script src="/assets/js/footer.js"></script>
+    <script src="/assets/js/contact.js"></script>
+</body>
+</html>
