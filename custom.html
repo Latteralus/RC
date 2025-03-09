@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Aubrey's RC offers premium custom RC car builds tailored to your exact specifications with expert craftsmanship and attention to detail.">
+    <title>Custom RC Builds - Aubrey's RC</title>
+    
+    <!-- Preconnect to external domains for faster loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- Core styles (load in correct order) -->
+    <link rel="stylesheet" href="/assets/css/base.css">
+    <link rel="stylesheet" href="/assets/css/header.css">
+    <link rel="stylesheet" href="/assets/css/footer.css">
+    <link rel="stylesheet" href="/assets/css/custom.css">
+    
+    <!-- Inline critical CSS to prevent FOUC (Flash of Unstyled Content) -->
+    <style>
+        /* Critical base styles to prevent FOUC */
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333333;
+            padding-top: 70px;
+            line-height: 1.6;
+        }
+        
+        .loading-indicator {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .loading-indicator.active {
+            display: flex;
+        }
+        
+        .loader {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #dee2e6;
+            border-top: 4px solid #FF4D00;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="/assets/images/favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <!-- Loading indicator for full page loading -->
+    <div class="loading-indicator">
+        <div class="loader"></div>
+    </div>
+
+    <!-- App Root -->
+    <div id="app">
+        <!-- Header will be inserted by header.js -->
+        
+        <!-- Main content area -->
+        <main id="content">
+            <section class="custom-hero">
+                <div class="custom-hero-overlay"></div>
+                <div class="custom-hero-content">
+                    <h1>Custom RC Builds</h1>
+                    <p>Handcrafted performance machines built to your exact specifications.</p>
+                </div>
+            </section>
+            
+            <section class="custom-intro">
+                <div class="container">
+                    <h2>Your Vision, Our Expertise</h2>
+                    <p>At Aubrey's RC, we transform ordinary RC vehicles into extraordinary custom machines. With decades of experience in RC racing and modifications, we create bespoke builds that deliver the performance, style, and uniqueness you're looking for.</p>
+                    
+                    <div class="custom-highlights">
+                        <div class="highlight-item">
+                            <div class="highlight-icon">
+                                <img src="/assets/images/icon-performance.svg" alt="Performance Icon">
+                            </div>
+                            <h3>Performance</h3>
+                            <p>Enhanced speed, handling, and power tailored to your driving style.</p>
+                        </div>
+                        <div class="highlight-item">
+                            <div class="highlight-icon">
+                                <img src="/assets/images/icon-design.svg" alt="Design Icon">
+                            </div>
+                            <h3>Design</h3>
+                            <p>Custom body work, paint, and aesthetics that make your RC stand out.</p>
+                        </div>
+                        <div class="highlight-item">
+                            <div class="highlight-icon">
+                                <img src="/assets/images/icon-durability.svg" alt="Durability Icon">
+                            </div>
+                            <h3>Durability</h3>
+                            <p>Reinforced components and upgrades that can handle intense racing or bashing.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="build-process">
+                <div class="container">
+                    <h2>Our Custom Build Process</h2>
+                    <p>Creating your perfect RC machine is a collaborative journey that ensures you get exactly what you want.</p>
+                    
+                    <div class="process-timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-number">1</div>
+                            <div class="timeline-content">
+                                <h3>Consultation</h3>
+                                <p>We start with a detailed discussion about your vision, requirements, and budget. Whether you have a clear idea or need guidance, we'll help define the perfect custom build.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-number">2</div>
+                            <div class="timeline-content">
+                                <h3>Design & Planning</h3>
+                                <p>Our team creates a comprehensive build plan including component selection, performance modifications, and aesthetic customizations.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-number">3</div>
+                            <div class="timeline-content">
+                                <h3>Build & Testing</h3>
+                                <p>We carefully assemble your RC vehicle, implementing all customizations with precision and attention to detail. Every build undergoes rigorous testing to ensure it meets our standards.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-number">4</div>
+                            <div class="timeline-content">
+                                <h3>Delivery & Support</h3>
+                                <p>Your custom RC is delivered with documentation and guidance on care and maintenance. We provide ongoing support to ensure your custom build continues to perform at its best.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="showcase-section">
+                <div class="container">
+                    <h2>Custom Build Showcase</h2>
+                    <p>Take a look at some of our recent custom builds to get inspired for your own project.</p>
+                    
+                    <div class="showcase-carousel" id="showcase-carousel">
+                        <!-- Will be populated by custom.js -->
+                    </div>
+                </div>
+            </section>
+            
+            <section class="custom-options">
+                <div class="container">
+                    <h2>Customization Options</h2>
+                    <p>From minor enhancements to complete custom builds, we offer a range of services to meet your needs.</p>
+                    
+                    <div class="options-grid">
+                        <div class="option-card">
+                            <h3>Performance Upgrades</h3>
+                            <ul>
+                                <li>Motor & ESC upgrades</li>
+                                <li>Custom gearing</li>
+                                <li>Suspension tuning</li>
+                                <li>Steering enhancements</li>
+                                <li>Battery & power systems</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="option-card">
+                            <h3>Aesthetic Customization</h3>
+                            <ul>
+                                <li>Custom body shells</li>
+                                <li>Professional paint jobs</li>
+                                <li>Decal & graphics design</li>
+                                <li>LED lighting systems</li>
+                                <li>Scale accessories</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="option-card">
+                            <h3>Specialized Builds</h3>
+                            <ul>
+                                <li>Competition race vehicles</li>
+                                <li>Scale crawlers</li>
+                                <li>Drift setups</li>
+                                <li>Drag racing builds</li>
+                                <li>Bash-proof monsters</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="option-card">
+                            <h3>Maintenance & Repair</h3>
+                            <ul>
+                                <li>Performance tuning</li>
+                                <li>Drivetrain rebuilds</li>
+                                <li>Electronics troubleshooting</li>
+                                <li>Crash damage repair</li>
+                                <li>Preventative maintenance</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="request-section">
+                <div class="container">
+                    <h2>Request a Custom Build</h2>
+                    <p>Ready to start your custom RC project? Fill out the form below, and we'll get back to you within 24-48 hours to discuss your vision.</p>
+                    
+                    <div class="form-container">
+                        <form id="custom-request-form" class="custom-form">
+                            <div class="form-group">
+                                <label for="name">Your Name <span class="required">*</span></label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Email Address <span class="required">*</span></label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="build-type">Build Type <span class="required">*</span></label>
+                                <select id="build-type" name="build-type" required>
+                                    <option value="">Select a build type</option>
+                                    <option value="full-custom">Full Custom Build</option>
+                                    <option value="performance">Performance Upgrades</option>
+                                    <option value="visual">Visual Customization</option>
+                                    <option value="repair">Repair & Maintenance</option>
+                                    <option value="other">Other (Please Specify)</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="budget">Approximate Budget</label>
+                                <select id="budget" name="budget">
+                                    <option value="">Select a budget range</option>
+                                    <option value="under-500">Under $500</option>
+                                    <option value="500-1000">$500 - $1,000</option>
+                                    <option value="1000-2000">$1,000 - $2,000</option>
+                                    <option value="2000-plus">$2,000+</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="timeline">Desired Timeline</label>
+                                <select id="timeline" name="timeline">
+                                    <option value="">Select a timeline</option>
+                                    <option value="asap">As soon as possible</option>
+                                    <option value="1-month">Within 1 month</option>
+                                    <option value="3-months">Within 3 months</option>
+                                    <option value="flexible">Flexible</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group full-width">
+                                <label for="description">Project Description <span class="required">*</span></label>
+                                <textarea id="description" name="description" rows="5" required placeholder="Tell us about your custom build idea. Include details about the base vehicle, desired modifications, special requirements, etc."></textarea>
+                            </div>
+                            
+                            <div class="form-group full-width">
+                                <button type="submit" class="submit-btn">Submit Request</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <div class="additional-contact">
+                        <p>Prefer to discuss your project directly? Contact us at:</p>
+                        <p><strong>Phone:</strong> 319-595-8656</p>
+                        <p><strong>Email:</strong> info@aubreysrc.com</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="faq-section">
+                <div class="container">
+                    <h2>Frequently Asked Questions</h2>
+                    
+                    <div class="faq-accordion" id="faq-accordion">
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3>How long does a custom build typically take?</h3>
+                                <span class="faq-toggle">+</span>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Timeframes vary based on the complexity of your project and our current workload. Simple upgrades may take 1-2 weeks, while comprehensive custom builds can take 4-8 weeks. We'll provide a specific timeline during your consultation.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3>Do you work with all RC vehicle types?</h3>
+                                <span class="faq-toggle">+</span>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Yes, we work with all RC vehicle types including cars, trucks, buggies, crawlers, and more. We specialize in both electric and nitro-powered vehicles from all major manufacturers.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3>Can I provide my own parts for the build?</h3>
+                                <span class="faq-toggle">+</span>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Absolutely. We're happy to work with parts you provide. We can also offer recommendations and source high-quality components for your build if you prefer.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3>Do you offer warranties on custom builds?</h3>
+                                <span class="faq-toggle">+</span>
+                            </div>
+                            <div class="faq-answer">
+                                <p>All our workmanship comes with a 30-day warranty. Individual components typically include manufacturer warranties. Keep in mind that racing and extreme bashing can void certain warranties. We'll discuss warranty details specific to your build during consultation.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3>Can you ship custom builds internationally?</h3>
+                                <span class="faq-toggle">+</span>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Yes, we ship worldwide. International shipping costs and timeframes will be calculated based on your location and the specifics of your build.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3>What payment methods do you accept?</h3>
+                                <span class="faq-toggle">+</span>
+                            </div>
+                            <div class="faq-answer">
+                                <p>We accept all major credit cards, PayPal, and bank transfers. For custom builds, we typically require a 50% deposit to begin work, with the balance due upon completion.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <!-- Footer will be inserted by footer.js -->
+    </div>
+
+    <!-- Core Scripts -->
+    <script src="/assets/js/header.js"></script>
+    <script src="/assets/js/footer.js"></script>
+    <script src="/assets/js/cart.js"></script>
+    <script src="/assets/js/custom.js"></script>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore Aubrey's RC high-quality remote control cars, trucks, and accessories. Shop our selection of RC vehicles for enthusiasts of all levels.">
+    <title>Products - Aubrey's RC</title>
+    
+    <!-- Preconnect to external domains for faster loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- Core styles (load in correct order) -->
+    <link rel="stylesheet" href="/assets/css/base.css">
+    <link rel="stylesheet" href="/assets/css/header.css">
+    <link rel="stylesheet" href="/assets/css/footer.css">
+    <link rel="stylesheet" href="/assets/css/products.css">
+    
+    <!-- Inline critical CSS to prevent FOUC (Flash of Unstyled Content) -->
+    <style>
+        /* Critical base styles to prevent FOUC */
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333333;
+            padding-top: 70px;
+            line-height: 1.6;
+        }
+        
+        .loading-indicator {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .loading-indicator.active {
+            display: flex;
+        }
+        
+        .loader {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #dee2e6;
+            border-top: 4px solid #FF4D00;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="/assets/images/favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <!-- Loading indicator for full page loading -->
+    <div class="loading-indicator">
+        <div class="loader"></div>
+    </div>
+
+    <!-- App Root -->
+    <div id="app">
+        <!-- Header will be inserted by header.js -->
+        
+        <!-- Main content area -->
+        <main id="content">
+            <section class="products-hero">
+                <div class="products-hero-overlay"></div>
+                <div class="products-hero-content">
+                    <h1>Shop RC Vehicles</h1>
+                    <p>Explore our collection of high-performance RC cars, trucks, and accessories</p>
+                </div>
+            </section>
+            
+            <section class="products-container">
+                <div class="products-controls">
+                    <div class="filter-sort-container">
+                        <div class="filter-container">
+                            <h3>Filter Products</h3>
+                            <div class="filter-options">
+                                <button class="filter-btn active" data-category="all">All Products</button>
+                                <button class="filter-btn" data-category="trucks">Trucks</button>
+                                <button class="filter-btn" data-category="cars">Cars</button>
+                                <button class="filter-btn" data-category="crawlers">Crawlers</button>
+                                <button class="filter-btn" data-category="accessories">Accessories</button>
+                            </div>
+                        </div>
+                        
+                        <div class="sort-container">
+                            <h3>Sort By</h3>
+                            <select id="sort-select" class="sort-select">
+                                <option value="featured">Featured</option>
+                                <option value="price-low">Price: Low to High</option>
+                                <option value="price-high">Price: High to Low</option>
+                                <option value="name-az">Name: A to Z</option>
+                                <option value="name-za">Name: Z to A</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="products-count">
+                        <span id="product-count">Showing all products</span>
+                    </div>
+                </div>
+                
+                <div class="products-grid" id="products-grid">
+                    <!-- Products will be dynamically inserted by products.js -->
+                    <div class="loading-products">
+                        <div class="loader"></div>
+                        <p>Loading products...</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="cta-section">
+                <div class="cta-content">
+                    <h2>Looking for Something Custom?</h2>
+                    <p>We can build custom RC vehicles tailored to your specifications.</p>
+                    <a href="/custom.html" class="cta-button">Explore Custom Builds</a>
+                </div>
+            </section>
+        </main>
+        
+        <!-- Footer will be inserted by footer.js -->
+    </div>
+
+    <!-- Core Scripts -->
+    <script src="/assets/js/header.js"></script>
+    <script src="/assets/js/footer.js"></script>
+    <script src="/assets/js/cart.js"></script>
+    <script src="/assets/js/products.js"></script>
+</body>
+</html>

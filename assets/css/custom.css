@@ -1,0 +1,583 @@
+/* 
+ * custom.css - Styles specific to the custom builds page
+ * Part of the simplified file structure approach for www.aubreysrc.com
+ */
+
+/* Custom builds hero section */
+.custom-hero {
+    position: relative;
+    width: 100%;
+    height: 50vh;
+    min-height: 350px;
+    /* You'll want to replace this with a real image related to custom RC builds */
+    background-image: linear-gradient(135deg, var(--secondary-color) 0%, var(--dark-bg-color) 100%);
+    margin-top: -70px;
+    padding-top: 70px;
+    overflow: hidden;
+}
+
+.custom-hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(44, 62, 80, 0.6);
+    z-index: 1;
+}
+
+.custom-hero-content {
+    position: relative;
+    z-index: 2;
+    color: var(--text-on-dark);
+    text-align: center;
+    padding-top: 100px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.custom-hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    font-family: 'Rajdhani', sans-serif;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    color: var(--text-on-dark);
+}
+
+.custom-hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    color: var(--text-on-dark);
+}
+
+/* Introduction section */
+.custom-intro {
+    padding: 4rem 0 2rem;
+}
+
+.custom-intro h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+}
+
+.custom-intro > .container > p {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    font-size: 1.1rem;
+    color: var(--text-color);
+}
+
+/* Highlights grid */
+.custom-highlights {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.highlight-item {
+    background-color: var(--card-bg-color);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    padding: 2rem;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.highlight-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.08);
+}
+
+.highlight-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1.5rem;
+    background-color: rgba(52, 152, 219, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.highlight-icon img {
+    width: 40px;
+    height: 40px;
+}
+
+.highlight-item h3 {
+    font-size: 1.5rem;
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+}
+
+.highlight-item p {
+    color: var(--text-light-color);
+    margin-bottom: 0;
+}
+
+/* Build process section */
+.build-process {
+    padding: 4rem 0;
+    background-color: rgba(52, 152, 219, 0.05);
+}
+
+.build-process h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+}
+
+.build-process > .container > p {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    font-size: 1.1rem;
+    color: var(--text-color);
+}
+
+/* Timeline design */
+.process-timeline {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.process-timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 35px;
+    width: 2px;
+    background-color: var(--accent-color);
+}
+
+.timeline-item {
+    display: flex;
+    margin-bottom: 2.5rem;
+    position: relative;
+}
+
+.timeline-item:last-child {
+    margin-bottom: 0;
+}
+
+.timeline-number {
+    width: 70px;
+    height: 70px;
+    background-color: var(--accent-color);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.75rem;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    z-index: 1;
+}
+
+.timeline-content {
+    padding: 0 0 0 1.5rem;
+    flex: 1;
+}
+
+.timeline-content h3 {
+    color: var(--secondary-color);
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.timeline-content p {
+    color: var(--text-light-color);
+    margin-bottom: 0;
+}
+
+/* Showcase carousel section */
+.showcase-section {
+    padding: 4rem 0;
+}
+
+.showcase-section h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+}
+
+.showcase-section > .container > p {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    font-size: 1.1rem;
+    color: var(--text-color);
+}
+
+.showcase-carousel {
+    position: relative;
+    padding: 0 1rem;
+}
+
+/* Customization options section */
+.custom-options {
+    padding: 4rem 0;
+    background-color: rgba(52, 152, 219, 0.05);
+}
+
+.custom-options h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+}
+
+.custom-options > .container > p {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    font-size: 1.1rem;
+    color: var(--text-color);
+}
+
+.options-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.option-card {
+    background-color: var(--card-bg-color);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    padding: 2rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.option-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.08);
+}
+
+.option-card h3 {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.option-card ul {
+    padding-left: 1.5rem;
+    color: var(--text-light-color);
+}
+
+.option-card li {
+    margin-bottom: 0.5rem;
+}
+
+.option-card li:last-child {
+    margin-bottom: 0;
+}
+
+/* Request form section */
+.request-section {
+    padding: 4rem 0;
+}
+
+.request-section h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+}
+
+.request-section > .container > p {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    font-size: 1.1rem;
+    color: var(--text-color);
+}
+
+.form-container {
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    background-color: var(--card-bg-color);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    padding: 2rem;
+}
+
+.custom-form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 0;
+}
+
+.form-group.full-width {
+    grid-column: span 2;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--secondary-color);
+}
+
+.required {
+    color: var(--primary-color);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--accent-color);
+    outline: none;
+}
+
+.submit-btn {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 600;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.submit-btn:hover {
+    background-color: #e64500;
+    transform: translateY(-2px);
+}
+
+.additional-contact {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+.additional-contact p {
+    margin-bottom: 0.5rem;
+}
+
+/* FAQ section */
+.faq-section {
+    padding: 4rem 0;
+    background-color: rgba(52, 152, 219, 0.05);
+}
+
+.faq-section h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: var(--secondary-color);
+    margin-bottom: 3rem;
+}
+
+.faq-accordion {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    margin-bottom: 1rem;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: var(--card-bg-color);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.faq-question {
+    padding: 1.5rem;
+    background-color: var(--card-bg-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.faq-question:hover {
+    background-color: rgba(52, 152, 219, 0.05);
+}
+
+.faq-question h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    color: var(--secondary-color);
+}
+
+.faq-toggle {
+    font-size: 1.5rem;
+    color: var(--accent-color);
+    font-weight: bold;
+    transition: transform 0.3s ease;
+}
+
+.faq-question.active .faq-toggle {
+    transform: rotate(45deg);
+}
+
+.faq-answer {
+    padding: 0 1.5rem 1.5rem;
+    display: none;
+}
+
+.faq-answer p {
+    margin-bottom: 0;
+    color: var(--text-light-color);
+}
+
+.faq-item.active .faq-answer {
+    display: block;
+}
+
+/* Custom build showcase carousel */
+.build-card {
+    background-color: var(--card-bg-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin: 0 0.5rem;
+}
+
+.build-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.08);
+}
+
+.build-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.build-details {
+    padding: 1.5rem;
+}
+
+.build-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-family: 'Rajdhani', sans-serif;
+    color: var(--secondary-color);
+}
+
+.build-description {
+    margin-bottom: 1rem;
+    color: var(--text-light-color);
+}
+
+.build-specs {
+    background-color: rgba(52, 152, 219, 0.05);
+    border-radius: 5px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.build-specs h4 {
+    font-size: 1rem;
+    color: var(--accent-color);
+    margin-bottom: 0.5rem;
+}
+
+.build-specs ul {
+    padding-left: 1.25rem;
+    margin-bottom: 0;
+    color: var(--text-light-color);
+    font-size: 0.9rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .custom-hero-content h1 {
+        font-size: 2.5rem;
+    }
+    
+    .custom-hero-content p {
+        font-size: 1.1rem;
+    }
+    
+    .custom-form {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-group.full-width {
+        grid-column: span 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .custom-highlights {
+        grid-template-columns: 1fr;
+    }
+    
+    .timeline-number {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+    
+    .process-timeline::before {
+        left: 25px;
+    }
+    
+    .options-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .faq-question h3 {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .custom-hero-content h1 {
+        font-size: 2rem;
+    }
+    
+    .custom-hero-content p {
+        font-size: 1rem;
+    }
+    
+    .custom-intro h2,
+    .build-process h2,
+    .showcase-section h2,
+    .custom-options h2,
+    .request-section h2,
+    .faq-section h2 {
+        font-size: 2rem;
+    }
+    
+    .form-container {
+        padding: 1.5rem;
+    }
+}

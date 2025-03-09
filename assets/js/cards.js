@@ -1,67 +1,13 @@
 /**
  * cards.js - Product cards data and rendering for Aubrey's RC website
  * Part of the simplified file structure approach for www.aubreysrc.com
+ * UPDATED: Made products available as a prototype property for sharing with other scripts
  */
 
 class ProductCards {
     constructor() {
-        // Product data - this could be expanded with more products
-        this.products = [
-            {
-                id: "traxxas-rustler",
-                name: "Traxxas Rustler",
-                description: "High-performance electric stadium truck",
-                price: 299.99,
-                image: "/assets/images/products/car1.jpg",
-                featured: true,
-                category: "trucks"
-            },
-            {
-                id: "arrma-kraton",
-                name: "Arrma Kraton",
-                description: "1/8 Scale Monster Truck",
-                price: 549.99,
-                image: "/assets/images/products/car2.jpg",
-                featured: true,
-                category: "trucks"
-            },
-            {
-                id: "losi-mini-t",
-                name: "Losi Mini-T",
-                description: "Compact racing truck",
-                price: 199.99,
-                image: "/assets/images/products/car3.jpg",
-                featured: true,
-                category: "trucks"
-            },
-            {
-                id: "traxxas-slash",
-                name: "Traxxas Slash",
-                description: "Short Course Racing Truck",
-                price: 329.99,
-                image: "/assets/images/products/car4.jpg",
-                featured: true,
-                category: "trucks"
-            },
-            {
-                id: "tamiya-tt02",
-                name: "Tamiya TT-02",
-                description: "Versatile touring car chassis",
-                price: 189.99,
-                image: "/assets/images/products/car5.jpg",
-                featured: true,
-                category: "cars"
-            },
-            {
-                id: "axial-scx10",
-                name: "Axial SCX10 III",
-                description: "Scale crawler with realistic details",
-                price: 399.99,
-                image: "/assets/images/products/car6.jpg",
-                featured: false,
-                category: "crawlers"
-            }
-        ];
+        // Using products from prototype to allow sharing between instances
+        this.products = ProductCards.prototype.products;
         
         // Current position in carousel
         this.currentPosition = 0;
@@ -404,6 +350,118 @@ class ProductCards {
         }
     }
 }
+
+// Define the centralized product data on the prototype so it can be shared
+ProductCards.prototype.products = [
+    {
+        id: "traxxas-rustler",
+        name: "Traxxas Rustler",
+        description: "High-performance electric stadium truck",
+        price: 299.99,
+        image: "/assets/images/products/car1.jpg",
+        featured: true,
+        category: "trucks"
+    },
+    {
+        id: "arrma-kraton",
+        name: "Arrma Kraton",
+        description: "1/8 Scale Monster Truck",
+        price: 549.99,
+        image: "/assets/images/products/car2.jpg",
+        featured: true,
+        category: "trucks"
+    },
+    {
+        id: "losi-mini-t",
+        name: "Losi Mini-T",
+        description: "Compact racing truck",
+        price: 199.99,
+        image: "/assets/images/products/car3.jpg",
+        featured: true,
+        category: "trucks"
+    },
+    {
+        id: "traxxas-slash",
+        name: "Traxxas Slash",
+        description: "Short Course Racing Truck",
+        price: 329.99,
+        image: "/assets/images/products/car4.jpg",
+        featured: true,
+        category: "trucks"
+    },
+    {
+        id: "tamiya-tt02",
+        name: "Tamiya TT-02",
+        description: "Versatile touring car chassis",
+        price: 189.99,
+        image: "/assets/images/products/car5.jpg",
+        featured: true,
+        category: "cars"
+    },
+    {
+        id: "axial-scx10",
+        name: "Axial SCX10 III",
+        description: "Scale crawler with realistic details",
+        price: 399.99,
+        image: "/assets/images/products/car6.jpg",
+        featured: false,
+        category: "crawlers"
+    },
+    {
+        id: "hpi-rs4-sport",
+        name: "HPI RS4 Sport 3",
+        description: "Ready-to-run touring car with realistic drift action",
+        price: 279.99,
+        image: "/assets/images/products/car7.jpg",
+        featured: false,
+        category: "cars"
+    },
+    {
+        id: "team-associated-dr10",
+        name: "Team Associated DR10",
+        description: "Competition-grade drag racing RC car with realistic wheelie bar",
+        price: 359.99,
+        image: "/assets/images/products/car8.jpg",
+        featured: false,
+        category: "cars"
+    },
+    {
+        id: "traxxas-trx4",
+        name: "Traxxas TRX-4",
+        description: "Trail and scale crawler with portal axles",
+        price: 449.99,
+        image: "/assets/images/products/car9.jpg",
+        featured: false,
+        category: "crawlers"
+    },
+    {
+        id: "arrma-typhon",
+        name: "Arrma Typhon",
+        description: "High-speed 4WD buggy built for extreme bashing",
+        price: 379.99,
+        image: "/assets/images/products/car10.jpg",
+        featured: false,
+        category: "cars"
+    },
+    {
+        id: "traxxas-batteries",
+        name: "Traxxas Power Cell LiPo Battery",
+        description: "High-capacity 5000mAh LiPo battery for extended runtime",
+        price: 89.99,
+        image: "/assets/images/products/accessory1.jpg",
+        featured: false,
+        category: "accessories"
+    },
+    {
+        id: "spektrum-dx5c",
+        name: "Spektrum DX5C Controller",
+        description: "5-channel surface transmitter with programmable mixing",
+        price: 219.99,
+        image: "/assets/images/products/accessory2.jpg",
+        featured: false,
+        category: "accessories"
+    }
+];
 
 // Make ProductCards available globally
 window.ProductCards = ProductCards;
