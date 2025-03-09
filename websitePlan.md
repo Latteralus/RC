@@ -3,64 +3,76 @@
 
 ## Vision Statement
 
-Aubreys RC will be a modern, responsive e-commerce website that offers a premium shopping experience for remote control car enthusiasts. The site will feature a clean, professional design with intuitive navigation and seamless interactions. Our goal is to create a digital presence that reflects the quality and craftsmanship of our custom RC builds while providing customers with an efficient way to browse products, learn about services, and engage with our community. Aubreys RC itself does not host any racing events, but will attend many events in the local/regional area surrounding Iowa and may post related information.
+Aubreys RC will be a clean, responsive e-commerce website that offers a quality shopping experience for remote control car enthusiasts. The site will feature a professional design with intuitive navigation and straightforward interactions. Our goal is to create a digital presence that reflects the quality and craftsmanship of our custom RC builds while providing customers with an efficient way to browse products, learn about services, and engage with our community. Aubreys RC itself does not host any racing events, but will attend many events in the local/regional area surrounding Iowa and may post related information.
 
-The website will be built as a Single Page Application (SPA) to ensure fast page transitions, responsive interactions, and a native-like user experience. The architecture will be component-based for maintainability and scalability, with clear separation of concerns between UI components, business logic, and routing.
+The website will use a traditional HTML-centric approach with separate pages for different sections, ensuring reliability, better SEO, and simpler maintenance.
 
-## Reference Design
+## Simplified File Structure
 
-The site's design and functionality will be inspired by the current implementation (reference example.html), but rebuilt from the ground up with modern web development practices. The reference provides a general look and feel, but the new implementation will focus on improved architecture, performance, and maintainability and allowing the AI discretion on design choices based on the goal and best-practices of a professional, modern and responsive e-commerce site.
+Based on the need for a more straightforward implementation, we're adopting a flat, simplified file structure with page-specific CSS files:
 
-## Technical Architecture
-
-### SPA Framework
-- Pure JavaScript SPA implementation without external frameworks
-- Client-side routing with history API
-- Component-based architecture
-
-### Core Components
-1. **Router**: Handles URL changes and renders appropriate page components ✅
-2. **TopBar**: Navigation, search, and cart management ✅
-3. **PageRenderer**: Manages loading and rendering of page templates ✅
-4. **CartManager**: Handles shopping cart state and persistence ✅
-5. **NotificationSystem**: Manages user feedback and alerts
-
-### State Management
-- Simple pub/sub pattern for cross-component communication ✅
-- LocalStorage for persistence of cart and user preferences ✅
-- Clear data flow with minimal global state ✅
-
-### File Structure (Updated to Match Current Implementation)
 ```
-/
-├── index.html           # SPA entry point ✅
-├── example.html         # Reference design ✅
-├── websitePlan.md       # Project planning document ✅
+/RC
+├── index.html           # Homepage (converted from example.html)
+├── products.html        # Products listing page (to be created)
+├── custom.html          # Custom builds page (to be created)
+├── videos.html          # Media gallery (to be created)
+├── racing.html          # Racing events (to be created)
+├── contact.html         # Contact page (to be created)
+├── cart.html            # Shopping cart (to be created)
+├── checkout.html        # Checkout process (to be created)
+├── websitePlan.md       # Project planning document
 ├── assets/              # Static assets folder
-│   ├── css/             # CSS styles
-│   │   ├── components/  # Component-specific styles
-│   │   │   ├── cart.css     # Cart component styles ✅
-│   │   │   ├── footer.css   # Footer component styles ✅
-│   │   │   ├── search.css   # Search component styles ✅
-│   │   │   └── topbar.css   # TopBar component styles ✅
-│   │   └── base.css     # Core styles, variables, typography ✅
+│   ├── css/             # CSS styles (flat structure, no subfolders)
+│   │   ├── base.css     # Core styles, variables, typography shared across all pages
+│   │   ├── header.css   # Header component styles
+│   │   ├── footer.css   # Footer component styles
+│   │   ├── index.css    # Styles specific to index.html
+│   │   ├── products.css # Styles specific to products.html
+│   │   ├── custom.css   # Styles specific to custom.html
+│   │   ├── videos.css   # Styles specific to videos.html
+│   │   ├── racing.css   # Styles specific to racing.html
+│   │   ├── contact.css  # Styles specific to contact.html
+│   │   ├── cart.css     # Styles specific to cart.html
+│   │   └── checkout.css # Styles specific to checkout.html
 │   ├── images/          # Image assets
-│   │   └── cart.svg     # Cart icon ✅
-│   └── js/              # JavaScript code
-│       ├── components/  # UI components
-│       │   ├── CartPreview.js     # Cart preview component ✅
-│       │   ├── Footer.js          # Footer component ✅
-│       │   ├── SearchComponent.js # Search component ✅
-│       │   └── TopBar.js          # Navigation component ✅
-│       ├── core/        # Core application code
-│       │   ├── app.js       # Main application entry point ✅
-│       │   ├── main.js      # Application initialization ✅
-│       │   ├── PageRenderer.js # Component rendering system ✅
-│       │   ├── router.js    # SPA routing ✅
-│       │   └── state.js     # State management ✅
-│       ├── pages/       # Page templates (to be implemented)
-│       └── utils/       # Utility functions (to be implemented)
+│   │   └── cart.svg     # Cart icon
+│   └── js/              # JavaScript (flat structure, no subfolders)
+│       ├── header.js    # Header functionality
+│       ├── footer.js    # Footer functionality
+│       ├── cart.js      # Shopping cart functionality
+│       ├── search.js    # Search functionality
+│       ├── stripe.js    # Stripe payment processing integration
+│       └── common.js    # Shared utilities and functions
 ```
+
+## Technical Approach
+
+### HTML-Centric Design
+- Each page will be a standalone HTML file with complete HTML structure
+- Content specific to each page will be directly embedded in the HTML
+- Common elements (header, footer) will be consistently implemented across pages
+
+### CSS Organization
+- Flat structure with no subfolders for simpler management
+- Each HTML page has its own corresponding CSS file (e.g., index.html → index.css)
+- base.css file contains styles shared across all pages
+- Separate CSS files for header and footer components
+- Page-specific styling handled in individual page CSS files
+- Mobile-responsive design using media queries
+
+### JavaScript Implementation
+- Minimal JavaScript focused on essential functionality
+- Flat structure with no subfolders for easier maintenance
+- Dedicated header.js and footer.js files for consistent header/footer functionality
+- Core features: cart management, search functionality, form validation
+- All pages will function without JavaScript (progressive enhancement)
+
+### Payment Processing
+- Stripe integration for secure payment processing
+- Client-side Stripe Elements for payment form UI
+- Server-side payment confirmation and order processing
+- Secure checkout experience compliant with PCI standards
 
 ## Responsive Design Strategy
 
@@ -69,121 +81,44 @@ The site's design and functionality will be inspired by the current implementati
   - Mobile: < 576px
   - Tablet: 576px - 992px
   - Desktop: > 992px
-- Flexible grid system for layout ✅
-- Optimized images for different device sizes
+- Flexible layout using CSS Grid and Flexbox
 - Touch-friendly UI elements on mobile
 
 ## Implementation Plan
 
-### Phase 1: Core Architecture Setup ✅
-1. **Step 1.1**: Create basic index.html with essential meta tags and stylesheet links ✅
-2. **Step 1.2**: Implement base CSS (variables, reset, typography) ✅
-3. **Step 1.3**: Create core router implementation ✅
-4. **Step 1.4**: Set up state management system ✅
-5. **Step 1.5**: Create basic page renderer ✅
+### Phase 1: Base Setup
+1. Start with the existing index.html (converted from example.html)
+2. Extract and organize CSS into base.css and page-specific CSS files (index.css)
+3. Create header.css and footer.css for component styling
+4. Implement header.js and footer.js for consistent header/footer functionality
+5. Ensure each page references its own CSS file plus the base.css
 
-### Phase 2: TopBar & Navigation Components ✅
-1. **Step 2.1**: Implement TopBar component (HTML structure and styling) ✅
-2. **Step 2.2**: Add navigation functionality to TopBar ✅
-3. **Step 2.3**: Create cart preview component ✅
-4. **Step 2.4**: Implement search functionality ✅
-5. **Step 2.5**: Create footer component ✅
+### Phase 2: Core Pages
+1. Create products.html with product listings
+2. Implement custom.html for custom builds information
+3. Develop videos.html for media gallery
+4. Build racing.html for events information
+5. Create contact.html with contact form
 
-### Phase 3: Fix Import/Export Issues ✅
-1. **Step 3.1**: Update import paths in component files to use correct relative paths ✅
-2. **Step 3.2**: Fix missing imports (such as Footer import in app.js) ✅
-3. **Step 3.3**: Update script tags in index.html to match actual file structure ✅
-4. **Step 3.4**: Address any circular dependencies ✅
-5. **Step 3.5**: Test the application to ensure all components load correctly ✅
+### Phase 3: E-commerce Functionality
+1. Implement cart.js for shopping cart management
+2. Create cart.html for cart review and management
+3. Develop checkout.html for the checkout process
+4. Integrate Stripe payment processing for secure online payments
+5. Add "Add to Cart" functionality on product pages
 
-### Phase 4: Home Page Implementation (Current Phase)
-1. **Step 4.1**: Create hero section with video background ✅
-2. **Step 4.2**: Implement featured products section (Partially implemented)
-3. **Step 4.3**: Add custom builds showcase
-4. **Step 4.4**: Create events section
-5. **Step 4.5**: Design and implement footer ✅
+### Phase 4: Refinement
+1. Enhance styling and mobile responsiveness
+2. Add animations and interactive elements
+3. Optimize images and assets
+4. Ensure cross-browser compatibility
 
-### Phase 5: Products Page
-1. **Step 5.1**: Create product card component
-2. **Step 5.2**: Implement product grid layout
-3. **Step 5.3**: Add filtering and sorting functionality
-4. **Step 5.4**: Create product quick view modal
-
-### Phase 6: Other Pages
-1. **Step 6.1**: Custom builds page implementation
-2. **Step 6.2**: Racing page implementation
-3. **Step 6.3**: Videos page with lazy-loaded content
-4. **Step 6.4**: Contact page with form validation
-
-### Phase 7: Cart & Checkout Flow
-1. **Step 7.1**: Complete cart functionality with persistent storage
-2. **Step 7.2**: Implement cart page
-3. **Step 7.3**: Create checkout flow UI
-4. **Step 7.4**: Add form validation for checkout
-
-### Phase 8: Performance & Enhancement
-1. **Step 8.1**: Optimize images and assets
-2. **Step 8.2**: Implement lazy loading for images and content
-3. **Step 8.3**: Add page transitions and animations
-4. **Step 8.4**: Create loading states and error handling
-5. **Step 8.5**: Add service worker for offline capabilities
-
-### Phase 9: Testing & Launch
-1. **Step 9.1**: Cross-browser testing
-2. **Step 9.2**: Accessibility audit and improvements
-3. **Step 9.3**: Performance optimization
-4. **Step 9.4**: SEO implementation
-5. **Step 9.5**: Final review and launch
-
-## Progress Summary
-- **Phase 1**: Completed ✅ (Core architecture setup including index.html, base.css, router.js, state.js, and PageRenderer.js)
-- **Phase 2**: Completed ✅ (TopBar & Navigation Components, Cart Preview, Search Functionality, and Footer)
-- **Phase 3**: Completed ✅ (Import/Export Issues Fixed, Application Successfully Loading)
-- **Current Phase**: Phase 4 (Home Page Implementation)
-- **Next Step**: Step 4.2 - Complete featured products section implementation
-
-## Detailed Implementation Steps
-
-### Phase 4: Home Page Implementation
-
-#### Step 4.1: Create Hero Section with Video Background ✅
-- Implemented hero section with full-width video background
-- Added text overlay with site tagline and call-to-action
-- Ensured video stretches to cover the full width with no black bars
-- Added responsive styles for different device sizes
-
-#### Step 4.2: Implement Featured Products Section
-- Design product cards with consistent styling
-- Add hover effects for better user interaction
-- Ensure responsive grid layout for different screen sizes
-- Implement "Add to Cart" functionality
-- Add pricing and product details
-
-#### Step 4.3: Add Custom Builds Showcase
-- Design showcase layout with images and descriptions
-- Add testimonials or reviews if available
-- Create call-to-action for custom build requests
-- Ensure responsive behavior on all devices
-
-#### Step 4.4: Create Events Section
-- Design events listing with dates, locations, and descriptions
-- Add filtering by date, location, or event type
-- Implement "Add to Calendar" functionality
-- Create responsive layout for mobile devices
-
-#### Step 4.5: Review and Finalize Footer ✅
-- Ensure all links are working correctly
-- Add social media links and contact information
-- Include copyright notice and legal links
-- Test responsiveness on all device sizes
-
-## Component Design Principles
-
-1. **Self-contained**: Each component should manage its own state and DOM manipulation.
-2. **Reusable**: Components should be designed for reuse across the application.
-3. **Accessible**: Follow WCAG guidelines for all interactive elements.
-4. **Performant**: Minimize DOM operations and optimize rendering.
-5. **Responsive**: All components should adapt to different screen sizes.
+### Phase 5: Testing & Launch
+1. Cross-browser testing
+2. Mobile testing
+3. Performance optimization
+4. Content review and final adjustments
+5. Launch
 
 ## Style Guide
 
@@ -202,34 +137,42 @@ The site's design and functionality will be inspired by the current implementati
 - Base unit: 1rem (16px)
 - Scale: 0.25rem, 0.5rem, 1rem, 1.5rem, 2rem, 3rem, 4rem
 
-### Shadows
-- Light: 0 2px 4px rgba(0,0,0,0.05)
-- Medium: 0 4px 8px rgba(0,0,0,0.1)
-- Heavy: 0 8px 16px rgba(0,0,0,0.1)
+## Page-Specific Implementation Details
 
-### Borders
-- Radius: 8px
-- Width: 1px
-- Style: solid
+### Home Page (index.html)
+- Hero section with video background
+- Featured products section with "Add to Cart" functionality
+- Sections highlighting custom builds and services
+- Call-to-action elements
 
-## Performance Targets
+### Products Page (products.html)
+- Grid layout of product cards
+- Filtering and sorting options
+- Product details with pricing
+- "Add to Cart" buttons
 
-- First Contentful Paint: < 1.5s
-- Time to Interactive: < 3s
-- Lighthouse Performance Score: > 90
-- Page size: < 1MB (excluding video content)
-- HTTP requests: < 20 for initial load
+### Custom Builds Page (custom.html)
+- Showcase of custom build projects
+- Process explanation
+- Request form or contact link
 
-## Accessibility Standards
+### Videos Page (videos.html)
+- Gallery of videos and images
+- Categorized media content
+- Responsive layout for different screen sizes
 
-- WCAG 2.1 AA compliance
-- Semantic HTML structure
-- Keyboard navigation support
-- Proper ARIA attributes
-- Color contrast ratios of at least 4.5:1
-- Screen reader compatible
+### Racing Events Page (racing.html)
+- Calendar or list of upcoming events
+- Event details and information
+- Registration links if applicable
 
-Notes for AI:
+### Contact Page (contact.html)
+- Contact form with validation
+- Business information
+- Location information
+
+## Business Information
+
 Business Name: Aubreys RC
 Business State: Iowa
 Conducts Business: Worldwide
@@ -246,4 +189,4 @@ Aubrey has been racing RC cars and trucks since the late 1980s and continues tod
 
 ---
 
-This document will evolve as the project progresses, with updates to reflect design decisions, technical challenges, and additional requirements.
+This website plan will be updated as development progresses to reflect evolving requirements and implementation decisions.
