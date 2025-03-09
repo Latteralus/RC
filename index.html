@@ -18,6 +18,8 @@
     <link rel="stylesheet" href="/assets/css/header.css">
     <link rel="stylesheet" href="/assets/css/footer.css">
     <link rel="stylesheet" href="/assets/css/index.css">
+    <!-- Add cards.css for the carousel -->
+    <link rel="stylesheet" href="/assets/css/cards.css">
     
     <!-- Inline critical CSS to prevent FOUC (Flash of Unstyled Content) -->
     <style>
@@ -95,20 +97,19 @@
                 </div>
             </section>
             
-            <!-- This is just the modified section for the featured products -->
-<section class="featured-products">
-    <h2 class="section-title">Featured RC Cars</h2>
-    
-    <!-- Replace the static product-grid with the dynamic carousel -->
-    <div id="product-carousel" class="product-carousel">
-        <!-- ProductCards.js will populate this container -->
-    </div>
-    
-    <!-- View All Products link -->
-    <div class="text-center mt-4">
-        <a href="/products.html" class="cta-button">View All Products</a>
-    </div>
-</section>
+            <section class="featured-products">
+                <h2 class="section-title">Featured RC Cars</h2>
+                
+                <!-- Replace the static product-grid with the dynamic carousel -->
+                <div id="product-carousel" class="product-carousel">
+                    <!-- ProductCards.js will populate this container -->
+                </div>
+                
+                <!-- View All Products link -->
+                <div class="text-center mt-4">
+                    <a href="/products.html" class="cta-button">View All Products</a>
+                </div>
+            </section>
             
             <section class="about-section">
                 <div class="about-content">
@@ -165,6 +166,8 @@
     <script src="/assets/js/header.js"></script>
     <script src="/assets/js/footer.js"></script>
     <script src="/assets/js/cart.js"></script>
+    <!-- Add cards.js for the carousel -->
+    <script src="/assets/js/cards.js"></script>
     
     <!-- Add event listeners for Add to Cart buttons -->
     <script>
